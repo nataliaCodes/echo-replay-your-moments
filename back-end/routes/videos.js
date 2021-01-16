@@ -2,6 +2,7 @@ var express = require('express');
 var videos = express.Router();
 
 /* GET videos for specific user */
+module.exports = () => {
 videos.get('/', function(req, res, next) {
 
   const user_id = req.params.user_id;
@@ -125,5 +126,6 @@ videos.post('/:id', (req, res) => {
   console.log(id);
 
 });
+return videos
+}
 
-module.exports = videos;
