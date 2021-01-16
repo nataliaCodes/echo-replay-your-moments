@@ -32,7 +32,6 @@ function App() {
       <div className="App">
         <Header />
         <Navbar />
-        <div>{userList}</div>
         <Switch>
           <Route exact path="/">
             <Home />
