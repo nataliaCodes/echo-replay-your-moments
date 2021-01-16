@@ -32,7 +32,7 @@ users.get('/', function(req, res, next) {
 });
 
 users.post('/', (req, res) => {
-  
+
 });
 
 users.get('/:id', (req, res) => {
