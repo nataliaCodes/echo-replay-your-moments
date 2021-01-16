@@ -12,19 +12,19 @@ export default function Navbar(props) {
       <Link to="/">
         <NavbarItem>Home</NavbarItem>
       </Link>
-      <Link to="/user/id/videos">
+      <Link to="/videos">
         <NavbarItem>User videos</NavbarItem>
       </Link>
-      <Link to="/user/id/categories">
+      <Link to="/categories">
         <NavbarItem>User categories</NavbarItem>
       </Link>
-      <Link to="/user/id/categories/edit">
+      <Link to="/categories/edit">
         <NavbarItem>Edit categories</NavbarItem>
       </Link>
-      <Link to="/videos">
+      <Link to="/search">
         <NavbarItem>Search results</NavbarItem>
       </Link>
-      <Link to="/user/id/video/id/moments">
+      <Link to="/videos/id">
         <NavbarItem>Show moments</NavbarItem>
       </Link>
     </div>
