@@ -27,6 +27,12 @@ export default function Navbar(props) {
       <Link to="/videos/id">
         <NavbarItem>Show moments</NavbarItem>
       </Link>
+      <Link to="/register">
+        <NavbarItem>Register</NavbarItem>
+      </Link>
+      <Link to="/login">
+        <NavbarItem>Log in</NavbarItem>
+      </Link>
     </div>
 
   );

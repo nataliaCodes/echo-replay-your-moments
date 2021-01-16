@@ -14,25 +14,16 @@ import Videos from './components/VideosPage/Videos';
 import Categories from './components/Categories/Categories';
 import EditCategories from './components/Categories/EditCategories';
 import ShowMoments from './components/MomentsPage/ShowMoments';
-
-import useApplicationData from './hooks/useApplicationData';
+import Register from './components/Register/Register';
 
 
 function App() {
-
-  const {
-    state,
-    dispatch
-  } = useApplicationData();
-
-  const userList = state.users.map((user) => (<li key={user.id} > {user.first_name} {user.last_name} {user.email} </li>));
 
   return (
     <Router>
       <div className="App">
         <Header />
         <Navbar />
-        <div>{userList}</div>
         <Switch>
           <Route exact path="/">
             <Home />
@@ -51,6 +42,9 @@ function App() {
           </Route>
           <Route path="/videos/id">
             <ShowMoments />
+          </Route>
+          <Route path="/register">
+            <Register />
           </Route>
         </Switch>
       </div>

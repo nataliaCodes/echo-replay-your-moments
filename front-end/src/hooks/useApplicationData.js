@@ -1,41 +1,39 @@
 import {
-  useEffect,
-  useReducer
+  useState,
+  useEffect
 } from 'react';
-
-import dataReducer, {
-  SET_USERS
-} from '../helpers/dataReducer';
 
 import axios from 'axios';
 
 const useApplicationData = () => {
-  const [state, dispatch] = useReducer(dataReducer, {
-      users: [],
-      loading: true,
+
+  //initial state
+  const [state, setState] = useState({
+    users: []
   });
+
+  //extracts all users from the DB
   useEffect(() => {
-      axios({
-              method: 'GET',
-              url: '/api/users',
-          })
-          .then(({
-              data
-          }) => {
-              console.log('axios done');
-              console.log(data);
-              dispatch({
-                  type: SET_USERS,
-                  users: data
-              });
-          })
-          .catch((err) => console.log(err));
+
+    //promise.all to include any future data calls we will need
+    Promise.all([
+      axios.get('api/users')
+
+    ])
+    .then(all => {
+
+      console.log('axios done')
+      //all comes back as an array of responses from the axios calls
+      console.log(all[0].data)
+      setState(prev => ({...prev, users: all[0].data }))
+      
+    })
+    .catch((err) => console.log(err));
+
   }, []);
 
-  return {
-      state,
-      dispatch,
-  };
+  return { state }
+
 };
 
 export default useApplicationData;
