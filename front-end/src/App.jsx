@@ -37,19 +37,19 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/user/id/videos">
+          <Route path="/videos">
             <UserVideos />
           </Route>
-          <Route exact path="/user/id/categories">
+          <Route exact path="/categories">
             <Categories />
           </Route>
-          <Route exact path="/user/id/categories/edit">
+          <Route exact path="/categories/edit">
             <EditCategories />
           </Route>
-          <Route path="/videos">
+          <Route path="/search">
             <Videos />
           </Route>
-          <Route path="/user/id/video/id/moments">
+          <Route path="/videos/id">
             <ShowMoments />
           </Route>
         </Switch>

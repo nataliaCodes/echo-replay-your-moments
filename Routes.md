@@ -40,11 +40,14 @@ how to do multiple inserts in postgress - one statement(promise.all) vs loop of 
 
 ## FRONT-END ROUTES
 
+homepage: /
+user videos: /videos
+display video with moments: /videos/:id
+user categories: /categories
+edit categories: /categories/edit
+search results: /search
+
 search = POST youtube search api
 display search videos = GET youtube search api ?
 
 
-/videos
-/videos/:id
-/categories
-/categories/:id
