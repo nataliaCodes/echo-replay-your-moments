@@ -9,7 +9,11 @@ const useApplicationData = () => {
 
   //initial state
   const [state, setState] = useState({
-    users: []
+    users: [],
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: ''
   });
 
   //extracts all users from the DB
@@ -23,8 +27,11 @@ const useApplicationData = () => {
     .then(all => {
 
       console.log('axios done')
-      //all comes back as an array of responses from the axios calls
+      //'all' comes back as an array of responses from the axios calls
       console.log(all[0].data)
+      
+
+      //set current state with axios calls data
       setState(prev => ({...prev, users: all[0].data }))
       
     })
@@ -32,7 +39,41 @@ const useApplicationData = () => {
 
   }, []);
 
-  return { state }
+  const handleFormChange = event => {
+
+    const input = event.target.value;
+    const fieldName = event.target.name;
+
+    setState({
+      ...state,
+      [fieldName]: input
+    });
+
+  };
+
+  const handleSubmit = () => {
+    
+    //deconstruct values needed from state
+    const { firstName, lastName, email, password } = state;
+    
+    //build new user to send to back-end
+    const newUser = {
+      firstName,
+      lastName,
+      email,
+      password
+    };
+
+    axios.put('/api/users', { newUser })
+      .then(() => {
+        console.log('data sent');
+      })
+
+    console.log(newUser);
+    
+  }
+
+  return { state, handleFormChange, handleSubmit }
 
 };
 
