@@ -1,9 +1,55 @@
 var express = require('express');
-var router = express.Router();
+var users = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+users.get('/', function(req, res, next) {
+  res.json([
+    {
+      id: 1,
+      first_name: 'first',
+      last_name: 'last',
+      email: 'test@test.com',
+      password: 'password',
+      categories: [1, 2, 8]
+    },
+    {
+      id: 2,
+      first_name: 'first',
+      last_name: 'last',
+      email: 'test@test.com',
+      password: 'password',
+      categories: [1, 2, 8]
+    },
+    {
+      id: 3,
+      first_name: 'first',
+      last_name: 'last',
+      email: 'test@test.com',
+      password: 'password',
+      categories: [1, 2, 8]
+    }
+  ])
 });
 
-module.exports = router;
+users.post('/', (req, res) => {
+
+});
+
+users.get('/:id', (req, res) => {
+
+  const id = req.params.id;
+  console.log(id);
+
+  res.json([
+    {
+      id: 2,
+      first_name: 'first',
+      last_name: 'last',
+      email: 'test@test.com',
+      password: 'password',
+      categories: [1, 2, 8]
+    }
+  ])
+});
+
+module.exports = users;
