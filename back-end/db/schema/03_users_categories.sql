@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS users_categories CASCADE;
+
+CREATE TABLE users_categories(
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE
+);
