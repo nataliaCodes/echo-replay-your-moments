@@ -1,4 +1,4 @@
-INSERT INTO moments (label, start, end, user_id, video_id)
+INSERT INTO moments (label, start_time, end_time, user_id, video_id)
 VALUES
 ('abcc', '00:01', '00:10', 1, 1),
 ('abcd', '00:01', '00:10', 1, 2),

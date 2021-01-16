@@ -1,4 +1,4 @@
-INSERT INTO categoris (name)
+INSERT INTO categories (name)
 VALUES
   ('Education'),
   ('Sports'),
