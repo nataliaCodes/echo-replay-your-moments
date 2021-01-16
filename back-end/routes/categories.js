@@ -2,6 +2,7 @@ var express = require('express');
 var categories = express.Router();
 
 /* GET categories for user */
+module.exports = () => {
 categories.get('/', function(req, res, next) {
   res.json([
     {
@@ -37,4 +38,5 @@ categories.post('/:id', (req, res) => {
 
 });
 
-module.exports = categories;
+return categories
+}

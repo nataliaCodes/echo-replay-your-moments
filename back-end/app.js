@@ -3,6 +3,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const db = require('./db');
+const dbHelpers = require('./helpers/dbHelpers')(db);
+
 
 // const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -18,8 +20,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use('/', indexRouter);
-app.use('/api/users', usersRouter); //remove when ready for deploy
-app.use('/api/videos', videosRouter);
-app.use('/api/categories', categoriesRouter);
+app.use('/api/users', usersRouter(dbHelpers)); //remove when ready for deploy
+app.use('/api/videos', videosRouter(dbHelpers));
+app.use('/api/categories', categoriesRouter(dbHelpers));
 
 module.exports = app;
