@@ -17,15 +17,24 @@ import EditCategories from './components/Categories/EditCategories';
 import ShowMoments from './components/MomentsPage/ShowMoments';
 
 import useApplicationData from './hooks/useApplicationData';
-
+// youtube video components
 import youtubeApi from './api/youtube'
 import SearchBar from './components/shared/SearchBar'
 import VideoList from './components/shared/VideoList'
 import VideoPlayer from './components/shared/Videoplayer'
 
 
+
 export default class App extends React.Component {
 
+  // const {
+  //   state,
+  //   dispatch
+  // } = useApplicationData();
+
+  // const userList = state.users.map((user) => (<li key={user.id} > {user.first_name} {user.last_name} {user.email} </li>))
+
+  //youtube functions
   state = {
     videoMetaInfo:[],
     selectedVideoID:null
@@ -60,10 +69,12 @@ export default class App extends React.Component {
           <Navbar />
           <Switch>
             <Route exact path="/">
+              
               <SearchBar onSearch={this.onSearch} />
               <VideoList onVideoSelected={this.onVideoSelected} data={this.state.videoMetaInfo} />
               <VideoPlayer videoId={this.state.selectedVideoID}/>
               <Home />
+
             </Route>
             <Route path="/videos">
               <UserVideos />

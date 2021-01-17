@@ -1,6 +1,6 @@
 import SearchBar from '../shared/SearchBar';
 import Button from '../shared/Button';
-import VideoPlayer from '../shared/VideoPlayer';
+// import VideoPlayer from '../shared/VideoPlayer';
 import List from '../shared/ListWithEditDelete';
 import Slider from './Slider';
 import NewMoment from './NewMoment';
@@ -12,7 +12,7 @@ export default function Moment(props) {
     <div className="Moment">
       {/* <SearchBar /> */}
       <Button>Save video</Button>
-      <VideoPlayer />
+      {/* <VideoPlayer /> */}
       <Slider />
       <Button>Add moment</Button>
       <NewMoment />
