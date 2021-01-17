@@ -64,10 +64,12 @@ const useApplicationData = () => {
       password
     };
 
-    axios.put('/api/users', { newUser })
+    return axios.post('http://localhost:3001/api/users', { newUser })
       .then(() => {
         console.log('data sent');
       })
+      .catch(err => {console.log(err)});
+
 
     console.log(newUser);
     
