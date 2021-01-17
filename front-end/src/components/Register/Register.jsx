@@ -5,7 +5,7 @@ import Button from '../shared/Button';
 
 export default function Register(props) {
 
-  const { state, handleFormChange, handleSubmit } = useApplicationData();
+  const { state, handleFormChange, handleRegisterSubmit } = useApplicationData();
 
   if (state.redirect) {
     return <Redirect to={state.redirect} />
@@ -55,7 +55,7 @@ export default function Register(props) {
           ></input>
         </label>
       </form>
-      <Button onClick={handleSubmit}>Register</Button>
+      <Button onClick={handleRegisterSubmit}>Register</Button>
     </div>
   );
 }

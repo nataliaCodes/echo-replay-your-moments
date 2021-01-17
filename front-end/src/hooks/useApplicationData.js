@@ -55,7 +55,7 @@ const useApplicationData = () => {
 
   };
 
-  const handleSubmit = () => {
+  const handleRegisterSubmit = () => {
     
     //deconstruct values needed from state
     const { firstName, lastName, email, password, errors } = state;
@@ -93,7 +93,7 @@ const useApplicationData = () => {
               setState({...state, error: userExists});
             } else {
               console.log('user created, id:', response.data.id);
-              setState({...state, redirect: '/videos'});
+              setState({...state, redirect: '/'});
             }
         })
         .catch(err => {console.log(err)})
@@ -142,7 +142,7 @@ const useApplicationData = () => {
   //   onSearch(state.title)
   // }
   
-  return { state, handleFormChange, handleSubmit, onVideoSelected, onSearch }
+  return { state, handleFormChange, handleRegisterSubmit, onVideoSelected, onSearch }
 
 };
 

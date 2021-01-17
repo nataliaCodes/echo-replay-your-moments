@@ -16,8 +16,10 @@ import Categories from './components/Categories/Categories';
 import EditCategories from './components/Categories/EditCategories';
 import ShowMoments from './components/MomentsPage/ShowMoments';
 import Register from './components/Register/Register';
+import Login from './components/Login/Login';
 
 import useApplicationData from './hooks/useApplicationData';
+
 // youtube video components
 import SearchBar from './components/shared/SearchBar'
 import VideoList from './components/shared/VideoList'
@@ -60,6 +62,9 @@ function App() {
             </Route>
             <Route exact path="/register">
               <Register />
+            </Route>
+            <Route exact path="/login">
+              <Login />
             </Route>
           </Switch>
         </div>

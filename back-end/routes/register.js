@@ -9,7 +9,6 @@ module.exports = ({
 
   //handles input from register form
   register.post('/', (req, res) => {
-    console.log('[DBG][line:12][file:register] post');
 
     //deconstruct info sent from form
     const { firstName, lastName, email, password } = req.body.userInput;
@@ -28,7 +27,7 @@ module.exports = ({
               });
 
           } else {
-              console.log('user created with password:', hashedPassword)
+              console.log('user created')
               return addUser(firstName, lastName, email, hashedPassword, avatar);
           }
       })
