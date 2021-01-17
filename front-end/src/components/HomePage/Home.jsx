@@ -7,7 +7,6 @@ export default function Home(props) {
 
     <div className="Home">
       <h3>Welcome message</h3>
-      <SearchBar />
       <h3>Another message</h3>
       <form>
         <input type="text"></input>

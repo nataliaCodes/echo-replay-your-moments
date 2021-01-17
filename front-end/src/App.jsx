@@ -1,3 +1,4 @@
+import React from 'react'
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,44 +18,74 @@ import ShowMoments from './components/MomentsPage/ShowMoments';
 
 import useApplicationData from './hooks/useApplicationData';
 
+import youtubeApi from './api/youtube'
+import SearchBar from './components/shared/SearchBar'
+import VideoList from './components/shared/VideoList'
+import VideoPlayer from './components/shared/Videoplayer'
 
-function App() {
 
-  const {
-    state,
-    dispatch
-  } = useApplicationData();
+export default class App extends React.Component {
 
-  const userList = state.users.map((user) => (<li key={user.id} > {user.first_name} {user.last_name} {user.email} </li>));
+  state = {
+    videoMetaInfo:[],
+    selectedVideoID:null
+  }
 
-  return (
-    <Router>
-      <div className="App">
-        <Header />
-        <Navbar />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/videos">
-            <UserVideos />
-          </Route>
-          <Route exact path="/categories">
-            <Categories />
-          </Route>
-          <Route exact path="/categories/edit">
-            <EditCategories />
-          </Route>
-          <Route path="/search">
-            <Videos />
-          </Route>
-          <Route path="/videos/id">
-            <ShowMoments />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
+  onVideoSelected = videoId => {
+    this.setState({
+      selectedVideoID:videoId
+    })
+  }
+
+  onSearch = async keyword => {
+    const response = await youtubeApi.get("/search",{
+      params:{
+        q:keyword
+      }
+    })
+
+    this.setState({
+      videoMetaInfo: response.data.items,
+      selectedVideoID: response.data.items[0].id.videoId
+    })
+
+    console.log(this.state)
+  }
+
+  render(){
+    return (
+      <Router>
+        <div className="App">
+          <Header />
+          <Navbar />
+          <Switch>
+            <Route exact path="/">
+              <SearchBar onSearch={this.onSearch} />
+              <VideoList onVideoSelected={this.onVideoSelected} data={this.state.videoMetaInfo} />
+              <VideoPlayer videoId={this.state.selectedVideoID}/>
+              <Home />
+            </Route>
+            <Route path="/videos">
+              <UserVideos />
+            </Route>
+            <Route exact path="/categories">
+              <Categories />
+            </Route>
+            <Route exact path="/categories/edit">
+              <EditCategories />
+            </Route>
+            <Route path="/search">
+              <Videos />
+            </Route>
+            <Route path="/videos/id">
+              <ShowMoments />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    );
+  }
+
 }
 
-export default App;
+

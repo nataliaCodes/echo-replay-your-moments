@@ -6,7 +6,7 @@ export default function UserVideos(props) {
   return (
     <div className="user-videos">
       <h4>UserVideos</h4>
-      <SearchBar />
+      {/* <SearchBar /> */}
       <Thumbnail />
       <Thumbnail />
       <Thumbnail />
