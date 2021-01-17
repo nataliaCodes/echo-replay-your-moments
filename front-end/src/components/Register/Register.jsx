@@ -13,6 +13,7 @@ export default function Register(props) {
 
   return (
     <div className="Register">
+      {state.userId && <div>user: {state.userId}</div>}
       <div>
         {state.error && <small>{state.error}</small>}
       </div><br /> 

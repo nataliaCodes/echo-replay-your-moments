@@ -11,6 +11,7 @@ const usersRouter = require('./routes/users');
 const videosRouter = require('./routes/videos');
 const categoriesRouter = require('./routes/categories');
 const registerRouter = require('./routes/register');
+const loginRouter = require('./routes/login');
 
 const app = express();
 
@@ -33,5 +34,6 @@ app.use('/api/users', usersRouter(dbHelpers)); //remove when ready for deploy
 app.use('/api/videos', videosRouter(dbHelpers));
 app.use('/api/categories', categoriesRouter(dbHelpers));
 app.use('/register', registerRouter(dbHelpers));
+app.use('/login', loginRouter(dbHelpers));
 
 module.exports = app;

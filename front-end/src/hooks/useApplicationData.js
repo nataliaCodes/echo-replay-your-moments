@@ -19,7 +19,8 @@ const useApplicationData = () => {
     error: '',
     redirect: null,
     videoMetaInfo:[],
-    selectedVideoID:null
+    selectedVideoID:null,
+    userId: null
   });
 
   //extracts all users from the DB
@@ -62,7 +63,7 @@ const useApplicationData = () => {
     let validForm = true;
     
     //if any of the inputs are empty, set error state
-    if (!firstName || !lastName || ! email || !password) {
+    if (!firstName || !lastName || !email || !password) {
 
       validForm = false;
       setState({...state, error: 'Fields cannot be empty!'});
@@ -93,10 +94,55 @@ const useApplicationData = () => {
               setState({...state, error: userExists});
             } else {
               console.log('user created, id:', response.data.id);
-              setState({...state, redirect: '/'});
+              setState({...state, userId: response.data.id, redirect: '/'});
             }
         })
         .catch(err => {console.log(err)})
+    }
+  }
+
+  const handleLoginSubmit = () => {
+    
+    //deconstruct values needed from state
+    const { email, password } = state;
+    let validForm = true;
+    
+    //if any of the inputs are empty, set error state
+    if (!email || !password) {
+
+      validForm = false;
+      setState({...state, error: 'Fields cannot be empty!'});
+
+    }
+
+    if (validForm) {
+      //reset error state
+      setState({...state, error: ''});
+
+      //build input object to send to back-end
+      const loginInput = {
+        email,
+        password
+      };
+
+      //send data to back-end
+      return axios.post('http://localhost:3001/login', { loginInput })
+        .then(response => {
+
+            //if server sends response.msg, user exists in DB
+            const noUser = response.data.msg
+
+            //if user exists set state error
+            if (noUser) {
+              setState({...state, error: noUser});
+
+            } else {
+
+              console.log('user logged in, id:', response.data.id);
+              setState({...state, userId: response.data.id, redirect: '/'});
+            }
+        })
+        .catch(err => {console.log('error:', err)})
     }
   }
 
@@ -142,7 +188,7 @@ const useApplicationData = () => {
   //   onSearch(state.title)
   // }
   
-  return { state, handleFormChange, handleRegisterSubmit, onVideoSelected, onSearch }
+  return { state, handleFormChange, handleRegisterSubmit, handleLoginSubmit, onVideoSelected, onSearch }
 
 };
 
