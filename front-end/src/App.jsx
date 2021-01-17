@@ -15,53 +15,20 @@ import Videos from './components/VideosPage/Videos';
 import Categories from './components/Categories/Categories';
 import EditCategories from './components/Categories/EditCategories';
 import ShowMoments from './components/MomentsPage/ShowMoments';
+import Register from './components/Register/Register';
 
 import useApplicationData from './hooks/useApplicationData';
 // youtube video components
-import youtubeApi from './api/youtube'
 import SearchBar from './components/shared/SearchBar'
 import VideoList from './components/shared/VideoList'
-import VideoPlayer from './components/shared/Videoplayer'
+import VideoPlayer from './components/shared/VideoPlayer'
 
 
 
-export default class App extends React.Component {
+function App() {
 
-  // const {
-  //   state,
-  //   dispatch
-  // } = useApplicationData();
+  const { state, onVideoSelected, onSearch } = useApplicationData();
 
-  // const userList = state.users.map((user) => (<li key={user.id} > {user.first_name} {user.last_name} {user.email} </li>))
-
-  //youtube functions
-  state = {
-    videoMetaInfo:[],
-    selectedVideoID:null
-  }
-
-  onVideoSelected = videoId => {
-    this.setState({
-      selectedVideoID:videoId
-    })
-  }
-
-  onSearch = async keyword => {
-    const response = await youtubeApi.get("/search",{
-      params:{
-        q:keyword
-      }
-    })
-
-    this.setState({
-      videoMetaInfo: response.data.items,
-      selectedVideoID: response.data.items[0].id.videoId
-    })
-
-    console.log(this.state)
-  }
-
-  render(){
     return (
       <Router>
         <div className="App">
@@ -70,13 +37,13 @@ export default class App extends React.Component {
           <Switch>
             <Route exact path="/">
               
-              <SearchBar onSearch={this.onSearch} />
-              <VideoList onVideoSelected={this.onVideoSelected} data={this.state.videoMetaInfo} />
-              <VideoPlayer videoId={this.state.selectedVideoID}/>
+              <SearchBar onSearch={onSearch} />
+              <VideoList onVideoSelected={onVideoSelected} data={state.videoMetaInfo} />
+              <VideoPlayer videoId={state.selectedVideoID}/>
               <Home />
 
             </Route>
-            <Route path="/videos">
+            <Route exact path="/videos">
               <UserVideos />
             </Route>
             <Route exact path="/categories">
@@ -85,18 +52,20 @@ export default class App extends React.Component {
             <Route exact path="/categories/edit">
               <EditCategories />
             </Route>
-            <Route path="/search">
+            <Route exact path="/search">
               <Videos />
             </Route>
-            <Route path="/videos/id">
+            <Route exact path="/videos/id">
               <ShowMoments />
+            </Route>
+            <Route exact path="/register">
+              <Register />
             </Route>
           </Switch>
         </div>
       </Router>
     );
-  }
-
 }
 
 
+export default App;

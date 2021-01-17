@@ -1,6 +1,7 @@
 import React from 'react'
 // import "../stylesheets/SearchBar.css"
 
+import useApplicationData from '../../hooks/useApplicationData';
 
 class SearchBar extends React.Component{
   state={title:""}
@@ -37,17 +38,21 @@ class SearchBar extends React.Component{
 
 export default SearchBar;
 
-// export default function SearchBar(props) {
 
+// const SearchBar =  (props) => {
+
+//   const { state, onSearchChanged, onSubmit, onSearch} = useApplicationData();
+  
 //   return (
 //     <div>
-//       <form onSubmit={props.onSubmit}>
-//         <div class="form-controls">
-//           <label>Search</label>
-//           <input id="video-search" type="text" placeholder="Enter Search Keyword"></input>
-//         </div>
-//       </form>
-//     </div>
-    
-//   );
+//     <form onSubmit={onSubmit} onSearch={props.onSearch}>
+//       <div className="form-controls">
+//         <label>Search</label>
+//         <input value={state.title} onChange={onSearchChanged} id="video-search" type="text" placeholder="Enter Search Keyword"></input>
+//       </div>
+//     </form>
+//   </div>
+//   )
 // }
+
+// export default SearchBar;
