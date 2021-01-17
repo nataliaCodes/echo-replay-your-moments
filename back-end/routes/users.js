@@ -59,6 +59,7 @@ module.exports = ({
   getUserByEmail,
   addUser,
 }) => {
+
   /* GET users listing. */
   users.get('/', (req, res) => {
       getUsers()
@@ -67,28 +68,30 @@ module.exports = ({
               error: err.message
           }));
   });
-  users.post('/', (req, res) => {
-      const {
-          first_name,
-          last_name,
-          email,
-          password,
-          avatar
-      } = req.body;
-      getUserByEmail(email)
-          .then(user => {
-              if (user) {
-                  res.json({
-                      msg: 'Sorry, a user account with this email already exists'
-                  });
-              } else {
-                  return addUser(first_name, last_name, email, password)
-              }
-          })
-          .then(newUser => res.json(newUser))
-          .catch(err => res.json({
-              error: err.message
-          }));
-  })
+
+
+  // //handle post to /api/users
+  // users.post('/', (req, res) => {
+  //     const {
+  //         first_name,
+  //         last_name,
+  //         email,
+  //         password
+  //     } = req.body;
+  //     getUserByEmail(email)
+  //         .then(user => {
+  //             if (user) {
+  //                 res.json({
+  //                     msg: 'Sorry, a user account with this email already exists'
+  //                 });
+  //             } else {
+  //                 return addUser(first_name, last_name, email, password)
+  //             }
+  //         })
+  //         .then(newUser => res.json(newUser))
+  //         .catch(err => res.json({
+  //             error: err.message
+  //         }));
+  // })
   return users;
 };
