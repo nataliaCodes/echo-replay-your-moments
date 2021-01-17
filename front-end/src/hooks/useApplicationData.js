@@ -15,7 +15,7 @@ const useApplicationData = () => {
     email: '',
     password: ''
   });
-
+  console.log('[DBG][line:18][file:useApplicationData] useApplicationData - setState');
   //extracts all users from the DB
   useEffect(() => {
 
@@ -26,11 +26,10 @@ const useApplicationData = () => {
     ])
     .then(all => {
 
-      console.log('axios done')
+      console.log('[DBG][line:29][file:useApplicationData] - axios get done');
       //'all' comes back as an array of responses from the axios calls
       console.log(all[0].data)
       
-
       //set current state with axios calls data
       setState(prev => ({...prev, users: all[0].data }))
       
@@ -55,7 +54,12 @@ const useApplicationData = () => {
     
     //deconstruct values needed from state
     const { firstName, lastName, email, password } = state;
-    
+    console.log('[DBG][line:59][file:useApplicationData] handleSubmit');
+
+    if (!firstName || !lastName || ! email || !password) {
+      alert('Field cannot be empty!');
+    }
+
     //build new user to send to back-end
     const newUser = {
       firstName,
@@ -64,15 +68,18 @@ const useApplicationData = () => {
       password
     };
 
-    return axios.post('http://localhost:3001/register', { newUser })
-      .then((res) => {
-        console.log('data sent');
-        console.log(res.data);
-      })
-      .catch(err => {console.log(err)});
-    
-    }
+    //how to handle empty fields??? axios call goes through with empty values
 
+    return axios.post('http://localhost:3001/register', { newUser })
+      .then(response => {
+        setState({ serial: "" });
+        console.log('[DBG][line:70][file:useApplicationData] data sent');
+        resolve('data sent');
+      })
+      .catch(err => {console.log(err)})
+
+  }
+  
   return { state, handleFormChange, handleSubmit }
 
 };

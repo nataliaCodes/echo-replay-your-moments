@@ -8,7 +8,7 @@ export default function Register(props) {
 
   return (
     <div className="Register">
-      <form>
+      <form onSubmit={event => event.preventDefault()}>
         <label>
           First name:&nbsp;&nbsp;
           <input 
@@ -29,7 +29,7 @@ export default function Register(props) {
         <label>
           Email:&nbsp;&nbsp;
           <input 
-            type="text" 
+            type="email" 
             name="email" 
             onChange={handleFormChange}
           ></input>
@@ -37,7 +37,7 @@ export default function Register(props) {
         <label>
           Password:&nbsp;&nbsp;
           <input 
-            type="text" 
+            type="password" 
             name="password" 
             onChange={handleFormChange}
           ></input>

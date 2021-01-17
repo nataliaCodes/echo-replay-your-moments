@@ -7,6 +7,7 @@ module.exports = () => {
   //handles input from register form
   register.post('/', (req, res) => {
 
+    console.log('[DBG][line:10][file:register] post');
     const { newUser } = req.body;
     console.log(newUser);
 
