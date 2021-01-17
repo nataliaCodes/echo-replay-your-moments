@@ -21,14 +21,14 @@ module.exports = ({
     getUserByEmail(email)
       .then(user => {
 
-          //if user exists send back message
+          //if user exists send back message, else insert user into DB
           if (user) {
               res.json({
                   msg: 'Sorry, a user account with this email already exists'
               });
 
           } else {
-              console.log('user created')
+              console.log('user created with password:', hashedPassword)
               return addUser(firstName, lastName, email, hashedPassword, avatar);
           }
       })
@@ -37,8 +37,6 @@ module.exports = ({
       .catch(err => res.json({
           error: err.message
       }));
-
-
 
   })
   return register;

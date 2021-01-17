@@ -13,9 +13,11 @@ const useApplicationData = () => {
     firstName: '',
     lastName: '',
     email: '',
-    password: ''
+    password: '',
+    error: '',
+    redirect: null
   });
-  console.log('[DBG][line:18][file:useApplicationData] useApplicationData - setState');
+
   //extracts all users from the DB
   useEffect(() => {
 
@@ -26,7 +28,6 @@ const useApplicationData = () => {
     ])
     .then(all => {
 
-      console.log('[DBG][line:29][file:useApplicationData] - axios get done');
       //'all' comes back as an array of responses from the axios calls
       console.log(all[0].data)
       
@@ -53,31 +54,46 @@ const useApplicationData = () => {
   const handleSubmit = () => {
     
     //deconstruct values needed from state
-    const { firstName, lastName, email, password } = state;
-    console.log('[DBG][line:59][file:useApplicationData] handleSubmit');
-
+    const { firstName, lastName, email, password, errors } = state;
+    let validForm = true;
+    
+    //if any of the inputs are empty, set error state
     if (!firstName || !lastName || ! email || !password) {
-      alert('Field cannot be empty!');
+
+      validForm = false;
+      setState({...state, error: 'Fields cannot be empty!'});
+
     }
 
-    //build new user to send to back-end
-    const newUser = {
-      firstName,
-      lastName,
-      email,
-      password
-    };
+    if (validForm) {
+      //reset error state
+      setState({...state, error: ''});
 
-    //how to handle empty fields??? axios call goes through with empty values
+      //build input object to send to back-end
+      const userInput = {
+        firstName,
+        lastName,
+        email,
+        password
+      };
 
-    return axios.post('http://localhost:3001/register', { newUser })
-      .then(response => {
-        setState({ serial: "" });
-        console.log('[DBG][line:70][file:useApplicationData] data sent');
-        resolve('data sent');
-      })
-      .catch(err => {console.log(err)})
+      //send data to back-end
+      return axios.post('http://localhost:3001/register', { userInput })
+        .then(response => {
 
+            //if server sends response.msg, user exists in DB
+            const userExists = response.data.msg
+
+            //if user exists set state error
+            if (userExists) {
+              setState({...state, error: userExists});
+            } else {
+              console.log('user created, id:', response.data.id);
+              setState({...state, redirect: '/videos'});
+            }
+        })
+        .catch(err => {console.log(err)})
+    }
   }
   
   return { state, handleFormChange, handleSubmit }
