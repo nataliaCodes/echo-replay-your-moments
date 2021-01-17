@@ -1,19 +1,32 @@
 var express = require('express');
 var register = express.Router();
 
+module.exports = () => {
 
-//gets register page
-register.get('/', (req, res) => {
-  const templateVars = {
-    user: users[req.session.user_id]
-  };
+
+  //handles input from register form
+  register.post('/', (req, res) => {
+
+    const { newUser } = req.body;
+    console.log(newUser);
+
+  })
+  return register;
+};
+
+
+// //gets register page
+// register.get('/', (req, res) => {
+//   const templateVars = {
+//     user: users[req.session.user_id]
+//   };
   
-  res.render('register', templateVars);
-});
+//   res.render('register', templateVars);
+// });
 
-register.post('/', (req, res) => {
-  console.log(req.body);
-});
+// register.post('/', (req, res) => {
+//   console.log(req.body);
+// });
 
 // //handles input on register page
 // app.post('/register', (req, res) => {

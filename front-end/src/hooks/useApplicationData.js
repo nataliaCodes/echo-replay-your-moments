@@ -64,16 +64,14 @@ const useApplicationData = () => {
       password
     };
 
-    return axios.post('http://localhost:3001/api/users', { newUser })
-      .then(() => {
+    return axios.post('http://localhost:3001/register', { newUser })
+      .then((res) => {
         console.log('data sent');
+        console.log(res.data);
       })
       .catch(err => {console.log(err)});
-
-
-    console.log(newUser);
     
-  }
+    }
 
   return { state, handleFormChange, handleSubmit }
 
