@@ -41,7 +41,7 @@ export default function YTplayer(props) {
     
     return ( 
       <YouTube 
-      videoId={'2T6YMokSM68'} 
+      videoId={props.videoId} 
       opts={opts} 
       onReady={videoOnReady}
       onPlay={videoOnPlay}

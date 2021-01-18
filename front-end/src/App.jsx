@@ -21,16 +21,15 @@ import useApplicationData from './hooks/useApplicationData';
 // youtube video components
 import SearchBar from './components/shared/SearchBar'
 import VideoList from './components/shared/VideoList'
-import VideoPlayer from './components/shared/VideoPlayer'
 import youtube from './api/youtube';
 
-import YTplayer from './components/Youtube'
+import VideoPlayer from './components/VideoPlayer'
 import MomentBar from './components/shared/MomentBar'
 
 
 function App() {
 
-  const { state, onVideoSelected, onSearch } = useApplicationData();
+  const { state, onVideoSelected, onSearch, onMinChange, onMaxChange } = useApplicationData();
 
     return (
       <Router>
@@ -39,10 +38,7 @@ function App() {
           <Navbar />
           <Switch>
             <Route exact path="/">
-              
-              <YTplayer videoId={state.selectedVideoID} startTime={state.startTime} endTime={state.endTime}/>
-              <MomentBar startTime={state.startTime} endTime={state.endTime}/>
-
+            
               <SearchBar onSearch={onSearch} />
               <VideoList onVideoSelected={onVideoSelected} data={state.videoMetaInfo} />
               <Home />
@@ -61,7 +57,8 @@ function App() {
               <Videos />
             </Route>
             <Route exact path="/videos/id">
-              <YTplayer videoId={state.selectedVideoID} />
+              <MomentBar startTime={state.startTime} endTime={state.endTime} onMinChange={onMinChange} onMaxChange={onMaxChange}/>
+              <VideoPlayer videoId={state.selectedVideoID} />
               <ShowMoments />
             </Route>
             <Route exact path="/register">

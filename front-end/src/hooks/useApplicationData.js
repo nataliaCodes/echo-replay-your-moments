@@ -144,8 +144,20 @@ const useApplicationData = () => {
 
   //   onSearch(state.title)
   // }
+
+  const onMinChange = (e) => {
+    setState({
+      startTime: +e.target.value || 0,
+    });
+  };
   
-  return { state, handleFormChange, handleSubmit, onVideoSelected, onSearch }
+  const onMaxChange = (e) => {
+    setState({
+      endTime: +e.target.value || 100,
+    });
+  };
+  
+  return { state, handleFormChange, handleSubmit, onVideoSelected, onSearch, onMinChange, onMaxChange}
 
 };
 

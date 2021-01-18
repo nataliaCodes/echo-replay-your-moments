@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom"
 // import "../stylesheets/_video.css";
 function selectVideo(videoIdObj, onVideoSelected) {
   onVideoSelected(videoIdObj.videoId);
@@ -27,7 +27,7 @@ function constructVideoTitles(videosData, onVideoSelected) {
   });
 }
 const Video = ({ data, onVideoSelected }) => {
-  return <>{constructVideoTitles(data, onVideoSelected)}</>;
+  return <> <Link to="/videos/id"> {constructVideoTitles(data, onVideoSelected)} </Link></>;
 };
 
 export default Video;
