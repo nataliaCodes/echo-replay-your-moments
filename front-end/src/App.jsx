@@ -34,7 +34,7 @@ import MomentBar from './components/shared/MomentBar'
 
 function App() {
 
-  const { state, onVideoSelected, onSearch, onMinChange, onMaxChange } = useApplicationData();
+  const { state, onVideoSelected, onSearch, onSliderChange,onMinChange, onMaxChange } = useApplicationData();
 
     return (
       <Router>
@@ -65,7 +65,7 @@ function App() {
             </Route>
             <Route exact path="/videos/id">
 
-              <MomentBar startTime={state.startTime} endTime={state.endTime} onMinChange={onMinChange} onMaxChange={onMaxChange}/>
+              <MomentBar startTime={state.startTime} endTime={state.endTime} onMinChange={onMinChange} onMaxChange={onMaxChange} onSliderChange={onSliderChange} state={state}/>
               
               <VideoPlayer videoId={state.selectedVideoID} />
               <ShowMoments />

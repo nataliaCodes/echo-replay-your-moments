@@ -210,8 +210,17 @@ const useApplicationData = () => {
   //   onSearch(state.title)
   // }
 
+  //Slider functions
+  const onSliderChange = (value) => {
+    
+    console.log(value);
+
+    const min = value[0]
+    const max = value[1]
+    setState({...state, startTime: min, endTime: max })
+  };
+
   const onMinChange = (e) => {
-    console.log("MIN",e.target.value)
     setState({
       ...state, startTime: e.target.value
     });
@@ -219,11 +228,11 @@ const useApplicationData = () => {
   
   const onMaxChange = (e) => {
     setState({
-      ...state, endTime: e
+      ...state, endTime: e.target.value
     });
   };
   
-  return { state, handleFormChange, handleRegisterSubmit, handleLoginSubmit, onVideoSelected, onSearch, handleLogout, onMinChange, onMaxChange }
+  return { state, handleFormChange, handleRegisterSubmit, handleLoginSubmit, onVideoSelected, onSearch, handleLogout, onSliderChange, onMinChange, onMaxChange }
 
 };
 
