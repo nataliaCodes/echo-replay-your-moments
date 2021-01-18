@@ -3,9 +3,13 @@ import { Link } from "react-router-dom";
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 
+import useApplicationData from '../../hooks/useApplicationData';
+
 import Button from '../shared/Button';
 
 export default function Categories(props) {
+
+  const { state } = useApplicationData();
 
   return (
     <div className="Categories">
@@ -16,6 +20,7 @@ export default function Categories(props) {
         </Link>
       </Button>
       <br/><br/><br/>
+      <div>{state.categories}</div>
 
       <Accordion>
         <Card>
