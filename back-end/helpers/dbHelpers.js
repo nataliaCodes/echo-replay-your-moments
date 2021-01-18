@@ -44,10 +44,23 @@ module.exports = (db) => {
       .catch(err => console.log(err));
   };
 
+  const getUserVideosByCategory = id => {
+    const query = {
+      text: `SELECT * FROM users_categories INNER JOIN categories 
+              ON category_id = categories.id 
+              Where user_id = $1;` ,
+      values: [id]
+    }
+    return db.query(query)
+      .then(result => result.rows)
+      .catch(err => console.log(err));
+  };
+
   return {
       getUsers,
       getUserByEmail,
       addUser,
-      getUserCategories
+      getUserCategories,
+      getUserVideosByCategory
   };
 };

@@ -38,7 +38,7 @@ export default function Categories(props) {
         </Link>
       </Button>
       <br/><br/><br/>
-      <div>{categories}</div>
+      {/* <div>{categories}</div> */}
 
       {accordionCards ?
       <Accordion style={{width: "90%", marginLeft: "3em"}}>
