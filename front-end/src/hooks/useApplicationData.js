@@ -22,7 +22,10 @@ const useApplicationData = () => {
     error: '',
     redirect: null,
     videoMetaInfo:[],
-    selectedVideoID:null
+    selectedVideoID:null,
+    startTime: 70,
+    endTime: 2222,
+    loop:0
   });
 
   //set initial cookie
@@ -206,8 +209,20 @@ const useApplicationData = () => {
 
   //   onSearch(state.title)
   // }
+
+  const onMinChange = (e) => {
+    setState({
+      startTime: +e.target.value || 0,
+    });
+  };
   
-  return { state, handleFormChange, handleRegisterSubmit, handleLoginSubmit, onVideoSelected, onSearch, handleLogout }
+  const onMaxChange = (e) => {
+    setState({
+      endTime: +e.target.value || 100,
+    });
+  };
+  
+  return { state, handleFormChange, handleRegisterSubmit, handleLoginSubmit, onVideoSelected, onSearch, handleLogout, onMinChange, onMaxChange }
 
 };
 
