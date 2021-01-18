@@ -36,17 +36,17 @@ const useApplicationData = () => {
 
     //promise.all to include any future data calls we will need
     Promise.all([
-      axios.get('api/users'),
-      axios.get('api/categories')
+      axios.get('api/categories'),
+      axios.get('api/users')
     ])
     .then(all => {
 
       //'all' comes back as an array of responses from the axios calls
-      console.log('users:', all[0].data)
-      console.log('categories:', all[1].data)
+      console.log('users:', all[1].data)
+      console.log('categories:', all[0].data)
       
       //set current state with axios calls data
-      setState(prev => ({...prev, users: all[0].data, categories: all[1].data }))
+      setState(prev => ({...prev, users: all[1].data, categories: all[0].data }))
       
     })
     .catch((err) => console.log(err));

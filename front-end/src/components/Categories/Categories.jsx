@@ -11,6 +11,24 @@ export default function Categories(props) {
 
   const { state } = useApplicationData();
 
+  const categories = state.categories;
+
+  const accordionCards = !categories ? <p>No categories found</p> : categories.map(name => {
+    return (
+
+      <Card>
+        <Card.Header>
+          <Accordion.Toggle as={Card.Header} variant="link" eventKey="1">
+            {name}
+          </Accordion.Toggle>
+        </Card.Header>
+        <Accordion.Collapse eventKey="1">
+          <Card.Body>All the videos</Card.Body>
+        </Accordion.Collapse>
+      </Card>
+    )
+  });
+
   return (
     <div className="Categories">
       <h4>Categories</h4>
@@ -20,69 +38,10 @@ export default function Categories(props) {
         </Link>
       </Button>
       <br/><br/><br/>
-      <div>{state.categories}</div>
+      <div>{categories}</div>
 
-      <Accordion>
-        <Card>
-          <Card.Header>
-            <Accordion.Toggle as={Card.Header} variant="link" eventKey="1">
-              Education
-            </Accordion.Toggle>
-          </Card.Header>
-          <Accordion.Collapse eventKey="1">
-            <Card.Body>All the videos</Card.Body>
-          </Accordion.Collapse>
-        </Card>
-        <Card>
-          <Card.Header>
-            <Accordion.Toggle as={Card.Header} variant="link" eventKey="2">
-            Sports
-            </Accordion.Toggle>
-          </Card.Header>
-          <Accordion.Collapse eventKey="2">
-            <Card.Body>All the videos</Card.Body>
-          </Accordion.Collapse>
-        </Card>
-        <Card>
-          <Card.Header>
-            <Accordion.Toggle as={Card.Header} variant="link" eventKey="3">
-            Dance
-            </Accordion.Toggle>
-          </Card.Header>
-          <Accordion.Collapse eventKey="3">
-            <Card.Body>All the videos</Card.Body>
-          </Accordion.Collapse>
-        </Card>
-        <Card>
-          <Card.Header>
-            <Accordion.Toggle as={Card.Header} variant="link" eventKey="4">
-            Art
-            </Accordion.Toggle>
-          </Card.Header>
-          <Accordion.Collapse eventKey="4">
-            <Card.Body>All the videos</Card.Body>
-          </Accordion.Collapse>
-        </Card>
-        <Card>
-          <Card.Header>
-            <Accordion.Toggle as={Card.Header} variant="link" eventKey="5">
-            Cooking
-            </Accordion.Toggle>
-          </Card.Header>
-          <Accordion.Collapse eventKey="5">
-            <Card.Body>All the videos</Card.Body>
-          </Accordion.Collapse>
-        </Card>
-        <Card>
-          <Card.Header>
-            <Accordion.Toggle as={Card.Header} variant="link" eventKey="6">
-            DIY
-            </Accordion.Toggle>
-          </Card.Header>
-          <Accordion.Collapse eventKey="6">
-            <Card.Body>All the videos</Card.Body>
-          </Accordion.Collapse>
-        </Card>
+      <Accordion style={{width: "90%", marginLeft: "3em"}}>
+        {accordionCards}
       </Accordion>
 
     </div>
