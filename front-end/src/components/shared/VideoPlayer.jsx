@@ -13,7 +13,7 @@ const Videoplayer = ({ videoId }) => {
       <iframe
         title={videoId}
         className="video-iframe"
-        src={`https://www.youtube.com/embed/${videoId}`}
+        src={`https://www.youtube.com/embed/${videoId}?playlist=${videoId}&autoplay=1&loop=1&start=60&end=63`}
       />
     </div>
   );

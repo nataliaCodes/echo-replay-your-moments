@@ -19,7 +19,10 @@ const useApplicationData = () => {
     error: '',
     redirect: null,
     videoMetaInfo:[],
-    selectedVideoID:null
+    selectedVideoID:null,
+    startTime: 70,
+    endTime: 2222,
+    loop:0
   });
 
   //extracts all users from the DB
