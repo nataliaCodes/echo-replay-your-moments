@@ -46,9 +46,10 @@ module.exports = (db) => {
 
   const getUserVideosByCategory = id => {
     const query = {
-      text: `SELECT * FROM users_categories INNER JOIN categories 
-              ON category_id = categories.id 
-              Where user_id = $1;` ,
+      text: `SELECT  j.category_id, vid.id, vid.title, vid.link 
+          FROM users_categories as j INNER JOIN videos as vid 
+          ON j.category_id = vid.category_id 
+          WHERE j.user_id = 1 AND vid.user_id = $1` ,
       values: [id]
     }
     return db.query(query)
