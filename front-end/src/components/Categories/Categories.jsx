@@ -13,16 +13,16 @@ export default function Categories(props) {
 
   const categories = state.categories;
 
-  const accordionCards = !categories ? <p>No categories found</p> : categories.map(name => {
+  const accordionCards = !categories ? false : categories.map((name, index) => {
     return (
 
       <Card>
         <Card.Header>
-          <Accordion.Toggle as={Card.Header} variant="link" eventKey="1">
+          <Accordion.Toggle as={Card.Header} variant="link" eventKey={index + 1}>
             {name}
           </Accordion.Toggle>
         </Card.Header>
-        <Accordion.Collapse eventKey="1">
+        <Accordion.Collapse eventKey={index + 1}>
           <Card.Body>All the videos</Card.Body>
         </Accordion.Collapse>
       </Card>
@@ -40,10 +40,13 @@ export default function Categories(props) {
       <br/><br/><br/>
       <div>{categories}</div>
 
+      {accordionCards ?
       <Accordion style={{width: "90%", marginLeft: "3em"}}>
         {accordionCards}
       </Accordion>
-
+      :
+      <p>No categories found</p>
+      }
     </div>
   );
 }
