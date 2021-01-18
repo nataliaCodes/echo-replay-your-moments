@@ -19,12 +19,12 @@ module.exports = ({getUserCategories}) => {
           //filter out name duplicates
           const categories = categoryNames.filter(function(name, i) {
             return categoryNames.indexOf(name) === i;
-        })
-          res.json(categories);
-        })
-        .catch((err) => res.json({
-          error: err.message
-        }));
+          })
+            res.json(categories);
+          })
+          .catch((err) => res.json({
+            error: err.message
+          }));
 
   });
 
