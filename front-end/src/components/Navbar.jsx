@@ -1,10 +1,18 @@
 import { Link } from "react-router-dom";
+import { useCookies } from "react-cookie";
+
+import useApplicationData from '../hooks/useApplicationData';
 
 import NavbarItem from './NavbarItem';
+import Logout from './Login/Logout';
 
 import './stylesheets/Navbar.css';
 
 export default function Navbar(props) {
+
+  const [cookies, setCookie] = useCookies(["user"]);
+
+  const { handleLogout } = useApplicationData();
 
   return (
 
@@ -32,6 +40,9 @@ export default function Navbar(props) {
       </Link>
       <Link to="/login">
         <NavbarItem>Log in</NavbarItem>
+      </Link>
+      <Link to="/">
+        <Logout onClick={handleLogout}>Log out user {cookies.user}</Logout>
       </Link>
     </div>
 

@@ -7,6 +7,10 @@ import {
 
 import './App.css';
 
+//hooks
+import useApplicationData from './hooks/useApplicationData';
+
+//local components
 import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Home from './components/HomePage/Home';
@@ -18,14 +22,10 @@ import ShowMoments from './components/MomentsPage/ShowMoments';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 
-import useApplicationData from './hooks/useApplicationData';
-
 // youtube video components
 import SearchBar from './components/shared/SearchBar'
 import VideoList from './components/shared/VideoList'
 import VideoPlayer from './components/shared/VideoPlayer'
-
-
 
 function App() {
 
@@ -36,6 +36,7 @@ function App() {
         <div className="App">
           <Header />
           <Navbar />
+          {state.userId && <div>user: {state.userId}</div>}
           <Switch>
             <Route exact path="/">
               
@@ -43,6 +44,7 @@ function App() {
               <VideoList onVideoSelected={onVideoSelected} data={state.videoMetaInfo} />
               <VideoPlayer videoId={state.selectedVideoID}/>
               <Home />
+
 
             </Route>
             <Route exact path="/videos">

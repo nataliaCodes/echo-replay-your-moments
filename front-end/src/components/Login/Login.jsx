@@ -13,7 +13,6 @@ export default function Login(props) {
 
   return (
     <div className="Login">
-      {state.userId && <div>user: {state.userId}</div>}
       <div>
         {state.error && <small>{state.error}</small>}
       </div><br /> 

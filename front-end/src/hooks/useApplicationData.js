@@ -3,6 +3,9 @@ import {
   useEffect
 } from 'react';
 
+//use cookies hook
+import { useCookies } from "react-cookie";
+
 import axios from 'axios';
 
 import youtubeApi from '../api/youtube';
@@ -19,9 +22,11 @@ const useApplicationData = () => {
     error: '',
     redirect: null,
     videoMetaInfo:[],
-    selectedVideoID:null,
-    userId: null
+    selectedVideoID:null
   });
+
+  //set initial cookie
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
 
   //extracts all users from the DB
   useEffect(() => {
@@ -92,9 +97,13 @@ const useApplicationData = () => {
             //if user exists set state error
             if (userExists) {
               setState({...state, error: userExists});
+
             } else {
               console.log('user created, id:', response.data.id);
-              setState({...state, userId: response.data.id, redirect: '/'});
+              setCookie("user", response.data.id, {
+                path: "/"
+              });
+              setState({...state, redirect: '/'});
             }
         })
         .catch(err => {console.log(err)})
@@ -139,11 +148,20 @@ const useApplicationData = () => {
             } else {
 
               console.log('user logged in, id:', response.data.id);
-              setState({...state, userId: response.data.id, redirect: '/'});
+              setCookie("user", response.data.id, {
+                path: "/"
+              });
+              setState({...state, redirect: '/'});
             }
         })
         .catch(err => {console.log('error:', err)})
     }
+  }
+
+  const handleLogout = () => {
+    //reset cookie when user logs out
+    removeCookie("user", { path: "/"});
+    console.log('user logged out');
   }
 
   const onVideoSelected = videoId => {
@@ -188,7 +206,7 @@ const useApplicationData = () => {
   //   onSearch(state.title)
   // }
   
-  return { state, handleFormChange, handleRegisterSubmit, handleLoginSubmit, onVideoSelected, onSearch }
+  return { state, handleFormChange, handleRegisterSubmit, handleLoginSubmit, onVideoSelected, onSearch, handleLogout }
 
 };
 
