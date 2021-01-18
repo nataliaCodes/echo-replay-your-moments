@@ -4,6 +4,7 @@
 *.log
 
 # lint logs
+*.eslintcache
 .eslintcache
 
 # dependencies
