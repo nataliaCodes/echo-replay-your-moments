@@ -35,15 +35,19 @@ export default function Navbar(props) {
       <Link to="/videos/id">
         <NavbarItem>Show moments</NavbarItem>
       </Link>
-      <Link to="/register">
-        <NavbarItem>Register</NavbarItem>
-      </Link>
-      <Link to="/login">
-        <NavbarItem>Log in</NavbarItem>
-      </Link>
-      <Link to="/">
-        <Logout onClick={handleLogout}>Log out user {cookies.user}</Logout>
-      </Link>
+      { cookies.user ?
+        <Link to="/">
+          <Logout onClick={handleLogout}>Log out user {cookies.user}</Logout>
+        </Link> :
+        <>
+          <Link to="/register">
+            <NavbarItem>Register</NavbarItem>
+          </Link>
+          <Link to="/login">
+            <NavbarItem>Log in</NavbarItem>
+          </Link>
+        </>
+      }
     </div>
 
   );
