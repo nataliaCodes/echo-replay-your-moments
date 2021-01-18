@@ -32,22 +32,14 @@ module.exports = (db) => {
           .catch(err => err);
   };
 
-  const getUserCategories = id => {
-    const query = {
-      text: `SELECT * FROM users_categories INNER JOIN categories 
-              ON category_id = categories.id 
-              Where user_id = $1;` ,
-      values: [id]
-    }
-    return db.query(query)
-      .then(result => result.rows)
-      .catch(err => console.log(err));
-  };
 
-  const getUserVideosByCategory = (userId, catId) => {
+  const getUserVidsAndCats = id => {
     const query = {
-      text: `SELECT * FROM videos WHERE user_id = $1 AND category_id = $2;` ,
-      values: [userId, catId]
+      text: `SELECT v.id, v.title, v.link, v.category_id, c.name AS cat_name
+          FROM videos as v INNER JOIN categories as c 
+          ON v.category_id = c.id 
+          WHERE v.user_id = $1;` ,
+      values: [id]
     }
     return db.query(query)
       .then(result => result.rows)
@@ -58,7 +50,6 @@ module.exports = (db) => {
       getUsers,
       getUserByEmail,
       addUser,
-      getUserCategories,
-      getUserVideosByCategory
+      getUserVidsAndCats
   };
 };
