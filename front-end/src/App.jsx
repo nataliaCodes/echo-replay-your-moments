@@ -64,7 +64,9 @@ function App() {
               <Videos />
             </Route>
             <Route exact path="/videos/id">
+
               <MomentBar startTime={state.startTime} endTime={state.endTime} onMinChange={onMinChange} onMaxChange={onMaxChange}/>
+              
               <VideoPlayer videoId={state.selectedVideoID} />
               <ShowMoments />
             </Route>

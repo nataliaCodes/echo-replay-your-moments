@@ -24,8 +24,8 @@ const useApplicationData = () => {
     videoMetaInfo:[],
     selectedVideoID:null,
     startTime: 70,
-    endTime: 2222,
-    loop:0
+    endTime: 73,
+    loop:1
   });
 
   //set initial cookie
@@ -211,14 +211,15 @@ const useApplicationData = () => {
   // }
 
   const onMinChange = (e) => {
+    console.log("MIN",e.target.value)
     setState({
-      startTime: +e.target.value || 0,
+      ...state, startTime: e.target.value
     });
   };
   
   const onMaxChange = (e) => {
     setState({
-      endTime: +e.target.value || 100,
+      ...state, endTime: e
     });
   };
   
