@@ -44,13 +44,10 @@ module.exports = (db) => {
       .catch(err => console.log(err));
   };
 
-  const getUserVideosByCategory = id => {
+  const getUserVideosByCategory = (userId, catId) => {
     const query = {
-      text: `SELECT  j.category_id, vid.id, vid.title, vid.link 
-          FROM users_categories as j INNER JOIN videos as vid 
-          ON j.category_id = vid.category_id 
-          WHERE j.user_id = 1 AND vid.user_id = $1` ,
-      values: [id]
+      text: `SELECT * FROM videos WHERE user_id = $1 AND category_id = $2;` ,
+      values: [userId, catId]
     }
     return db.query(query)
       .then(result => result.rows)

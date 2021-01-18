@@ -3,7 +3,10 @@ var express = require('express');
 var categories = express.Router();
 
 /* GET categories for user */
-module.exports = ({getUserCategories}) => {
+module.exports = ({
+  getUserCategories,
+  getUserVideosByCategory
+}) => {
   categories.get('/', function(req, res, next) {
 
     //get user id from cookies
@@ -20,11 +23,20 @@ module.exports = ({getUserCategories}) => {
           const categories = categoryNames.filter(function(name, i) {
             return categoryNames.indexOf(name) === i;
           })
+
             res.json(categories);
           })
           .catch((err) => res.json({
             error: err.message
           }));
+
+    getUserVideosByCategory(userId)
+        .then(response=> {
+          res.json(response)
+        })
+        .catch((err) => res.json({
+          error: err.message
+        }));
 
   });
 
