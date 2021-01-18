@@ -3,28 +3,48 @@ var express = require('express');
 var categories = express.Router();
 
 /* GET categories for user */
-module.exports = ({getUserCategories}) => {
+module.exports = ({
+  getUserCategories,
+  getUserVidsAndCats
+}) => {
   categories.get('/', function(req, res, next) {
 
     //get user id from cookies
     const userId = req.cookies.user;
 
-    //get categories based on user id
-    getUserCategories(userId)
-        .then(response => {
+    getUserVidsAndCats(userId)
+      .then(response => {
 
-          //map over response to get just the names
-          const categoryNames = response.map(cat => cat.name);
+        console.log(response);
 
-          //filter out name duplicates
-          const categories = categoryNames.filter(function(name, i) {
-            return categoryNames.indexOf(name) === i;
-          })
-            res.json(categories);
-          })
-          .catch((err) => res.json({
-            error: err.message
-          }));
+        const categoryNames = response.map(vid => vid.cat_name)
+        const categories = categoryNames.filter(function(name, i) {
+          return categoryNames.indexOf(name) === i;
+        })
+
+        res.json({categories, response})
+      })
+      .catch((err) => res.json({
+        error: err.message
+      }));
+
+    // //get categories based on user id
+    // getUserCategories(userId)
+    //     .then(response => {
+
+    //       //map over response to get just the names
+    //       const categoryNames = response.map(cat => cat.name);
+
+    //       //filter out name duplicates
+    //       const categories = categoryNames.filter(function(name, i) {
+    //         return categoryNames.indexOf(name) === i;
+    //       })
+
+    //         res.json(categories);
+    //       })
+    //       .catch((err) => res.json({
+    //         error: err.message
+    //       }));
 
   });
 
