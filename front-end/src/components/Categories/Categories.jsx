@@ -6,6 +6,7 @@ import Card from 'react-bootstrap/Card';
 import useApplicationData from '../../hooks/useApplicationData';
 
 import Button from '../shared/Button';
+import VideoThumbnails from "./VideoThumbnails";
 
 export default function Categories(props) {
 
@@ -23,7 +24,9 @@ export default function Categories(props) {
           </Accordion.Toggle>
         </Card.Header>
         <Accordion.Collapse eventKey={index + 1}>
-          <Card.Body>All the videos</Card.Body>
+          <Card.Body>
+            <VideoThumbnails category={name} />
+          </Card.Body>
         </Accordion.Collapse>
       </Card>
     )
