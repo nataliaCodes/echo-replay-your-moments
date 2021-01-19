@@ -5,8 +5,6 @@ export default function useVisualMode(initial) {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
 
-  const handleEditClick = (newMode) => setMode(newMode);
-
   const transition = (mode, replace = false) => {
 
     setMode(mode);
@@ -25,5 +23,5 @@ export default function useVisualMode(initial) {
     }
   };
 
-  return { mode, handleEditClick, transition, back }
+  return { mode, transition, back }
 }

@@ -1,5 +1,5 @@
 import Button from '../shared/Button';
-import CategoriesList from './CategoriesList';
+import CategoriesList from './ShowCategoriesList';
 
 export default function ShowCategories(props) {
 
@@ -7,7 +7,7 @@ export default function ShowCategories(props) {
 
     <div className="Categories">
       <h4>Categories</h4>
-      <Button onClick={props.onClick}>
+      <Button onClick={props.onEdit}>
         Edit categories
       </Button>
       <br/><br/><br/>

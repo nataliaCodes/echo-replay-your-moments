@@ -16,7 +16,7 @@ export default function Moment(props) {
       <Slider />
       <Button>Add moment</Button>
       <NewMoment />
-      <List>Moments</List>
+      <List onVideos={true}>Moments</List>
       <Save />
     </div>
   );
