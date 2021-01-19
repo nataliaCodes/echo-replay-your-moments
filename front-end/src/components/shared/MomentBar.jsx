@@ -7,7 +7,7 @@ const style = { width: 400, margin: 50 };
 
 export default function MomentBar(props) {
   
-  const { state, onVideoSelected, onSearch, onSliderChange,onMinChange, onMaxChange } = useApplicationData();
+  const { state, onSliderChange,onMinChange, onMaxChange } = useApplicationData();
 
   return (
     <div style={style} >
