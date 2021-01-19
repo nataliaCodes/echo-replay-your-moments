@@ -7,7 +7,7 @@ export default function VideoThumbnails(props) {
   const { state } = useApplicationData();
   const videos = state.videos;
 
-  const thumbnails = !videos ? false : videos.map(video => {
+  const thumbnails = !videos ? false : videos.map((video, i) => {
 
     const categoryMatch = video.cat_name === props.category;
     const youtubeId = video.link.slice(32, 43);
@@ -15,7 +15,7 @@ export default function VideoThumbnails(props) {
 
     return categoryMatch && (
 
-      <Card style={{width: "30em"}}>
+      <Card key={i} style={{width: "30em"}}>
         <Card.Header>
           <h6>{video.title}</h6>
         </Card.Header>

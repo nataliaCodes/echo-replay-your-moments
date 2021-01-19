@@ -5,7 +5,9 @@ export default function useVisualMode(initial) {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
 
-  function transition(mode, replace = false) {
+  const handleEditClick = (newMode) => setMode(newMode);
+
+  const transition = (mode, replace = false) => {
 
     setMode(mode);
 
@@ -15,7 +17,7 @@ export default function useVisualMode(initial) {
     );
   };
 
-  function back() {
+  const back = () => {
 
     if (history.length > 1) {
       setMode(history[history.length - 2]);
@@ -23,5 +25,5 @@ export default function useVisualMode(initial) {
     }
   };
 
-  return { mode, transition, back }
+  return { mode, handleEditClick, transition, back }
 }

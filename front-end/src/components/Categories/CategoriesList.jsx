@@ -15,7 +15,7 @@ export default function categoriesList(props) {
 
     return (
 
-      <Card>
+      <Card key={index}>
         <Card.Header>
           <Accordion.Toggle as={Card.Header} variant="link" eventKey={index + 1}>
             {name}

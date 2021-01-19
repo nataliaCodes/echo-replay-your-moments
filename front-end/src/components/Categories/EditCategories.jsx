@@ -13,14 +13,15 @@ export default function EditCategories(props) {
   const { state } = useApplicationData();
 
   const categories = state.categories;
-  const categoriesList = categories && categories.map(cat => {
+  const categoriesList = categories && categories.map((cat, i) => {
 
-    return <li>{cat}</li>
+    return <li key={i}>{cat} <Button>Edit</Button><Button>Delete</Button></li>
 
   });
 
   const handleClick = () => setShowForm(true);
   const handleCancel = () => setShowForm(false);
+  const handleSave = () => console.log('save clicked, send new category to DB');
 
   return (
     <div className="EditCategories">
@@ -44,9 +45,9 @@ export default function EditCategories(props) {
 
       <br/><br/>
       <ul>{categoriesList}</ul>
-      <List>
+      {/* <List>
         Categories
-      </List>
+      </List> */}
     </div>
   );
 }
