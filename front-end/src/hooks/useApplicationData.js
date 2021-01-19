@@ -25,7 +25,6 @@ const useApplicationData = () => {
     selectedVideoID:null,
     startTime: 70,
     endTime: 100,
-    loop:1,
     videoDuration: null
   });
 
@@ -196,58 +195,8 @@ const useApplicationData = () => {
   }
 
 
-  // const onSearchChanged = event => {
-  //   const _title = event.target.value
-
-  //   console.log(_title)
-
-  //   setState({...state, title:_title})
-  // }
-
-  // const onSubmit = event => {
-  //   event.preventDefault()
-
-  //   console.log(state.title)
-
-  //   onSearch(state.title)
-  // }
-
-  //Slider functions
   
-  const onMinChange = (e) => {
-    console.log("MIN",e.target.value)
-    setState({
-      ...state, startTime: e.target.value
-    });
-  };
-  
-  const onMaxChange = (e) => {
-    setState({
-      ...state, endTime: e.target.value
-    });
-  };
-  
-  // const videoOnReady=(event) =>{
-  //   // access to player in all event handlers via event.target
-  //   const player = event.target;
-  //   player.seekTo(state.startTime);
-  //   player.playVideo();
-  //   player.setLoop(true)
-  //   // console.log("Video Duration",player.getDuration())
-  //   let videoDuration = player.getDuration()
-  //   setState({...state, videoDuration: videoDuration})
-  // }
-
-  // const onSliderChange = (value) => {
-    
-  //   console.log(value);
-
-  //   const min = value[0]
-  //   const max = value[1]
-  //   setState({...state, startTime: min, endTime: max })
-  // };
-  
-  return { state, handleFormChange, handleRegisterSubmit, handleLoginSubmit, onVideoSelected, onSearch, handleLogout, onMinChange, onMaxChange, setState  }
+  return { state, handleFormChange, handleRegisterSubmit, handleLoginSubmit, onVideoSelected, onSearch, handleLogout, setState }
 
 };
 

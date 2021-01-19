@@ -64,8 +64,8 @@ function App() {
             <Route exact path="/videos/id">
               
               <VideoPlayerProvider>
-                <MomentBar />
                 <VideoPlayer videoId={state.selectedVideoID} />
+                <MomentBar />
               </VideoPlayerProvider>
 
               <ShowMoments />

@@ -5,25 +5,15 @@ export const VideoPlayerContext = createContext({})
 export const VideoPlayerProvider = (props) => {
   
   const [videoDuration, setVideoDuration] = useState({
-    duration: 0,
+    duration: 1000,
     startTime: 70,
     endTime: 100,
   });
-  const [startTime, setStartTime] = useState(null);
-  const [endTime, setEndTime] = useState(null);
 
-
-  const start = (x)=> {
-    setStartTime(x)
-  }
-
-  const end = (x)=> {
-    setEndTime(x)
-  }
 
   return(
 
-    <VideoPlayerContext.Provider value={[videoDuration, setVideoDuration, startTime, setStartTime, endTime, setEndTime, start, end]}>
+    <VideoPlayerContext.Provider value={[videoDuration, setVideoDuration]}>
       {props.children}
     </VideoPlayerContext.Provider>
   );

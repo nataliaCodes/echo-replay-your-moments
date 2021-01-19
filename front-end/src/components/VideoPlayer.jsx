@@ -5,9 +5,8 @@ import { VideoPlayerContext } from '../hooks/VideoPlayerContext'
 
 export default function YTplayer(props) {
 
-  const { state, setState } = useApplicationData();
   
-  const [ videoDuration, setVideoDuration, startTime, setStartTime, endTime, setEndTime ] = useContext(VideoPlayerContext)
+  const [ videoDuration, setVideoDuration] = useContext(VideoPlayerContext)
   
   const videoOnReady=(event) =>{
     // access to player in all event handlers via event.target
@@ -26,10 +25,8 @@ export default function YTplayer(props) {
   const videoOnEnd=(event) =>{
     // access to player in all event handlers via event.target
     const player = event.target;
-    console.log("Time",player)
-    player.seekTo(state.startTime)
+    player.seekTo(videoDuration.startTime)
     player.playVideo(); 
-    console.log("onEND start", startTime, "end", endTime)
   }
 
   const opts = {
@@ -37,8 +34,7 @@ export default function YTplayer(props) {
     width: '640',
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
-      autoplay: 0,
-      loop: 1,
+      autoplay: 1,
       start: videoDuration.startTime,
       end: videoDuration.endTime
 
