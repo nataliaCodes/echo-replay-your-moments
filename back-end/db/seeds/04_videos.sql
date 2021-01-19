@@ -1,9 +1,9 @@
 INSERT INTO videos (title, link, user_id, category_id)
 VALUES
 ('Learn Java in 14 Minutes (seriously)', 'https://www.youtube.com/watch?v=RRubcjpTkks&ab_channel=AlexLee', 1, 1),
-('JavaScript Tutorial for Beginners: Learn JavaScript in 1 Hour [2020]', 'https://www.youtube.com/watch?v=OWEC-KSdmHw', 1, 1),
+('JavaScript Tutorial for Beginners: Learn JavaScript in 1 Hour [2020]', 'https://www.youtube.com/watch?v=W6NZfCO5SIk', 1, 1),
 ('10 ADVANCED HOCKEY DRILLS TO IMPROVE YOUR SKILLS', 'https://www.youtube.com/watch?v=OWEC-KSdmHw', 1, 2),
-('50 Famous Goals ● Impossible To Forget', 'hhttps://www.youtube.com/watch?v=bKOTKHtbM54', 1, 2),
+('50 Famous Goals ● Impossible To Forget', 'https://www.youtube.com/watch?v=bKOTKHtbM54', 1, 2),
 ('Bachata Beginner Basic Steps Tutorial - Demetrio & Nicole - Bachata Dance Academy', 'https://www.youtube.com/watch?v=xhrdh-uFkog', 1, 3),
 ('Sara Lynn performs Tribal Fusion Belly Dance in FISSION', 'https://www.youtube.com/watch?v=Rh_82EHdD0E', 1, 3),
 ('Jade Chynoweth - "Baby Shark" | Aliya Janell Choreography', 'https://www.youtube.com/watch?v=hbfl4Rhsm3w', 1, 3),

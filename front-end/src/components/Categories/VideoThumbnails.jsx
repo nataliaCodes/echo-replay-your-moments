@@ -10,17 +10,19 @@ export default function VideoThumbnails(props) {
   const thumbnails = !videos ? false : videos.map(video => {
 
     const categoryMatch = video.cat_name === props.category;
-    const youtubeId = video.link.slice(32, 43)
-    const thumbnail = "https://i.ytimg.com/vi/" + {youtubeId} + "/0.jpg";
+    const youtubeId = video.link.slice(32, 43);
+    const thumbnail = `https://img.youtube.com/vi/${youtubeId}/mqdefault.jpg`;
 
     return categoryMatch && (
-      <Card>
+
+      <Card style={{width: "30em"}}>
         <Card.Header>
-          <li>{video.title}</li>
-          <li>{video.link}</li>
+          <h6>{video.title}</h6>
+          {/* <li>{video.link}</li> */}
         </Card.Header>
         <Card.Img variant="bottom" src={thumbnail} alt="thumbnail" />
       </Card>
+      
     );
   });
 
