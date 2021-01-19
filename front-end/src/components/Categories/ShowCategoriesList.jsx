@@ -5,7 +5,7 @@ import VideoThumbnails from "./VideoThumbnails";
 
 import useApplicationData from '../../hooks/useApplicationData';
 
-export default function categoriesList(props) {
+export default function CategoriesList(props) {
 
   const { state } = useApplicationData();
 
