@@ -18,7 +18,6 @@ export default function VideoThumbnails(props) {
       <Card style={{width: "30em"}}>
         <Card.Header>
           <h6>{video.title}</h6>
-          {/* <li>{video.link}</li> */}
         </Card.Header>
         <Card.Img variant="bottom" src={thumbnail} alt="thumbnail" />
       </Card>

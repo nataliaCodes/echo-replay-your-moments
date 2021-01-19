@@ -15,6 +15,7 @@ export default function Categories(props) {
   const categories = state.categories;
 
   const accordionCards = !categories ? false : categories.map((name, index) => {
+
     return (
 
       <Card>
@@ -29,7 +30,8 @@ export default function Categories(props) {
           </Card.Body>
         </Accordion.Collapse>
       </Card>
-    )
+
+    );
   });
 
   return (
@@ -41,9 +43,7 @@ export default function Categories(props) {
         </Link>
       </Button>
       <br/><br/><br/>
-      {/* <div>{categories}</div> */}
-
-      {accordionCards ?
+      {accordionCards.length > 0 ?
       <Accordion style={{width: "90%", marginLeft: "3em"}}>
         {accordionCards}
       </Accordion>
@@ -52,4 +52,4 @@ export default function Categories(props) {
       }
     </div>
   );
-}
+};

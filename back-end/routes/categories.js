@@ -4,7 +4,6 @@ var categories = express.Router();
 
 /* GET categories for user */
 module.exports = ({
-  getUserCategories,
   getUserVidsAndCats
 }) => {
   categories.get('/', function(req, res, next) {
@@ -15,14 +14,12 @@ module.exports = ({
     getUserVidsAndCats(userId)
       .then(response => {
 
-        console.log(response);
-
-        const categoryNames = response.map(vid => vid.cat_name)
+        const categoryNames = response.map(vid => vid.cat_name);
         const categories = categoryNames.filter(function(name, i) {
           return categoryNames.indexOf(name) === i;
-        })
+        });
 
-        res.json({categories, response})
+        res.json({categories, response});
       })
       .catch((err) => res.json({
         error: err.message

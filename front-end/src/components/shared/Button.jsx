@@ -1,8 +1,10 @@
-export default function Button(props) {
+import Button from 'react-bootstrap/Button';
+
+export default function StyledButton(props) {
 
   return (
 
-    <button onClick={props.onClick}>{props.children}</button>
+    <Button variant="outline-dark" onClick={props.onClick}>{props.children}</Button>
 
   );
 }
