@@ -34,6 +34,10 @@ const useApplicationData = () => {
   //extracts all users from the DB
   useEffect(() => {
 
+    if (!cookies.user) {
+      return null;
+    }
+
     //promise.all to include any future data calls we will need
     Promise.all([
       axios.get('api/categories'),
@@ -52,7 +56,7 @@ const useApplicationData = () => {
     })
     .catch((err) => console.log(err));
 
-  }, []);
+  }, [cookies.user]);
 
   const handleFormChange = event => {
 

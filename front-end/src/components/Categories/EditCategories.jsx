@@ -1,10 +1,8 @@
 import { useState } from 'react';
 
-import InputGroup from 'react-bootstrap/InputGroup';
-import FormControl from 'react-bootstrap/FormControl';
-
 import Button from '../shared/Button';
 import List from '../shared/ListWithEditDelete';
+import TogglingEditForm from '../shared/TogglingEditForm';
 
 export default function EditCategories(props) {
 
@@ -18,23 +16,12 @@ export default function EditCategories(props) {
       <br/><br/>
 
       {showForm && 
-      <InputGroup className="mb-3" style={{width: "30%"}}>
-        <FormControl
-          placeholder="Category name"
-          aria-label="Category name"
-          aria-describedby="basic-addon2"
-        />
-        <InputGroup.Append>
-          <Button variant="outline-secondary" onClick={props.onSave}>Save</Button>
-          <Button variant="outline-secondary" onClick={() => setShowForm(false)}>Cancel</Button>
-        </InputGroup.Append>
-      </InputGroup>
+        <TogglingEditForm onSave={props.onSave} onCancel={() => setShowForm(false)} />
       }
 
       <br/><br/>
       <List 
         onCateg={true}
-        onEdit={() => console.log('edit clicked')}
         onDelete={() => console.log('delete clicked')}
       >
         {props.children}

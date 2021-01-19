@@ -7,7 +7,7 @@ const EDIT = "EDIT";
 
 export default function Categories(props) {
 
-  const { mode, transition, back } = useVisualMode(
+  const { mode, transition } = useVisualMode(
     props.main ? MAIN : EDIT
   );
 
