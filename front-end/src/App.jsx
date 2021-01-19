@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -26,10 +26,10 @@ import Login from './components/Login/Login';
 // youtube video components
 import SearchBar from './components/shared/SearchBar'
 import VideoList from './components/shared/VideoList'
-import youtube from './api/youtube';
 
 import VideoPlayer from './components/VideoPlayer'
 import MomentBar from './components/shared/MomentBar'
+import { VideoPlayerProvider } from './hooks/VideoPlayerContext'
 
 
 function App() {
@@ -37,6 +37,7 @@ function App() {
   const { state, onVideoSelected, onSearch, onSliderChange,onMinChange, onMaxChange } = useApplicationData();
 
     return (
+      <React.StrictMode>
       <Router>
         <div className="App">
           <Header />
@@ -64,10 +65,12 @@ function App() {
               <Videos />
             </Route>
             <Route exact path="/videos/id">
-
-              <MomentBar />
               
-              <VideoPlayer videoId={state.selectedVideoID} />
+              <VideoPlayerProvider>
+                <MomentBar />
+                <VideoPlayer videoId={state.selectedVideoID} />
+              </VideoPlayerProvider>
+
               <ShowMoments />
             </Route>
             <Route exact path="/register">
@@ -79,6 +82,7 @@ function App() {
           </Switch>
         </div>
       </Router>
+      </React.StrictMode>
     );
 }
 

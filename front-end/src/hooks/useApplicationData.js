@@ -24,8 +24,9 @@ const useApplicationData = () => {
     videoMetaInfo:[],
     selectedVideoID:null,
     startTime: 70,
-    endTime: 73,
-    loop:1
+    endTime: 100,
+    loop:1,
+    videoDuration: null
   });
 
   //set initial cookie
@@ -212,16 +213,9 @@ const useApplicationData = () => {
   // }
 
   //Slider functions
-  const onSliderChange = (value) => {
-    
-    console.log(value);
-
-    const min = value[0]
-    const max = value[1]
-    setState({...state, startTime: min, endTime: max })
-  };
-
+  
   const onMinChange = (e) => {
+    console.log("MIN",e.target.value)
     setState({
       ...state, startTime: e.target.value
     });
@@ -233,7 +227,27 @@ const useApplicationData = () => {
     });
   };
   
-  return { state, handleFormChange, handleRegisterSubmit, handleLoginSubmit, onVideoSelected, onSearch, handleLogout, onSliderChange, onMinChange, onMaxChange }
+  // const videoOnReady=(event) =>{
+  //   // access to player in all event handlers via event.target
+  //   const player = event.target;
+  //   player.seekTo(state.startTime);
+  //   player.playVideo();
+  //   player.setLoop(true)
+  //   // console.log("Video Duration",player.getDuration())
+  //   let videoDuration = player.getDuration()
+  //   setState({...state, videoDuration: videoDuration})
+  // }
+
+  // const onSliderChange = (value) => {
+    
+  //   console.log(value);
+
+  //   const min = value[0]
+  //   const max = value[1]
+  //   setState({...state, startTime: min, endTime: max })
+  // };
+  
+  return { state, handleFormChange, handleRegisterSubmit, handleLoginSubmit, onVideoSelected, onSearch, handleLogout, onMinChange, onMaxChange, setState  }
 
 };
 
