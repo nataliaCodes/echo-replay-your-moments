@@ -4,7 +4,6 @@ var categories = express.Router();
 
 /* GET categories for user */
 module.exports = ({
-  getUserCategories,
   getUserVidsAndCats
 }) => {
   categories.get('/', function(req, res, next) {
@@ -15,36 +14,16 @@ module.exports = ({
     getUserVidsAndCats(userId)
       .then(response => {
 
-        console.log(response);
-
-        const categoryNames = response.map(vid => vid.cat_name)
+        const categoryNames = response.map(vid => vid.cat_name);
         const categories = categoryNames.filter(function(name, i) {
           return categoryNames.indexOf(name) === i;
-        })
+        });
 
-        res.json({categories, response})
+        res.json({categories, response});
       })
       .catch((err) => res.json({
         error: err.message
       }));
-
-    // //get categories based on user id
-    // getUserCategories(userId)
-    //     .then(response => {
-
-    //       //map over response to get just the names
-    //       const categoryNames = response.map(cat => cat.name);
-
-    //       //filter out name duplicates
-    //       const categories = categoryNames.filter(function(name, i) {
-    //         return categoryNames.indexOf(name) === i;
-    //       })
-
-    //         res.json(categories);
-    //       })
-    //       .catch((err) => res.json({
-    //         error: err.message
-    //       }));
 
   });
 

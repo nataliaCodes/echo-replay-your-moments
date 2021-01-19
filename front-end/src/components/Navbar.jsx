@@ -26,9 +26,6 @@ export default function Navbar(props) {
       <Link to="/categories">
         <NavbarItem>User categories</NavbarItem>
       </Link>
-      <Link to="/categories/edit">
-        <NavbarItem>Edit categories</NavbarItem>
-      </Link>
       <Link to="/search">
         <NavbarItem>Search results</NavbarItem>
       </Link>

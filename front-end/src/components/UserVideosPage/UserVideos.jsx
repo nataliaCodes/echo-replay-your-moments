@@ -1,5 +1,4 @@
 import SearchBar from '../shared/SearchBar';
-import Thumbnail from '../shared/Thumbnail';
 
 export default function UserVideos(props) {
 
@@ -7,11 +6,7 @@ export default function UserVideos(props) {
     <div className="user-videos">
       <h4>UserVideos</h4>
       {/* <SearchBar /> */}
-      <Thumbnail />
-      <Thumbnail />
-      <Thumbnail />
-      <Thumbnail />
-      <Thumbnail />
+      <p>Thumbnails</p>
     </div>
   );
 }
