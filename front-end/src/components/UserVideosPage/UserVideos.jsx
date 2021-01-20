@@ -1,16 +1,11 @@
 import SearchBar from '../shared/SearchBar';
 import Card from 'react-bootstrap/Card';
-import useApplicationData from '../../hooks/useApplicationData';
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export default function UserVideos(props) {
-  
-  const { state, onVideoSelected } = useApplicationData();
-  
+   
   const videos = props.state.videos
 
-  console.log("USER VIDEO", props.state.videos)
-  
   const videoListItem = videos.map((video, index) => {
     
     const youtubeId = video.link.slice(32, 43);

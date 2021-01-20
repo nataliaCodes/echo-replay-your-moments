@@ -40,11 +40,7 @@ function App() {
           {state.userId && <div>user: {state.userId}</div>}
           <Switch>
             <Route exact path="/">
-              
-                <SearchBar onSearch={onSearch} />
-                <VideoList onVideoSelected={onVideoSelected} data={state.videoMetaInfo} />
-                <Home />
-
+                <Home onSearch={onSearch} onVideoSelected={onVideoSelected} data={state.videoMetaInfo}/>
             </Route>
             <Route exact path="/videos">
               <UserVideos state={state} onVideoSelected={onVideoSelected}/>
