@@ -3,17 +3,19 @@ import { useState } from 'react';
 import Button from '../shared/Button';
 import List from '../shared/ListWithEditDelete';
 import TogglingEditForm from '../shared/TogglingEditForm';
+import Alert from '../shared/Alert';
 
 export default function EditCategories(props) {
 
   const [ showForm, setShowForm ] = useState(false);
   const [ newCat, setNewCat ] = useState("");
+  const [ show, setShow ] = useState(false);
 
   const handleSave = (name) => {
 
     console.log('save clicked, new name:', name);
     setShowForm(false);
-
+    setShow(true);
   };
 
   return (
@@ -34,7 +36,7 @@ export default function EditCategories(props) {
       )}
 
       {newCat && (
-        <div>Successfully added!</div>
+        <Alert />
       )}
 
       <br/><br/>
