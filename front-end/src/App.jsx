@@ -47,7 +47,7 @@ function App() {
 
             </Route>
             <Route exact path="/videos">
-              <UserVideos />
+              <UserVideos state={state} onVideoSelected={onVideoSelected}/>
             </Route>
             <Route exact path="/categories">
               <Categories main={true} />
@@ -56,9 +56,7 @@ function App() {
               <Videos />
             </Route>
             <Route exact path="/videos/id">
-
                 <ShowMoments selectedVideoID = {state.selectedVideoID}/>                
-          
             </Route>
             <Route exact path="/register">
               <Register />
