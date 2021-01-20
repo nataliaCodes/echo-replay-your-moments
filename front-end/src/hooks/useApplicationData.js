@@ -63,6 +63,8 @@ const useApplicationData = () => {
     const input = event.target.value;
     const fieldName = event.target.name;
 
+    console.log(input);
+
     setState({
       ...state,
       [fieldName]: input

@@ -8,20 +8,35 @@ export default function List(props) {
 
   const { state } = useApplicationData();
 
+  const [catName, setCatName] = useState("");
   const [editMode, setEditMode] = useState(null);
+
+  const setMode = (i, cat) => {
+    setEditMode(i);
+    setCatName(cat);
+  };
 
   const categories = state.categories;
   const categoriesList = categories && categories.map((cat, i) => {
 
     return (
-      <div 
-        key={i}>{editMode !== i && cat}
-        {editMode === i ? 
-          <TogglingEditForm onCancel={() => setEditMode(null)} defaultValue={cat} /> :
-          <><Button onClick={() => setEditMode(i)}>Edit</Button>
-          <Button onClick={props.onDelete}>Delete</Button></>
+      <div key={i}>
+        {editMode !== i && cat}
+        {editMode === i ? (
+          <TogglingEditForm 
+            onCancel={() => setEditMode(null)} 
+            onSave={() => console.log('edit save clicked, send new category to DB')}
+            value={catName}
+            name="cat-name"
+            placeholder="Category name"
+            onChange={(e) => setCatName(e.target.value)}
+          />
+        ) :
+          (<>
+            <Button onClick={() => setMode(i, cat)}>Edit</Button>
+            <Button onClick={props.onDelete}>Delete</Button>
+          </>)
         }
-        
       </div>
     );
 

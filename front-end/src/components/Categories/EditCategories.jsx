@@ -15,9 +15,14 @@ export default function EditCategories(props) {
       <Button onClick={props.onBack}>Back</Button>
       <br/><br/>
 
-      {showForm && 
-        <TogglingEditForm onSave={props.onSave} onCancel={() => setShowForm(false)} />
-      }
+      {showForm && (
+        <TogglingEditForm 
+          onSave={() => console.log('save clicked, send new category to DB')}
+          onCancel={() => setShowForm(false)}
+          placeholder="Category name"
+          name="new-category"
+        />
+      )}
 
       <br/><br/>
       <List 

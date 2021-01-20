@@ -9,11 +9,11 @@ export default function TogglingEditForm(props) {
 
     <InputGroup className="mb-3" style={{width: "30em"}}>
       <FormControl
-        placeholder="Category name"
-        aria-label="Category name"
         aria-describedby="basic-addon2"
-        value={props.defaultValue}
-        onChange={props.handleChange}
+        placeholder={props.placeholder}
+        value={props.value}
+        name={props.name}
+        onChange={props.onChange}
       />
       <InputGroup.Append>
         <Button variant="outline-secondary" onClick={props.onSave}>Save</Button>

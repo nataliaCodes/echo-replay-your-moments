@@ -14,13 +14,8 @@ export default function Categories(props) {
   return (
 
     <div className="Categories">
-      {mode === MAIN && <ShowCategories onEdit={() => transition(EDIT)}/>}
-      {mode === EDIT && (
-        <EditCategories
-          onSave={() => console.log('save clicked, send new category to DB')}
-          onBack={() => transition(MAIN)}
-        />
-      )}
+      {mode === MAIN && <ShowCategories onEdit={() => transition(EDIT)} />}
+      {mode === EDIT && <EditCategories onBack={() => transition(MAIN)} />}
     </div>
     
   );
