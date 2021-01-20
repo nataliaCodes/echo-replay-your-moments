@@ -1,15 +1,15 @@
+//custom hook to render page conditionally
+import useVisualMode from '../../hooks/useVisualMode';
+//components rendered based on visual mode
 import ShowCategories from './ShowCategories';
 import EditCategories from './EditCategories';
-import useVisualMode from '../../hooks/useVisualMode';
 
 const MAIN = "MAIN";
 const EDIT = "EDIT";
 
 export default function Categories(props) {
 
-  const { mode, transition } = useVisualMode(
-    props.main ? MAIN : EDIT
-  );
+  const { mode, transition } = useVisualMode(MAIN);
 
   return (
 

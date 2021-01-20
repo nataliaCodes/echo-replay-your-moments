@@ -31,14 +31,15 @@ const useApplicationData = () => {
   //set initial cookie
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
 
-  //extracts all users from the DB
+  //extracts all users from the DB + connected videos and categories
   useEffect(() => {
 
+    //stops the axios calls from happening when user is not logged in
     if (!cookies.user) {
       return null;
     }
 
-    //promise.all to include any future data calls we will need
+    //promise.all to call all data we need at the same time
     Promise.all([
       axios.get('api/categories'),
       axios.get('api/users')
@@ -56,8 +57,9 @@ const useApplicationData = () => {
     })
     .catch((err) => console.log(err));
 
-  }, [cookies.user]);
+  }, [cookies.user]);   //<-- only renders when user is present
 
+  //handles input from log in and register forms dynamically
   const handleFormChange = event => {
 
     const input = event.target.value;

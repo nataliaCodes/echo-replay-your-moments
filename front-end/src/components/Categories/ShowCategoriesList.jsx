@@ -7,10 +7,11 @@ import useApplicationData from '../../hooks/useApplicationData';
 
 export default function CategoriesList(props) {
 
+  //extract categories list from state
   const { state } = useApplicationData();
-
   const categories = state.categories;
 
+  //render list of categories with corresponding videos dynamically
   const accordionCards = !categories ? false : categories.map((name, index) => {
 
     return (
@@ -31,6 +32,7 @@ export default function CategoriesList(props) {
     );
   });
 
+  //render page content based on categories existence
   return accordionCards.length > 0 ?
     <Accordion style={{width: "90%", marginLeft: "3em"}}>
       {accordionCards}

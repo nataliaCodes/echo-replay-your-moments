@@ -6,13 +6,15 @@ import TogglingEditForm from '../shared/TogglingEditForm';
 
 export default function EditCategories(props) {
 
+  //state for the form toggled by 'Add category'
   const [ showForm, setShowForm ] = useState(false);
+  //state for the Add category input
   const [ newCat, setNewCat ] = useState("");
+  //state for the alert showing user they created the category
   const [ showAlert, setShowAlert ] = useState(false);
 
   const handleSave = (name) => {
 
-    console.log('save clicked, new name:', name);
     setShowForm(false);
     setShowAlert(true);
   };

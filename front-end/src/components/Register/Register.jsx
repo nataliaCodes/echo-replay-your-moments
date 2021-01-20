@@ -1,10 +1,12 @@
 import { Redirect } from "react-router-dom";
 
 import useApplicationData from '../../hooks/useApplicationData';
+
 import Button from '../shared/Button';
 
 export default function Register(props) {
 
+  //handling all user state from within useApplicationData
   const { state, handleFormChange, handleRegisterSubmit } = useApplicationData();
 
   if (state.redirect) {

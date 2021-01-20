@@ -50,7 +50,7 @@ function App() {
               <UserVideos />
             </Route>
             <Route exact path="/categories">
-              <Categories main={true} />
+              <Categories />
             </Route>
             <Route exact path="/search">
               <Videos />
