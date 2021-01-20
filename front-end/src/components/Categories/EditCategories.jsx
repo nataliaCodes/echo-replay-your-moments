@@ -1,22 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Button from '../shared/Button';
 import List from '../shared/ListWithEditDelete';
 import TogglingEditForm from '../shared/TogglingEditForm';
-import Alert from '../shared/Alert';
 
 export default function EditCategories(props) {
 
   const [ showForm, setShowForm ] = useState(false);
   const [ newCat, setNewCat ] = useState("");
-  const [ show, setShow ] = useState(false);
+  const [ showAlert, setShowAlert ] = useState(false);
 
   const handleSave = (name) => {
 
     console.log('save clicked, new name:', name);
     setShowForm(false);
-    setShow(true);
+    setShowAlert(true);
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowAlert(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [showAlert]);
 
   return (
     <div className="EditCategories">
@@ -24,7 +30,6 @@ export default function EditCategories(props) {
       <Button onClick={() => setShowForm(true)}>Add category</Button>
       <Button onClick={props.onBack}>Back</Button>
       <br/><br/>
-
       {showForm && (
         <TogglingEditForm 
           placeholder="Insert category name"
@@ -34,23 +39,21 @@ export default function EditCategories(props) {
           onCancel={() => setShowForm(false)}
         />
       )}
-
-      {newCat && (
-        <Alert />
+      {showAlert && (
+        <div>Successfully created!</div>
       )}
-
       <br/><br/>
       <List 
-        onCateg={true}
+        fromCateg={true}
         onDelete={() => console.log('delete clicked')}
       >
         {props.children}
       </List>
-      {newCat && (
+      {/* {submitted && (
         <div className="List">
           {newCat} <Button>Edit</Button><Button>Delete</Button>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

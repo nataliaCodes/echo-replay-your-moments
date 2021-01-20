@@ -44,7 +44,7 @@ export default function List(props) {
 
   return (
     <div className="List">
-      {props.onCateg &&
+      {props.fromCateg &&
       <div>
         {categoriesList}
       </div>
