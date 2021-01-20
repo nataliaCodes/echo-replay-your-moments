@@ -21,11 +21,11 @@ const useApplicationData = () => {
     password: '',
     error: '',
     redirect: null,
-    videoMetaInfo:[],
-    selectedVideoID:null,
+    videoMetaInfo: [],
+    selectedVideoID: null,
     startTime: 70,
-    endTime: 73,
-    loop:1
+    endTime: 100,
+    videoDuration: null
   });
 
   //set initial cookie
@@ -199,47 +199,8 @@ const useApplicationData = () => {
 
     console.log(state)
   }
-
-
-  // const onSearchChanged = event => {
-  //   const _title = event.target.value
-
-  //   console.log(_title)
-
-  //   setState({...state, title:_title})
-  // }
-
-  // const onSubmit = event => {
-  //   event.preventDefault()
-
-  //   console.log(state.title)
-
-  //   onSearch(state.title)
-  // }
-
-  //Slider functions
-  const onSliderChange = (value) => {
-    
-    console.log(value);
-
-    const min = value[0]
-    const max = value[1]
-    setState({...state, startTime: min, endTime: max })
-  };
-
-  const onMinChange = (e) => {
-    setState({
-      ...state, startTime: e.target.value
-    });
-  };
   
-  const onMaxChange = (e) => {
-    setState({
-      ...state, endTime: e.target.value
-    });
-  };
-  
-  return { state, handleFormChange, handleRegisterSubmit, handleLoginSubmit, onVideoSelected, onSearch, handleLogout, onSliderChange, onMinChange, onMaxChange }
+  return { state, handleFormChange, handleRegisterSubmit, handleLoginSubmit, onVideoSelected, onSearch, handleLogout, setState }
 
 };
 

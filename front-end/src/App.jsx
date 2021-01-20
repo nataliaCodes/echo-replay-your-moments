@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,7 +18,6 @@ import Home from './components/HomePage/Home';
 import UserVideos from './components/UserVideosPage/UserVideos';
 import Videos from './components/VideosPage/Videos';
 import Categories from './components/Categories/Categories';
-import EditCategories from './components/Categories/EditCategories';
 import ShowMoments from './components/MomentsPage/ShowMoments';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
@@ -26,17 +25,14 @@ import Login from './components/Login/Login';
 // youtube video components
 import SearchBar from './components/shared/SearchBar'
 import VideoList from './components/shared/VideoList'
-import youtube from './api/youtube';
-
-import VideoPlayer from './components/VideoPlayer'
-import MomentBar from './components/shared/MomentBar'
 
 
 function App() {
 
-  const { state, onVideoSelected, onSearch, onSliderChange,onMinChange, onMaxChange } = useApplicationData();
+  const { state, setState, onVideoSelected, onSearch } = useApplicationData();
 
     return (
+      <React.StrictMode>
       <Router>
         <div className="App">
           <Header />
@@ -44,11 +40,10 @@ function App() {
           {state.userId && <div>user: {state.userId}</div>}
           <Switch>
             <Route exact path="/">
-            
-              <SearchBar onSearch={onSearch} />
-              <VideoList onVideoSelected={onVideoSelected} data={state.videoMetaInfo} />
-              <Home />
-
+              
+                <SearchBar onSearch={onSearch} />
+                <VideoList onVideoSelected={onVideoSelected} data={state.videoMetaInfo} />
+                <Home />
 
             </Route>
             <Route exact path="/videos">
@@ -62,10 +57,8 @@ function App() {
             </Route>
             <Route exact path="/videos/id">
 
-              <MomentBar />
-              
-              <VideoPlayer videoId={state.selectedVideoID} />
-              <ShowMoments />
+                <ShowMoments selectedVideoID = {state.selectedVideoID}/>                
+          
             </Route>
             <Route exact path="/register">
               <Register />
@@ -76,6 +69,7 @@ function App() {
           </Switch>
         </div>
       </Router>
+      </React.StrictMode>
     );
 }
 
