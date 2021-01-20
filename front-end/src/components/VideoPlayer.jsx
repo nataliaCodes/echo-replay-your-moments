@@ -1,17 +1,12 @@
-import { useContext } from 'react';
 import YouTube from 'react-youtube';
-import useApplicationData from '../hooks/useApplicationData';
+
 
 export default function YTplayer(props) {
-
-  // const { state } = useApplicationData();
   
   const videoOnReady=(event) =>{
     // access to player in all event handlers via event.target
     const player = event.target;
     
-      // console.log("VP state", state)
-
     player.setLoop(true)
     console.log("Video Duration",player.getDuration())
     let vd = player.getDuration()
