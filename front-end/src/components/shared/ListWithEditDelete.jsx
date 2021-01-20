@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import useApplicationData from '../../hooks/useApplicationData';
 
@@ -8,19 +9,45 @@ import TogglingEditForm from './TogglingEditForm';
 export default function List(props) {
 
   //using app data state to get categories
-  const { state } = useApplicationData();
-  const categories = state.categories;
+  const { state, setState } = useApplicationData();
 
   //keeping edit form state local to avoid too much rendering
   const [ catName, setCatName ] = useState("");
   const [ editMode, setEditMode ] = useState(null);
+
 
   const setMode = (i, cat) => {
     setEditMode(i);
     setCatName(cat);
   };
 
-  const categoriesList = categories && categories.map((cat, i) => {
+  const handleSave = (newValue, oldValue) => {
+    
+    //shallow copy of state categories
+    let categ = [...state.categories];
+    
+    //get index of value being changed
+    let oldIndex = categ.indexOf(oldValue);
+    
+    //change old value at index with new value
+    categ[oldIndex] = newValue;
+    
+    //set state to new list of categories
+    setState(prev => ({...prev, categories: categ}));
+    
+    //send new name and index to back-end
+    return axios.post('http://localhost:3001/api/categories', { catName, index: oldIndex })
+      .then(response => {
+          setEditMode(null);
+          
+          console.log('client says: updated cat name sent');
+          console.log(response.data);
+      })
+      .catch(err => { console.log('error:', err) })
+
+  };
+
+  const categoriesList = state.categories && state.categories.map((cat, i) => {
 
     return (
       <div key={i}>
@@ -34,13 +61,13 @@ export default function List(props) {
             placeholder="Category name"
             onCancel={() => setEditMode(null)} 
             onChange={(e) => setCatName(e.target.value)}
-            onSave={() => console.log('edit save clicked, send new category to DB')}
+            onSave={(e) => handleSave(catName, cat)}
             onDelete={props.onDelete}
           />
         ) :
           // else show the buttons
           (<>
-            <Button onClick={() => setMode(i, cat)}>Edit</Button>
+            <Button onClick={() => setMode(i, cat)} children={'Edit'} />
             <Button onClick={props.onDelete}>Delete</Button>
           </>)
         }
@@ -67,3 +94,27 @@ export default function List(props) {
     </div>
   );
 }
+
+
+
+let stuff = [1, 2, 3, 4, 5];
+
+const grandpa = (stuff) => {
+  <Parent stuff={stuff} />
+}
+
+const Child = (props) => {
+  return (
+    <p>{props.num}</p>
+  )
+}
+
+const parent = (stuff) => {
+  const x = stuff.map((item, i) => {
+    <Child num={item} />
+  })
+
+  return ({x})
+}
+
+

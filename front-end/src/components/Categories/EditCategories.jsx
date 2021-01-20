@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import useApplicationData from '../../hooks/useApplicationData';
 
 import Button from '../shared/Button';
 import List from '../shared/ListWithEditDelete';
 import TogglingEditForm from '../shared/TogglingEditForm';
 
 export default function EditCategories(props) {
-
+  const { state } = useApplicationData();
   //state for the form toggled by 'Add category'
   const [showForm, setShowForm] = useState(false);
   //state for the Add category input
@@ -30,7 +31,7 @@ export default function EditCategories(props) {
   const handleDelete = () => {
 
     //send data to back-end
-    return axios.post('http://localhost:3001/api/categories', { catName: 'cat name' })
+    return axios.post('http://localhost:3001/api/categories', { newCatName: newCat })
       .then(response => {
           console.log('client says: cat name sent');
           console.log(response.data);
@@ -61,9 +62,8 @@ export default function EditCategories(props) {
       <List
         fromCateg={true}
         onDelete={handleDelete}
-      >
-        {props.children}
-      </List>
+        categ={state.categories}
+      />      
       {/* {submitted && (
         <div className="List">
           {newCat} <Button>Edit</Button><Button>Delete</Button>
