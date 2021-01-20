@@ -35,7 +35,7 @@ module.exports = (db) => {
 
   const getUserVidsAndCats = id => {
     const query = {
-      text: `SELECT v.id, v.title, v.link, v.category_id, c.name AS cat_name
+      text: `SELECT v.id, v.title, v.link, v.created_at, v.category_id, c.name AS cat_name
           FROM videos as v INNER JOIN categories as c 
           ON v.category_id = c.id 
           WHERE v.user_id = $1;` ,
