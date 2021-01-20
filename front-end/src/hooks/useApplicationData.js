@@ -21,8 +21,8 @@ const useApplicationData = () => {
     password: '',
     error: '',
     redirect: null,
-    videoMetaInfo:[],
-    selectedVideoID:null,
+    videoMetaInfo: [],
+    selectedVideoID: null,
     startTime: 70,
     endTime: 100,
     videoDuration: null
@@ -193,8 +193,6 @@ const useApplicationData = () => {
 
     console.log(state)
   }
-
-
   
   return { state, handleFormChange, handleRegisterSubmit, handleLoginSubmit, onVideoSelected, onSearch, handleLogout, setState }
 
