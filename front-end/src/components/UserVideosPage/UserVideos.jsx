@@ -3,9 +3,9 @@ import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
 
 export default function UserVideos(props) {
-   
+  
   const videos = props.state.videos
-
+  
   const videoListItem = videos.map((video, index) => {
     
     const youtubeId = video.link.slice(32, 43);
