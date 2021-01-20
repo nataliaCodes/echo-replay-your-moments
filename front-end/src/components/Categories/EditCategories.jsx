@@ -6,7 +6,15 @@ import TogglingEditForm from '../shared/TogglingEditForm';
 
 export default function EditCategories(props) {
 
-  const [showForm, setShowForm] = useState(false);
+  const [ showForm, setShowForm ] = useState(false);
+  const [ newCat, setNewCat ] = useState("");
+
+  const handleSave = (name) => {
+
+    console.log('save clicked, new name:', name);
+    setShowForm(false);
+
+  };
 
   return (
     <div className="EditCategories">
@@ -17,11 +25,16 @@ export default function EditCategories(props) {
 
       {showForm && (
         <TogglingEditForm 
-          onSave={() => console.log('save clicked, send new category to DB')}
-          onCancel={() => setShowForm(false)}
-          placeholder="Category name"
+          placeholder="Insert category name"
           name="new-category"
+          onChange={(e) => setNewCat(e.target.value)}
+          onSave={() => handleSave(newCat)}
+          onCancel={() => setShowForm(false)}
         />
+      )}
+
+      {newCat && (
+        <div>Successfully added!</div>
       )}
 
       <br/><br/>
@@ -31,6 +44,11 @@ export default function EditCategories(props) {
       >
         {props.children}
       </List>
+      {newCat && (
+        <div className="List">
+          {newCat} <Button>Edit</Button><Button>Delete</Button>
+        </div>
+      )}
     </div>
   );
 }

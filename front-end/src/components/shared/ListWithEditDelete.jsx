@@ -8,8 +8,8 @@ export default function List(props) {
 
   const { state } = useApplicationData();
 
-  const [catName, setCatName] = useState("");
-  const [editMode, setEditMode] = useState(null);
+  const [ catName, setCatName ] = useState("");
+  const [ editMode, setEditMode ] = useState(null);
 
   const setMode = (i, cat) => {
     setEditMode(i);
