@@ -29,12 +29,13 @@ export default function List(props) {
         {/* on edit mode active for current element show edit form */}
         {editMode === i ? (
           <TogglingEditForm 
-            onCancel={() => setEditMode(null)} 
-            onSave={() => console.log('edit save clicked, send new category to DB')}
             value={catName}
             name="cat-name"
             placeholder="Category name"
+            onCancel={() => setEditMode(null)} 
             onChange={(e) => setCatName(e.target.value)}
+            onSave={() => console.log('edit save clicked, send new category to DB')}
+            onDelete={props.onDelete}
           />
         ) :
           // else show the buttons

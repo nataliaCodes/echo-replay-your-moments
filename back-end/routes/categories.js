@@ -27,19 +27,12 @@ module.exports = ({
 
   });
 
-  /* Create a new category */ 
+  /* Update categories */ 
   categories.post('/', (req, res) => {
+    const info = req.body;
+    console.log(info);
 
-    const id = req.params.id;
-    console.log(id);
-
-  });
-
-  /* Update a specific category */ 
-  categories.post('/:id', (req, res) => {
-
-    const id = req.params.id;
-    console.log(id);
+    res.json("back-end says: cat name received!");
 
   });
 

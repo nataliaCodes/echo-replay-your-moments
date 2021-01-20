@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import Button from '../shared/Button';
 import List from '../shared/ListWithEditDelete';
@@ -7,11 +8,11 @@ import TogglingEditForm from '../shared/TogglingEditForm';
 export default function EditCategories(props) {
 
   //state for the form toggled by 'Add category'
-  const [ showForm, setShowForm ] = useState(false);
+  const [showForm, setShowForm] = useState(false);
   //state for the Add category input
-  const [ newCat, setNewCat ] = useState("");
+  const [newCat, setNewCat] = useState("");
   //state for the alert showing user they created the category
-  const [ showAlert, setShowAlert ] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleSave = (name) => {
 
@@ -26,14 +27,26 @@ export default function EditCategories(props) {
     return () => clearTimeout(timer);
   }, [showAlert]);
 
+  const handleDelete = () => {
+
+    //send data to back-end
+    return axios.post('http://localhost:3001/api/categories', { catName: 'cat name' })
+      .then(response => {
+          console.log('client says: cat name sent');
+          console.log(response.data);
+      })
+      .catch(err => { console.log('error:', err) })
+
+  };
+
   return (
     <div className="EditCategories">
       <h4>Edit categories</h4>
       <Button onClick={() => setShowForm(true)}>Add category</Button>
       <Button onClick={props.onBack}>Back</Button>
-      <br/><br/>
+      <br /><br />
       {showForm && (
-        <TogglingEditForm 
+        <TogglingEditForm
           placeholder="Insert category name"
           name="new-category"
           onChange={(e) => setNewCat(e.target.value)}
@@ -44,10 +57,10 @@ export default function EditCategories(props) {
       {showAlert && (
         <div>Successfully created!</div>
       )}
-      <br/><br/>
-      <List 
+      <br /><br />
+      <List
         fromCateg={true}
-        onDelete={() => console.log('delete clicked')}
+        onDelete={handleDelete}
       >
         {props.children}
       </List>
