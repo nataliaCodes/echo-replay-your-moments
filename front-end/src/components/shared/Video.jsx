@@ -27,7 +27,7 @@ function constructVideoTitles(videosData, onVideoSelected) {
   });
 }
 const Video = ({ data, onVideoSelected }) => {
-  return <> <Link to="/videos/id"> {constructVideoTitles(data, onVideoSelected)} </Link></>;
+  return <> <Link to="/moments"> {constructVideoTitles(data, onVideoSelected)} </Link></>;
 };
 
 export default Video;

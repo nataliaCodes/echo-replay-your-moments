@@ -54,7 +54,7 @@ function App() {
               <Videos />
             </Route>
             <Route path="/moments">
-                <ShowMoments selectedVideoID = {state.selectedVideoID} momentsBySelectedVid={momentsBySelectedVid}/>                
+                <ShowMoments selectedVideoID = {state.selectedVideoID} momentsBySelectedVid={momentsBySelectedVid} categories={state.categories} />                
             </Route>
             <Route exact path="/register">
               <Register />

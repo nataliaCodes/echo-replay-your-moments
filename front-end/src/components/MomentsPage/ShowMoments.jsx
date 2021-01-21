@@ -13,7 +13,8 @@ export default function Moment(props) {
       duration: 1000,
       startTime: 70,
       endTime: 100,
-      selectedVideoID: props.selectedVideoID
+      selectedVideoID: props.selectedVideoID,
+      selectedCat: "Categories"
     }
   )
 
@@ -23,6 +24,7 @@ export default function Moment(props) {
       {/* <SearchBar /> */}
       <VideoPlayer videoInfo = {videoInfo} setVideoInfo={setVideoInfo}/>
       <MomentBar videoInfo = {videoInfo} setVideoInfo={setVideoInfo}/>
+      <Save videoInfo={videoInfo} setVideoInfo={setVideoInfo} selectedCat={videoInfo.selectedCat} categories={props.categories} />
       <Button>Save video</Button>
       <Button>Add moment</Button>
       <NewMoment />
