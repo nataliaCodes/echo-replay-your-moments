@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -45,7 +45,7 @@ export default function Save(props) {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-              <Dropdown.Item >lol</Dropdown.Item>
+                {categoriesDropdown}
               </Dropdown.Menu>
             </Dropdown>
           </form>
