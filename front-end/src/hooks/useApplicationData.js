@@ -49,7 +49,6 @@ const useApplicationData = () => {
       //'all' comes back as an array of responses from the axios calls
       console.log('users:', all[1].data)
       console.log('categ names:', all[0].data.filteredNames)
-      console.log('categories:', all[0].data.duplicateCateg)
       console.log('videos:', all[0].data.response)
       
       //set current state with axios calls data

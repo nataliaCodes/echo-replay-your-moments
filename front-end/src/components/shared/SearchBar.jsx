@@ -24,7 +24,7 @@ export default function SearchBar(props){
   return (
     <div>
     <form onSubmit={onSubmit}>
-      <div class="form-controls">
+      <div className="form-controls">
         <label>Search</label>
         <input value={state.title} onChange={onSearchChanged} id="video-search" type="text" placeholder="Enter Search Keyword"></input>
       </div>

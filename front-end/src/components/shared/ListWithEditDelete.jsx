@@ -15,7 +15,7 @@ export default function List(props) {
   const [ catName, setCatName ] = useState("");
   const [ editMode, setEditMode ] = useState(null);
 
-
+  //sets edit mode to current form and value to name extracted from state
   const setMode = (i, cat) => {
     setEditMode(i);
     setCatName(cat);
@@ -36,7 +36,7 @@ export default function List(props) {
     setState(prev => ({...prev, categories: categ}));
     
     //send new name and index to back-end
-    return axios.post('http://localhost:3001/api/categories', { catName, index: oldIndex })
+    return axios.post('http://localhost:3001/api/categories', { newValue, oldValue })
       .then(response => {
           setEditMode(null);
           

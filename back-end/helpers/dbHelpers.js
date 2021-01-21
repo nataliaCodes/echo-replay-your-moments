@@ -56,6 +56,20 @@ module.exports = (db) => {
       .catch(err => console.log(err));
   };
 
+  const updateCategory = (current, updated, userId) => {
+
+    const query = {
+      text: `UPDATE categories
+            SET name=$2
+            WHERE id=$1
+            RETURNING *`,
+      values: [current, updated]
+    }
+    return db.query(query)
+    .then(result => result.rows)
+    .catch(err => console.log(err));
+  };
+
   return {
       getUsers,
       getUserByEmail,
