@@ -56,11 +56,46 @@ module.exports = (db) => {
       .catch(err => console.log(err));
   };
 
+  const updateCategory = (updatedName, categId) => {
+
+    const query = {
+      text: `UPDATE categories
+            SET name=$1
+            WHERE id=$2
+            RETURNING *`,
+      values: [updatedName, categId]
+    }
+    return db.query(query)
+    .then(result => result.rows)
+    .catch(err => console.log(err));
+  };
+
+  const addCategory = (name) => {
+    const query = {
+      text: `INSERT INTO categories name VALUES $1 RETURNING *` ,
+      values: [name]
+    }
+    return db.query(query)
+        .then(result => result.rows[0])
+        .catch(err => err);
+  };
+
+  const deleteCategory = (id) => {
+    const query = {
+      text: `DELETE FROM categories WHERE id=$1 RETURNING *` ,
+      values: [id]
+    }
+    return db.query(query)
+        .then(result => result.rows[0])
+        .catch(err => err);
+  };
+
   return {
       getUsers,
       getUserByEmail,
       addUser,
       getUserVidsAndCats,
-      getMomentsByVideo
+      getMomentsByVideo,
+      updateCategory
   };
 };

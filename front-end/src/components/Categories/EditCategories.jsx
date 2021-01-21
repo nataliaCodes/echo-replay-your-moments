@@ -7,6 +7,7 @@ import List from '../shared/ListWithEditDelete';
 import TogglingEditForm from '../shared/TogglingEditForm';
 
 export default function EditCategories(props) {
+
   const { state } = useApplicationData();
   //state for the form toggled by 'Add category'
   const [showForm, setShowForm] = useState(false);

@@ -9,10 +9,9 @@ export default function CategoriesList(props) {
 
   //extract categories list from state
   const { state } = useApplicationData();
-  const categories = state.categories;
 
   //render list of categories with corresponding videos dynamically
-  const accordionCards = !categories ? false : categories.map((name, index) => {
+  const accordionCards = !state.categories ? false : state.categories.map((name, index) => {
 
     return (
 

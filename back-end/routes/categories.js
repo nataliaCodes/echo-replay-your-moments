@@ -4,7 +4,8 @@ var categories = express.Router();
 
 /* GET categories for user */
 module.exports = ({
-  getUserVidsAndCats
+  getUserVidsAndCats,
+  updateCategory
 }) => {
   categories.get('/', function(req, res, next) {
 
@@ -14,27 +15,21 @@ module.exports = ({
     getUserVidsAndCats(userId)
       .then(response => {
 
-        console.log(response);
-
-        //extract array of category names
-        const categoryNames = response.map(vid => vid.cat_name);
-        const filteredNames = categoryNames.filter(function(name, i) {
-          return categoryNames.indexOf(name) === i;
+        //extract categories with ids attached
+        const categWithId = response.map(vid => {
+          const { category_id, cat_name } = vid
+          return `${cat_name}${category_id}`;
         });
 
-        //extract array of categories with associated ids
-        const duplicateCateg = response.map(vid => {
-
-          const id = vid.category_id;
-          const name = vid.cat_name;
-          return {id, name}
+        //filter out duplicates
+        const filteredCategsWithId = categWithId.filter((categ, i) => {
+          return categWithId.indexOf(categ) === i;
         });
-        console.log('duplicateCateg :', duplicateCateg);
 
-        
+        //get only category names
+        const categNames = filteredCategsWithId.map(name => name.substr(0, name.length - 1));
 
-
-        res.json({filteredNames, duplicateCateg, response});
+        res.json({filteredCategsWithId, categNames, response});
       })
       .catch((err) => res.json({
         error: err.message
@@ -44,11 +39,19 @@ module.exports = ({
 
   /* Update categories */ 
   categories.post('/', (req, res) => {
-    const info = req.body;
-    console.log(info);
 
-    res.json("back-end says: cat name received!");
+    //get user id from cookies
+    const userId = req.cookies.user;
 
+    //extract values passed by front-end
+    const { newValue, id } = req.body;
+    console.log("data:", req.body);
+
+    updateCategory(newValue, id)
+      .then(() => res.json(`back-end says: category ${id} updated to name ${newValue} in DB `))
+      .catch((err) => res.json({
+        error: err.message
+      }));
   });
 
   return categories;
