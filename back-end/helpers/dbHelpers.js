@@ -32,7 +32,6 @@ module.exports = (db) => {
           .catch(err => err);
   };
 
-
   const getUserVidsAndCats = id => {
     const query = {
       text: `SELECT v.id, v.title, v.link, v.created_at, v.category_id, c.name AS cat_name
