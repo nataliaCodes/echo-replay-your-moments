@@ -5,7 +5,10 @@ var categories = express.Router();
 /* GET categories for user */
 module.exports = ({
   getUserVidsAndCats,
-  updateCategory
+  updateCategory,
+  addCategory,
+  deleteCategory,
+  addIntoJoinTable
 }) => {
   categories.get('/', function(req, res, next) {
 
@@ -14,6 +17,18 @@ module.exports = ({
 
     getUserVidsAndCats(userId)
       .then(response => {
+      
+        //DO NOT DELETE BELOW COMMENTS!  
+        //TO DO: clean up data handling 
+        //by sending array of objects to front-end instead of array of strings
+        //as below pseudocode demonstrates
+        //build {categ_id: categ_name}!!!
+        // const categObj = {}
+        // response.forEach(
+        //   categ[categId] = categname;
+        // )
+        //const categArr = Object.keys(categObj)
+        //const categArr = Object.entries(categObj).map(([id, name]) => ({id, name}))
 
         //extract categories with ids attached
         const categWithId = response.map(vid => {
@@ -37,8 +52,35 @@ module.exports = ({
 
   });
 
-  /* Update categories */ 
+  /* Create categories */ 
   categories.post('/', (req, res) => {
+
+    //get user id from cookies
+    const userId = req.cookies.user;
+    console.log('userId :', userId);
+
+    console.log("new categ:", req.body.newCateg);
+    const newCateg = req.body.newCateg;
+
+    addCategory(newCateg)
+      .then((data) => {
+
+        //extract new category id
+        const newId = data.id;
+
+        //update join table
+        addIntoJoinTable(userId, newId)
+          .then(() => res.json(`back-end says: category ${newCateg} inserted into both tables `))
+          .catch(err => console.log('error adding into join table', err));
+      })
+      .catch((err) => res.json({
+        error: err.message
+      }));
+
+  });
+
+  /* Update categories */ 
+  categories.put('/', (req, res) => {
 
     //get user id from cookies
     const userId = req.cookies.user;
@@ -52,6 +94,21 @@ module.exports = ({
       .catch((err) => res.json({
         error: err.message
       }));
+  });
+
+  /* Update categories */ 
+  categories.delete('/', (req, res) => {
+
+    console.log("delete data:", req.body);
+    const id = req.body.id;
+    console.log('id :', id);
+
+    deleteCategory(id)
+      .then(() => res.json(`back-end says: category ${id} deleted`))
+      .catch((err) => res.json({
+        error: err.message
+      }));
+
   });
 
   return categories;

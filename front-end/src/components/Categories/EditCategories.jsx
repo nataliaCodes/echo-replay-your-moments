@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Alert from 'react-bootstrap/Alert';
+
 import useApplicationData from '../../hooks/useApplicationData';
 
 import Button from '../shared/Button';
@@ -8,38 +10,45 @@ import TogglingEditForm from '../shared/TogglingEditForm';
 
 export default function EditCategories(props) {
 
-  const { state } = useApplicationData();
+  //getting categories info from state
+  const { state, setState } = useApplicationData();
+
   //state for the form toggled by 'Add category'
   const [showForm, setShowForm] = useState(false);
+
   //state for the Add category input
   const [newCat, setNewCat] = useState("");
+
   //state for the alert showing user they created the category
   const [showAlert, setShowAlert] = useState(false);
 
-  const handleSave = (name) => {
+  const handleSave = (newCateg) => {
 
     setShowForm(false);
     setShowAlert(true);
+
+    //send data to back-end
+    return axios.post('http://localhost:3001/api/categories', { newCateg })
+      .then(response => {
+        console.log('response :', response.data);
+        console.log('client says: update request sent');
+
+
+        //create shallow copy of state categories
+        const categ = [...state.categories];
+        categ.push(newCateg);
+
+        setState({...state, categories: categ})
+      })
+      .catch(err => { console.log('error:', err) })
   };
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowAlert(false);
-    }, 3000);
+    }, 3500);
     return () => clearTimeout(timer);
   }, [showAlert]);
-
-  const handleDelete = () => {
-
-    //send data to back-end
-    return axios.post('http://localhost:3001/api/categories', { newCatName: newCat })
-      .then(response => {
-          console.log('client says: cat name sent');
-          console.log(response.data);
-      })
-      .catch(err => { console.log('error:', err) })
-
-  };
 
   return (
     <div className="EditCategories">
@@ -56,20 +65,13 @@ export default function EditCategories(props) {
           onCancel={() => setShowForm(false)}
         />
       )}
-      {showAlert && (
-        <div>Successfully created!</div>
-      )}
+      <Alert show={showAlert} variant="success" style={{width: "20em"}}>
+        Successfully created!
+      </Alert>
       <br /><br />
       <List
         fromCateg={true}
-        onDelete={handleDelete}
-        categ={state.categories}
       />      
-      {/* {submitted && (
-        <div className="List">
-          {newCat} <Button>Edit</Button><Button>Delete</Button>
-        </div>
-      )} */}
     </div>
   );
 }

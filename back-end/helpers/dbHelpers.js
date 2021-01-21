@@ -72,12 +72,22 @@ module.exports = (db) => {
 
   const addCategory = (name) => {
     const query = {
-      text: `INSERT INTO categories name VALUES $1 RETURNING *` ,
+      text: `INSERT INTO categories (name) VALUES ($1) RETURNING *` ,
       values: [name]
     }
     return db.query(query)
         .then(result => result.rows[0])
-        .catch(err => err);
+        .catch(err => console.log('error', err));
+  };
+
+  const addIntoJoinTable = (userId, categId) => {
+    const query = {
+      text: `INSERT INTO users_categories (user_id, category_id) VALUES ($1, $2) RETURNING *` ,
+      values: [userId, categId]
+    }
+    return db.query(query)
+        .then(result => result.rows[0])
+        .catch(err => console.log('error', err));
   };
 
   const deleteCategory = (id) => {
@@ -96,6 +106,9 @@ module.exports = (db) => {
       addUser,
       getUserVidsAndCats,
       getMomentsByVideo,
-      updateCategory
+      updateCategory,
+      addCategory,
+      deleteCategory, 
+      addIntoJoinTable
   };
 };
