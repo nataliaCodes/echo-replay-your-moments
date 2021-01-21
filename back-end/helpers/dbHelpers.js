@@ -96,6 +96,8 @@ module.exports = (db) => {
       addUser,
       getUserVidsAndCats,
       getMomentsByVideo,
-      updateCategory
+      updateCategory,
+      addCategory,
+      deleteCategory
   };
 };

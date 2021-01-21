@@ -5,7 +5,9 @@ var categories = express.Router();
 /* GET categories for user */
 module.exports = ({
   getUserVidsAndCats,
-  updateCategory
+  updateCategory,
+  addCategory,
+  deleteCategory
 }) => {
   categories.get('/', function(req, res, next) {
 
@@ -14,6 +16,15 @@ module.exports = ({
 
     getUserVidsAndCats(userId)
       .then(response => {
+      console.log('response :', response);
+      
+        //build {categ_id: categ_name}!!!
+        // const categObj = {}
+        // response.forEach(
+        //   categ[categId] = categname;
+        // )
+        //const categArr = Object.keys(categObj)
+        //const categArr = Object.entries(categObj).map(([id, name]) => ({id, name}))
 
         //extract categories with ids attached
         const categWithId = response.map(vid => {
@@ -52,6 +63,21 @@ module.exports = ({
       .catch((err) => res.json({
         error: err.message
       }));
+  });
+
+  /* Update categories */ 
+  categories.delete('/', (req, res) => {
+
+    console.log("delete data:", req.body);
+    const id = req.body.id;
+    console.log('id :', id);
+
+    deleteCategory(id)
+      .then(() => res.json(`back-end says: category ${id} deleted`))
+      .catch((err) => res.json({
+        error: err.message
+      }));
+
   });
 
   return categories;

@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Popup from 'react-popup';
+
 import useApplicationData from '../../hooks/useApplicationData';
 
 import Button from '../shared/Button';
@@ -29,18 +31,6 @@ export default function EditCategories(props) {
     return () => clearTimeout(timer);
   }, [showAlert]);
 
-  const handleDelete = () => {
-
-    //send data to back-end
-    return axios.post('http://localhost:3001/api/categories', { newCatName: newCat })
-      .then(response => {
-          console.log('client says: cat name sent');
-          console.log(response.data);
-      })
-      .catch(err => { console.log('error:', err) })
-
-  };
-
   return (
     <div className="EditCategories">
       <h4>Edit categories</h4>
@@ -62,14 +52,8 @@ export default function EditCategories(props) {
       <br /><br />
       <List
         fromCateg={true}
-        onDelete={handleDelete}
         categ={state.categories}
       />      
-      {/* {submitted && (
-        <div className="List">
-          {newCat} <Button>Edit</Button><Button>Delete</Button>
-        </div>
-      )} */}
     </div>
   );
 }
