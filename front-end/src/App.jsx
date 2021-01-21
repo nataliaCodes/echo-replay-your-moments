@@ -22,11 +22,6 @@ import ShowMoments from './components/MomentsPage/ShowMoments';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 
-// youtube video components
-import SearchBar from './components/shared/SearchBar'
-import VideoList from './components/shared/VideoList'
-
-
 function App() {
 
   const { state, setState, onVideoSelected, onSearch, momentsBySelectedVid, setSelectedVideoID } = useApplicationData();
