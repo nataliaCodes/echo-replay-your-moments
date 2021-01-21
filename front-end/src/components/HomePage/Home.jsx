@@ -14,7 +14,7 @@ export default function Home(props) {
       <h3>Welcome message</h3>
       <h3>Another message</h3>
 
-      <PasteBar />
+      <PasteBar setSelectedVideoID={props.setSelectedVideoID} />
       <SearchBar onSearch={props.onSearch} />
       <VideoList onVideoSelected={props.onVideoSelected} data={props.data} />
 

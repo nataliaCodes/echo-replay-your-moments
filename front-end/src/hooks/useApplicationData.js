@@ -220,8 +220,12 @@ const useApplicationData = () => {
       .catch(err => console.log(err));
     }
   };
+
+  const setSelectedVideoID = (videoID) =>{
+    setState((prev)=>({...prev, selectedVideoID: videoID}));
+  };
   
-  return { state, handleFormChange, handleRegisterSubmit, handleLoginSubmit, onVideoSelected, onSearch, handleLogout, setState, momentsBySelectedVid }
+  return { state, handleFormChange, handleRegisterSubmit, handleLoginSubmit, onVideoSelected, onSearch, handleLogout, setState, momentsBySelectedVid, setSelectedVideoID }
 
 };
 

@@ -29,10 +29,10 @@ import VideoList from './components/shared/VideoList'
 
 function App() {
 
-  const { state, setState, onVideoSelected, onSearch, momentsBySelectedVid } = useApplicationData();
+  const { state, setState, onVideoSelected, onSearch, momentsBySelectedVid, setSelectedVideoID } = useApplicationData();
 
   // const momentPath = `/videos/${state.selectedVideoID}`
-
+    console.log("APP state: ", state)
     return (
       <React.StrictMode>
       <Router>
@@ -42,7 +42,7 @@ function App() {
           {state.userId && <div>user: {state.userId}</div>}
           <Switch>
             <Route exact path="/">
-                <Home onSearch={onSearch} onVideoSelected={onVideoSelected} data={state.videoMetaInfo}/>
+                <Home onSearch={onSearch} onVideoSelected={onVideoSelected} data={state.videoMetaInfo} setSelectedVideoID={setSelectedVideoID}/>
             </Route>
             <Route exact path="/videos">
               <UserVideos state={state} onVideoSelected={onVideoSelected} selectedVideoID = {state.selectedVideoID}/>
