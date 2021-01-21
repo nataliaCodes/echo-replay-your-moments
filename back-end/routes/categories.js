@@ -44,7 +44,7 @@ module.exports = ({
     const userId = req.cookies.user;
 
     //extract values passed by front-end
-    const {newValue, id } = req.body;
+    const { newValue, id } = req.body;
     console.log("data:", req.body);
 
     updateCategory(newValue, id)
