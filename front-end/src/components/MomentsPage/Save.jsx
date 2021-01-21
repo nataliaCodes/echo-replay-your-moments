@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown'
 
 import useApplicationData from '../../hooks/useApplicationData';

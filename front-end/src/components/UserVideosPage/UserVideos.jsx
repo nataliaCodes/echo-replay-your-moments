@@ -13,8 +13,6 @@ export default function UserVideos(props) {
     const videoOnClick = ()=> {
       props.onVideoSelected(youtubeId);
     };
-    // const momentPath = `/videos/${props.selectedVideoID}`
-
 
     return (
       <Card key={index} class='userVideos' style={{width: "30em"}} onClick={()=>videoOnClick()}>
