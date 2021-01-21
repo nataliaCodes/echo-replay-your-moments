@@ -7,7 +7,8 @@ module.exports = ({
   getUserVidsAndCats,
   updateCategory,
   addCategory,
-  deleteCategory
+  deleteCategory,
+  addIntoJoinTable
 }) => {
   categories.get('/', function(req, res, next) {
 
@@ -16,9 +17,8 @@ module.exports = ({
 
     getUserVidsAndCats(userId)
       .then(response => {
-      console.log('response :', response);
       
-        //DON NOT DELETE BELOW COMMENTS!  
+        //DO NOT DELETE BELOW COMMENTS!  
         //TO DO: clean up data handling 
         //by sending array of objects to front-end instead of array of strings
         //as below pseudocode demonstrates
@@ -57,9 +57,25 @@ module.exports = ({
 
     //get user id from cookies
     const userId = req.cookies.user;
+    console.log('userId :', userId);
 
-    console.log("data:", req.body);
-    res.json(`back-end says: category ${id} updated to name ${newValue} in DB `)
+    console.log("new categ:", req.body.newCateg);
+    const newCateg = req.body.newCateg;
+
+    addCategory(newCateg)
+      .then((data) => {
+
+        //extract new category id
+        const newId = data.id;
+
+        //update join table
+        addIntoJoinTable(userId, newId)
+          .then(() => res.json(`back-end says: category ${newCateg} inserted into both tables `))
+          .catch(err => console.log('error adding into join table', err));
+      })
+      .catch((err) => res.json({
+        error: err.message
+      }));
 
   });
 

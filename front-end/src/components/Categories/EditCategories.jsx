@@ -11,7 +11,7 @@ import TogglingEditForm from '../shared/TogglingEditForm';
 export default function EditCategories(props) {
 
   //getting categories info from state
-  const { state } = useApplicationData();
+  const { state, setState } = useApplicationData();
 
   //state for the form toggled by 'Add category'
   const [showForm, setShowForm] = useState(false);
@@ -20,12 +20,27 @@ export default function EditCategories(props) {
   const [newCat, setNewCat] = useState("");
 
   //state for the alert showing user they created the category
-  const [showAlert, setShowAlert] = useState(true);
+  const [showAlert, setShowAlert] = useState(false);
 
-  const handleSave = (name) => {
+  const handleSave = (newCateg) => {
 
     setShowForm(false);
     setShowAlert(true);
+
+    //send data to back-end
+    return axios.post('http://localhost:3001/api/categories', { newCateg })
+      .then(response => {
+        console.log('response :', response.data);
+        console.log('client says: update request sent');
+
+
+        //create shallow copy of state categories
+        const categ = [...state.categories];
+        categ.push(newCateg);
+
+        setState({...state, categories: categ})
+      })
+      .catch(err => { console.log('error:', err) })
   };
 
   useEffect(() => {
