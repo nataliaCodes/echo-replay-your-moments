@@ -5,4 +5,11 @@ VALUES
   ('Dance'),
   ('Art'),
   ('Cooking'),
-  ('DIY')
+  ('DIY'),
+  ('Education'),
+  ('Sports'),
+  ('Dance'),
+  ('Art'),
+  ('Cooking'),
+  ('DIY'),
+  ('Education')
