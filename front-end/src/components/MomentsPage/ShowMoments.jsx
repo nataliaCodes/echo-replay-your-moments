@@ -17,6 +17,7 @@ export default function Moment(props) {
     }
   )
 
+  props.momentsBySelectedVid(videoInfo.selectedVideoID)
   return (
     <div className="Moment">
       {/* <SearchBar /> */}
