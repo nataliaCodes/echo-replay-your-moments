@@ -56,14 +56,14 @@ module.exports = (db) => {
       .catch(err => console.log(err));
   };
 
-  const updateCategory = (current, updated, userId) => {
+  const updateCategory = (updatedName, categId) => {
 
     const query = {
       text: `UPDATE categories
-            SET name=$2
-            WHERE id=$1
+            SET name=$1
+            WHERE id=$2
             RETURNING *`,
-      values: [current, updated]
+      values: [updatedName, categId]
     }
     return db.query(query)
     .then(result => result.rows)
@@ -75,6 +75,7 @@ module.exports = (db) => {
       getUserByEmail,
       addUser,
       getUserVidsAndCats,
-      getMomentsByVideo
+      getMomentsByVideo,
+      updateCategory
   };
 };

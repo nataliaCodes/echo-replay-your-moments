@@ -4,7 +4,8 @@ var categories = express.Router();
 
 /* GET categories for user */
 module.exports = ({
-  getUserVidsAndCats
+  getUserVidsAndCats,
+  updateCategory
 }) => {
   categories.get('/', function(req, res, next) {
 
@@ -14,15 +15,21 @@ module.exports = ({
     getUserVidsAndCats(userId)
       .then(response => {
 
-        console.log(response);
-
-        //extract array of category names
-        const categoryNames = response.map(vid => vid.cat_name);
-        const filteredNames = categoryNames.filter((name, i) => {
-          return categoryNames.indexOf(name) === i;
+        //extract categories with ids attached
+        const categWithId = response.map(vid => {
+          const { category_id, cat_name } = vid
+          return `${cat_name}${category_id}`;
         });
 
-        res.json({filteredNames, response});
+        //filter out duplicates
+        const filteredCategsWithId = categWithId.filter((categ, i) => {
+          return categWithId.indexOf(categ) === i;
+        });
+
+        //get only category names
+        const categNames = filteredCategsWithId.map(name => name.substr(0, name.length - 1));
+
+        res.json({filteredCategsWithId, categNames, response});
       })
       .catch((err) => res.json({
         error: err.message
@@ -37,11 +44,14 @@ module.exports = ({
     const userId = req.cookies.user;
 
     //extract values passed by front-end
-    const {newValue, oldValue } = req.body;
+    const {newValue, id } = req.body;
     console.log("data:", req.body);
 
-    res.json("back-end says: cat name received!");
-
+    updateCategory(newValue, id)
+      .then(() => res.json(`back-end says: category ${id} updated to name ${newValue} in DB `))
+      .catch((err) => res.json({
+        error: err.message
+      }));
   });
 
   return categories;

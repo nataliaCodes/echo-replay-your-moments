@@ -22,10 +22,17 @@ export default function List(props) {
   };
 
   const handleSave = (newValue, oldValue) => {
-    
+
     //shallow copy of state categories
-    let categ = [...state.categories];
-    
+    const categ = [...state.categories];
+    const categWithIds = [...state.categWitIds];
+
+    //extract id of current category to pass to back-end
+    const categId = categWithIds.filter(item => item.substr(0, item.length - 1) === oldValue);
+    console.log('categId :', categId);
+    const id = categId[0].substr(categId[0].length - 1, categId[0].length);
+    console.log('id :', id);
+
     //get index of value being changed
     let oldIndex = categ.indexOf(oldValue);
     
@@ -33,10 +40,10 @@ export default function List(props) {
     categ[oldIndex] = newValue;
     
     //set state to new list of categories
-    setState(prev => ({...prev, categories: categ}));
+    setState({...state, categories: categ});
     
     //send new name and index to back-end
-    return axios.post('http://localhost:3001/api/categories', { newValue, oldValue })
+    return axios.post('http://localhost:3001/api/categories', { newValue, id })
       .then(response => {
           setEditMode(null);
           
@@ -47,12 +54,12 @@ export default function List(props) {
 
   };
 
-  const categoriesList = state.categories && state.categories.map((cat, i) => {
+  const categoriesList = state.categories && state.categories.map((name, i) => {
 
     return (
       <div key={i}>
         {/* show category name when edit mode is not active for current element */}
-        {editMode !== i && cat}
+        {editMode !== i && name}
         {/* on edit mode active for current element show edit form */}
         {editMode === i ? (
           <TogglingEditForm 
@@ -61,13 +68,13 @@ export default function List(props) {
             placeholder="Category name"
             onCancel={() => setEditMode(null)} 
             onChange={(e) => setCatName(e.target.value)}
-            onSave={(e) => handleSave(catName, cat)}
+            onSave={(e) => handleSave(catName, name)}
             onDelete={props.onDelete}
           />
         ) :
           // else show the buttons
           (<>
-            <Button onClick={() => setMode(i, cat)} children={'Edit'} />
+            <Button onClick={() => setMode(i, name)} children={'Edit'} />
             <Button onClick={props.onDelete}>Delete</Button>
           </>)
         }
