@@ -47,12 +47,13 @@ const useApplicationData = () => {
     .then(all => {
 
       //'all' comes back as an array of responses from the axios calls
-      // console.log('users:', all[1].data)
-      // console.log('categories:', all[0].data.categories)
-      // console.log('videos:', all[0].data.response)
+      console.log('users:', all[1].data)
+      console.log('categ names:', all[0].data.filteredNames)
+      console.log('categories:', all[0].data.duplicateCateg)
+      console.log('videos:', all[0].data.response)
       
       //set current state with axios calls data
-      setState(prev => ({...prev, users: all[1].data, categories: all[0].data.categories, videos: all[0].data.response }))
+      setState(prev => ({...prev, users: all[1].data, categories: all[0].data.filteredNames, videos: all[0].data.response }))
       
     })
     .catch((err) => console.log(err));

@@ -14,12 +14,27 @@ module.exports = ({
     getUserVidsAndCats(userId)
       .then(response => {
 
+        console.log(response);
+
+        //extract array of category names
         const categoryNames = response.map(vid => vid.cat_name);
-        const categories = categoryNames.filter(function(name, i) {
+        const filteredNames = categoryNames.filter(function(name, i) {
           return categoryNames.indexOf(name) === i;
         });
 
-        res.json({categories, response});
+        //extract array of categories with associated ids
+        const duplicateCateg = response.map(vid => {
+
+          const id = vid.category_id;
+          const name = vid.cat_name;
+          return {id, name}
+        });
+        console.log('duplicateCateg :', duplicateCateg);
+
+        
+
+
+        res.json({filteredNames, duplicateCateg, response});
       })
       .catch((err) => res.json({
         error: err.message
