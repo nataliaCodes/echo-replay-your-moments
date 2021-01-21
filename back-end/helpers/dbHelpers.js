@@ -34,7 +34,7 @@ module.exports = (db) => {
 
   const getUserVidsAndCats = id => {
     const query = {
-      text: `SELECT v.id, v.title, v.link, v.created_at, v.category_id, c.name AS cat_name
+      text: `SELECT v.id, v.title, v.link, v.category_id, c.name AS cat_name
           FROM videos as v INNER JOIN categories as c 
           ON v.category_id = c.id 
           WHERE v.user_id = $1;` ,
@@ -45,10 +45,22 @@ module.exports = (db) => {
       .catch(err => console.log(err));
   };
 
+  const getMomentsByVideo = (id, videoId) => {
+
+      const query = {
+          text: `SELECT m.id as moment_id, m.label, m.start_time, m.end_time FROM moments as m JOIN videos as v ON v.id = m.video_id WHERE v.link LIKE '%' || $2 || '%' AND v.user_id = $1 ORDER BY m.id;`,
+          values: [id, videoId]
+      }
+      return db.query(query)
+      .then(result => result.rows)
+      .catch(err => console.log(err));
+  };
+
   return {
       getUsers,
       getUserByEmail,
       addUser,
-      getUserVidsAndCats
+      getUserVidsAndCats,
+      getMomentsByVideo
   };
 };

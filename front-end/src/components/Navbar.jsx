@@ -29,9 +29,9 @@ export default function Navbar(props) {
       <Link to="/search">
         <NavbarItem>Search results</NavbarItem>
       </Link>
-      <Link to="/videos/id">
+      {/* <Link to="/videos/id">
         <NavbarItem>Show moments</NavbarItem>
-      </Link>
+      </Link> */}
       { cookies.user ?
         <Link to="/">
           <Logout onClick={handleLogout}>Log out user {cookies.user}</Logout>

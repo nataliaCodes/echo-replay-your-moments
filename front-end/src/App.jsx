@@ -29,7 +29,9 @@ import VideoList from './components/shared/VideoList'
 
 function App() {
 
-  const { state, setState, onVideoSelected, onSearch } = useApplicationData();
+  const { state, setState, onVideoSelected, onSearch, momentsBySelectedVid } = useApplicationData();
+
+  // const momentPath = `/videos/${state.selectedVideoID}`
 
     return (
       <React.StrictMode>
@@ -43,7 +45,7 @@ function App() {
                 <Home onSearch={onSearch} onVideoSelected={onVideoSelected} data={state.videoMetaInfo}/>
             </Route>
             <Route exact path="/videos">
-              <UserVideos state={state} onVideoSelected={onVideoSelected}/>
+              <UserVideos state={state} onVideoSelected={onVideoSelected} selectedVideoID = {state.selectedVideoID}/>
             </Route>
             <Route exact path="/categories">
               <Categories />
@@ -51,8 +53,8 @@ function App() {
             <Route exact path="/search">
               <Videos />
             </Route>
-            <Route exact path="/videos/id">
-                <ShowMoments selectedVideoID = {state.selectedVideoID}/>                
+            <Route path="/moments">
+                <ShowMoments selectedVideoID = {state.selectedVideoID} momentsBySelectedVid={momentsBySelectedVid}/>                
             </Route>
             <Route exact path="/register">
               <Register />

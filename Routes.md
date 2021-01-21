@@ -50,4 +50,6 @@ search results: /search
 search = POST youtube search api
 display search videos = GET youtube search api ?
 
+SELECT m.id as moment_id, m.label, m.start_time, m.end_time FROM moments as m JOIN videos as v ON v.id = m.video_id WHERE v.link LIKE '%RRubcjpTkks&ab%' AND v.user_id = 1 ORDER BY m.id;
+
 
