@@ -46,7 +46,7 @@ export default function List(props) {
     setState({ ...state, categories: categ });
 
     //send new name and index to back-end
-    return axios.post('http://localhost:3001/api/categories', { newValue, id })
+    return axios.put('http://localhost:3001/api/categories', { newValue, id })
       .then(response => {
         setEditMode(null);
 
@@ -131,8 +131,6 @@ export default function List(props) {
         </Button>
         </div>
       </Alert>
-
-      {/* {!showAlert && <Button onClick={() => setShowAlert(true)}>Show Alert</Button>} */}
       </>
       {/* list component is being used in two different pages, render accordingly */}
       <div className="List">
@@ -152,27 +150,3 @@ export default function List(props) {
     </>
   );
 }
-
-
-
-let stuff = [1, 2, 3, 4, 5];
-
-const grandpa = (stuff) => {
-  <Parent stuff={stuff} />
-}
-
-const Child = (props) => {
-  return (
-    <p>{props.num}</p>
-  )
-}
-
-const parent = (stuff) => {
-  const x = stuff.map((item, i) => {
-    <Child num={item} />
-  })
-
-  return ({ x })
-}
-
-

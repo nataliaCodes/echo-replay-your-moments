@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Popup from 'react-popup';
+import Alert from 'react-bootstrap/Alert';
 
 import useApplicationData from '../../hooks/useApplicationData';
 
@@ -10,13 +10,17 @@ import TogglingEditForm from '../shared/TogglingEditForm';
 
 export default function EditCategories(props) {
 
+  //getting categories info from state
   const { state } = useApplicationData();
+
   //state for the form toggled by 'Add category'
   const [showForm, setShowForm] = useState(false);
+
   //state for the Add category input
   const [newCat, setNewCat] = useState("");
+
   //state for the alert showing user they created the category
-  const [showAlert, setShowAlert] = useState(false);
+  const [showAlert, setShowAlert] = useState(true);
 
   const handleSave = (name) => {
 
@@ -27,7 +31,7 @@ export default function EditCategories(props) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowAlert(false);
-    }, 3000);
+    }, 3500);
     return () => clearTimeout(timer);
   }, [showAlert]);
 
@@ -46,13 +50,12 @@ export default function EditCategories(props) {
           onCancel={() => setShowForm(false)}
         />
       )}
-      {showAlert && (
-        <div>Successfully created!</div>
-      )}
+      <Alert show={showAlert} variant="success" style={{width: "20em"}}>
+        Successfully created!
+      </Alert>
       <br /><br />
       <List
         fromCateg={true}
-        categ={state.categories}
       />      
     </div>
   );

@@ -18,6 +18,10 @@ module.exports = ({
       .then(response => {
       console.log('response :', response);
       
+        //DON NOT DELETE BELOW COMMENTS!  
+        //TO DO: clean up data handling 
+        //by sending array of objects to front-end instead of array of strings
+        //as below pseudocode demonstrates
         //build {categ_id: categ_name}!!!
         // const categObj = {}
         // response.forEach(
@@ -48,8 +52,19 @@ module.exports = ({
 
   });
 
-  /* Update categories */ 
+  /* Create categories */ 
   categories.post('/', (req, res) => {
+
+    //get user id from cookies
+    const userId = req.cookies.user;
+
+    console.log("data:", req.body);
+    res.json(`back-end says: category ${id} updated to name ${newValue} in DB `)
+
+  });
+
+  /* Update categories */ 
+  categories.put('/', (req, res) => {
 
     //get user id from cookies
     const userId = req.cookies.user;
