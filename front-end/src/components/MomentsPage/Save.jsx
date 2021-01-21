@@ -1,26 +1,31 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown'
 
 import useApplicationData from '../../hooks/useApplicationData';
 
-export default function Save(props) {
-
+export default function Save({videoInfo, setVideoInfo, selectedCat, categories }) {
+  
   const { state } = useApplicationData();
-  const categories = state.categories;
+  const cat = state.categories
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handleTitle = (catergory) => props.setVideoInfo(prev => ({...prev, selectedCat: catergory }))
+  const handleTitle = (catergory) => setVideoInfo(prev => ({...prev, selectedCat: catergory }))
 
-  const categoriesDropdown = !categories ? console.log("NO VALUES") : categories.map(catergory => {
-    <Dropdown.Item onClick={()=>handleTitle(catergory)}>{catergory}</Dropdown.Item>
-  });
+  console.log(categories)
 
+  let categoriesDropdown;
+  if(cat) {
+    categoriesDropdown = cat.map((catergory) => {
+      return(
+        <Dropdown.Item onClick={()=>handleTitle(catergory)}>{catergory}</Dropdown.Item>
+      );
+    });
+  }
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
@@ -41,7 +46,7 @@ export default function Save(props) {
             <p>Video title:</p><input type="text"></input>
             <Dropdown>
               <Dropdown.Toggle variant="warning" id="dropdown-basic">
-                {props.selectedCat}
+                {selectedCat}
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
