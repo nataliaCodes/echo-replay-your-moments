@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Alert from 'react-bootstrap/Alert';
 
-import useApplicationData from '../../hooks/useApplicationData';
-
 import Button from '../shared/Button';
 import TogglingEditForm from '../shared/TogglingEditForm';
 
