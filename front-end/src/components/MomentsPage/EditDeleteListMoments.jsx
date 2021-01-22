@@ -64,7 +64,7 @@ export default function List(props) {
           // else show the buttons
           (<>
             <Button onClick={() => setMode(key, name)} children={'Edit'} />
-            {!showAlert && <Button onClick={() => handleAlert(name)}>Delete</Button>}
+            {/* {!showAlert && <Button onClick={() => handleAlert(name)}>Delete</Button>} */}
           </>)
         }
       </div>
