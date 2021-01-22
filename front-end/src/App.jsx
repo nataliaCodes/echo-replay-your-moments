@@ -24,7 +24,7 @@ import Login from './components/Login/Login';
 
 function App() {
 
-  const { state, setState, onVideoSelected, onSearch, momentsBySelectedVid, setSelectedVideoID } = useApplicationData();
+  const { state, setState, cookies, onVideoSelected, onSearch, momentsBySelectedVid, setSelectedVideoID } = useApplicationData();
 
   // const momentPath = `/videos/${state.selectedVideoID}`
     // console.log("APP state: ", state)
@@ -43,7 +43,7 @@ function App() {
               <UserVideos state={state} setState={setState} onVideoSelected={onVideoSelected} selectedVideoID = {state.selectedVideoID}/>
             </Route>
             <Route exact path="/categories">
-              <Categories />
+              <Categories state={state} setState={setState} cookies={cookies} />
             </Route>
             <Route exact path="/search">
               <Videos />

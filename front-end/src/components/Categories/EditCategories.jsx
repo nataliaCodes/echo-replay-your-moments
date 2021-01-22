@@ -2,16 +2,13 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Alert from 'react-bootstrap/Alert';
 
-import useApplicationData from '../../hooks/useApplicationData';
-
 import Button from '../shared/Button';
 import EditDelete from './EditDeleteListCategs';
 import TogglingEditForm from '../shared/TogglingEditForm';
 
 export default function EditCategories(props) {
 
-  //getting categories info from state
-  const { state, setState, cookies } = useApplicationData();
+  const { state, setState, cookies } = props;
 
   //state for the form toggled by 'Add category'
   const [showForm, setShowForm] = useState(false);
@@ -32,15 +29,10 @@ export default function EditCategories(props) {
     //send data to back-end
     return axios.post('http://localhost:3001/api/categories', { newCateg, userId })
       .then(response => {
-        console.log('response from express:', response.data);
 
-        //update the state here to show latest category!!
-        //create shallow copy of state categories
         const categ = [...state.categories, newCateg];
-        // categ.push(newCateg);
-        console.log('categ :', categ);
-
         setState(prev => ({...prev, categories: categ}))
+
       })
       .catch(err => { console.log('error:', err) })
   };
@@ -71,7 +63,7 @@ export default function EditCategories(props) {
         Successfully created!
       </Alert>
       <br /><br />
-      <EditDelete />      
+      <EditDelete state={state} setState={setState} />      
     </div>
   );
 }

@@ -1,14 +1,11 @@
 import Card from 'react-bootstrap/Card';
 
-import useApplicationData from '../../hooks/useApplicationData';
-
 export default function VideoThumbnails(props) {
 
   //exract videos from state
-  const { state } = useApplicationData();
-  const videos = state.videos;
+  const { state } = props;
 
-  const thumbnails = !videos ? false : videos.map((video, i) => {
+  const thumbnails = !state.videos ? false : state.videos.map((video, i) => {
 
     //generate video thumbnails dynamically
     const categoryMatch = video.cat_name === props.category;
@@ -16,7 +13,7 @@ export default function VideoThumbnails(props) {
     const thumbnail = `https://img.youtube.com/vi/${youtubeId}/mqdefault.jpg`;
 
     //render each video detail
-    return categoryMatch && (
+    return (categoryMatch && (
 
       <Card key={i} style={{width: "30em"}}>
         <Card.Header>
@@ -25,14 +22,13 @@ export default function VideoThumbnails(props) {
         <Card.Img variant="bottom" src={thumbnail} alt="thumbnail" />
       </Card>
       
-    );
+    ));
   });
 
+  //render list based on videos existence
   return (
-    //render list
-    <div className="VideoThumbnails">
-      {thumbnails}
-    </div>
-
-  );
+      <div className="VideoThumbnails">
+        {thumbnails}
+      </div>
+  )
 };

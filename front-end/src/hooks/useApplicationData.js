@@ -45,7 +45,7 @@ const useApplicationData = () => {
     //promise.all to call all data we need at the same time
     Promise.all([
       axios.get('api/users'),
-      axios.get('/api/videos'),
+      axios.get('api/videos'),
       axios.get('api/categories'),
     ])
     .then(all => {

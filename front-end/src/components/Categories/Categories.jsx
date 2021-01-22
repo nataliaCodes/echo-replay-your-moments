@@ -9,13 +9,15 @@ const EDIT = "EDIT";
 
 export default function Categories(props) {
 
+  const { state, setState, cookies } = props;
+
   const { mode, transition } = useVisualMode(MAIN);
 
   return (
 
     <div className="Categories">
-      {mode === MAIN && <ShowCategories onEdit={() => transition(EDIT)} />}
-      {mode === EDIT && <EditCategories onBack={() => transition(MAIN)} />}
+      {mode === MAIN && <ShowCategories state={state} setState={setState} onEdit={() => transition(EDIT)} />}
+      {mode === EDIT && <EditCategories state={state} setState={setState} cookies={cookies} onBack={() => transition(MAIN)} />}
     </div>
     
   );

@@ -3,6 +3,8 @@ import CategoriesList from './ShowCategoriesList';
 
 export default function ShowCategories(props) {
 
+  const { state, setState } = props;
+
   return (
 
     <div className="Categories">
@@ -11,7 +13,7 @@ export default function ShowCategories(props) {
         Edit categories
       </Button>
       <br/><br/><br/>
-      <CategoriesList />
+      <CategoriesList state={state} />
     </div>
     
   );

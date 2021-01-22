@@ -10,7 +10,7 @@ import TogglingEditForm from '../shared/TogglingEditForm';
 export default function List(props) {
 
   //using app data state to get categories
-  const { state, setState } = useApplicationData();
+  const { state, setState } = props;
 
   //keeping edit form state local to avoid too much rendering
   const [catName, setCatName] = useState("");

@@ -1,6 +1,8 @@
 INSERT INTO moments (label, start_time, end_time, user_id, video_id)
 VALUES
-('abcc', 10, 70, 1, 1),
+('abca', 10, 70, 1, 1),
+('abcb', 20, 40, 1, 1),
+('abcc', 50, 100, 1, 1),
 ('abcd', 10, 70, 1, 2),
 ('abce', 10, 70, 1, 3),
 ('abcf', 10, 70, 1, 4),

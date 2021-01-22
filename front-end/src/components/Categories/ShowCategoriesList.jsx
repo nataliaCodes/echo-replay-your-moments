@@ -3,12 +3,10 @@ import Card from 'react-bootstrap/Card';
 
 import VideoThumbnails from "./VideoThumbnails";
 
-import useApplicationData from '../../hooks/useApplicationData';
-
 export default function CategoriesList(props) {
 
   //extract categories list from state
-  const { state } = useApplicationData();
+  const { state } = props;
 
   //render list of categories with corresponding videos dynamically
   const accordionCards = !state.categories ? false : state.categories.map((name, index) => {
@@ -23,7 +21,7 @@ export default function CategoriesList(props) {
         </Card.Header>
         <Accordion.Collapse eventKey={index + 1}>
           <Card.Body>
-            <VideoThumbnails category={name} />
+            <VideoThumbnails category={name} state={state} />
           </Card.Body>
         </Accordion.Collapse>
       </Card>
@@ -32,11 +30,15 @@ export default function CategoriesList(props) {
   });
 
   //render page content based on categories existence
-  return accordionCards.length > 0 ?
-    <Accordion style={{width: "90%", marginLeft: "3em"}}>
-      {accordionCards}
-    </Accordion>
-    :
-    <p>No categories found</p>
-
+  return (
+    <>
+      {accordionCards.length > 0 ?
+      <Accordion style={{width: "90%", marginLeft: "3em"}}>
+        {accordionCards}
+      </Accordion>
+      :
+      <p>No categories found</p>
+      }
+    </>
+  )
 };

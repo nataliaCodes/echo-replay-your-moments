@@ -69,7 +69,7 @@ export default function Moment(props) {
       <Button>Save video</Button>
       <Button>Add moment</Button>
       <NewMoment />
-      <EditDelete />
+      <EditDelete moments={videoInfo.moments} />
     </div>
   );
 }
