@@ -17,16 +17,16 @@ module.exports = ({
       }));
   });
 
-    /* Add Videos with moments */ 
-    videos.post('/', (req, res) => {
-      const info = req.body;
-      console.log(info);
-  
-  
-  
-      res.json("back-end says: YO videos!");
-  
-    });
+  /* Add Videos with moments */ 
+  videos.post('/', (req, res) => {
+    const info = req.body;
+    console.log(info);
+
+
+
+    res.json("back-end says: YO videos!");
+
+  });
   
 
   return videos;
