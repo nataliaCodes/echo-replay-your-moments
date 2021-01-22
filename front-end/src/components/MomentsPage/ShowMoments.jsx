@@ -40,22 +40,22 @@ export default function Moment(props) {
     .catch(err => console.log(err));
   };
 
-  const getCategory = () => {
-    axios.get('http://localhost:3001/api/moments/categories', {
-      params: {},
-      withCredentials: true
-    })
-    .then((response)=>{
-      console.log("fromDBcats",response.data)
-      setVideoInfo((prev)=>({...prev, categories: response.data }))
-    })
-    .catch(err => console.log(err));
-  };
+  // const getCategory = () => {
+  //   axios.get('http://localhost:3001/api/moments/categories', {
+  //     params: {},
+  //     withCredentials: true
+  //   })
+  //   .then((response)=>{
+  //     console.log("fromDBcats",response.data)
+  //     setVideoInfo((prev)=>({...prev, categories: response.data }))
+  //   })
+  //   .catch(err => console.log(err));
+  // };
 
     useEffect(() => {
       if(props.oldVideo){
         getMoments(videoInfo.selectedVideoID);
-        getCategory();
+        // getCategory();
       }
     }, []);
     console.log("videoInfo after axios", videoInfo)
@@ -65,12 +65,11 @@ export default function Moment(props) {
       {/* <SearchBar /> */}
       <VideoPlayer videoInfo = {videoInfo} setVideoInfo={setVideoInfo}/>
       <MomentBar videoInfo = {videoInfo} setVideoInfo={setVideoInfo}/>
-      <Save videoInfo={videoInfo} setVideoInfo={setVideoInfo} selectedCat={videoInfo.selectedCat} categories={videoInfo.categories} />
+      <Save videoInfo={videoInfo} setVideoInfo={setVideoInfo} selectedCat={videoInfo.selectedCat} categories={props.categories} categWithId={props.categWithId} />
       <Button>Save video</Button>
       <Button>Add moment</Button>
       <NewMoment />
       <List onVideos={true}>Moments</List>
-      <Save videoInfo={videoInfo} setVideoInfo={setVideoInfo} selectedCat={videoInfo.selectedCat} categories={props.categories} />
     </div>
   );
 }

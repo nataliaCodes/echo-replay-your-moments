@@ -19,7 +19,7 @@ export default function Save({videoInfo, setVideoInfo, selectedCat, categories }
     categoriesDropdown = categories.map((catergory) => {
       console.log("saveCATS", catergory )
       return(
-        <Dropdown.Item onClick={()=>handleTitle(catergory)}>{catergory.name}</Dropdown.Item>
+        <Dropdown.Item onClick={()=>handleTitle(catergory)}>{catergory}</Dropdown.Item>
       );
     });
   }
