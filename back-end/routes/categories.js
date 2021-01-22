@@ -4,59 +4,24 @@ var categories = express.Router();
 
 /* GET categories for user */
 module.exports = ({
-  getUserVidsAndCats,
+  getUserCategories,
   updateCategory,
   addCategory,
   deleteCategory,
-  addIntoJoinTable,
-  getUserCategories
+  addIntoJoinTable
+  
 }) => {
   categories.get('/', function(req, res, next) {
 
     //get user id from cookies
     const userId = req.cookies.user;
+    console.log('userId :', userId);
 
-    // getUserCategories(userId)
-    // .then((response) => res.json(response))
-    // .catch((err) => res.json({
-    //   error: err.message
-    // }));
-
-    getUserVidsAndCats(userId)
-      .then(response => {
-      console.log('response :', response);
-      
-        //DO NOT DELETE BELOW COMMENTS!  
-        //TO DO: clean up data handling 
-        //by sending array of objects to front-end instead of array of strings
-        //as below pseudocode demonstrates
-        //build {categ_id: categ_name}!!!
-        // const categObj = {}
-        // response.forEach(
-        //   categ[categId] = categname;
-        // )
-        //const categArr = Object.keys(categObj)
-        //const categArr = Object.entries(categObj).map(([id, name]) => ({id, name}))
-
-        //extract categories with ids attached
-        const categWithId = response.map(vid => {
-          const { category_id, cat_name } = vid
-          return `${cat_name}${category_id}`;
-        });
-
-        //filter out duplicates
-        const filteredCategsWithId = categWithId.filter((categ, i) => {
-          return categWithId.indexOf(categ) === i;
-        });
-
-        //get only category names
-        const categNames = filteredCategsWithId.map(name => name.substr(0, name.length - 1));
-
-        res.json({filteredCategsWithId, categNames, response});
-      })
-      .catch((err) => res.json({
-        error: err.message
-      }));
+    getUserCategories(userId)
+    .then((response) => {console.log('got response:', response); res.json(response)})
+    .catch((err) => res.json({
+      error: err.message
+    }));
 
   });
 

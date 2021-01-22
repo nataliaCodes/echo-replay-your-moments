@@ -44,19 +44,21 @@ const useApplicationData = () => {
     //promise.all to call all data we need at the same time
     Promise.all([
       axios.get('api/users'),
-      axios.get('/api/videos')
-      // axios.get('api/categories')
+      axios.get('/api/videos'),
+      axios.get('api/categories')
     ])
     .then(all => {
 
       //'all' comes back as an array of responses from the axios calls
       // console.log('users:', all[0].data);
-      console.log('videos:', all[1].data.response);
-      // console.log('categs:', all[0].data.categNames)
-      // console.log('videos:', all[0].data.response)
+      // console.log('videos:', all[1].data.response);
+      console.log('categories:', all[2].data)
+
+      const categNames = all[2].data.map(item => item.name);
+      console.log('categNames :', categNames);
       
       //set current state with axios calls data
-      setState(prev => ({...prev, users: all[0].data, videos: all[1].data.response }))
+      setState(prev => ({...prev, users: all[0].data, videos: all[1].data.response, categories: categNames, categWithId: all[2].data}))
       
     })
     .catch((err) => console.log(err));
