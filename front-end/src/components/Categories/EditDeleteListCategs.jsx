@@ -4,8 +4,8 @@ import Alert from 'react-bootstrap/Alert';
 
 import useApplicationData from '../../hooks/useApplicationData';
 
-import Button from './Button';
-import TogglingEditForm from './TogglingEditForm';
+import Button from '../shared/Button';
+import TogglingEditForm from '../shared/TogglingEditForm';
 
 export default function List(props) {
 
@@ -31,7 +31,6 @@ export default function List(props) {
     //shallow copy of state categories
     const categ = [...state.categories];
     const categWithIds = [...state.categWithId];
-    console.log('categWithIds :', categWithIds);
 
     //get index of value being changed
     const oldIndex = categ.indexOf(oldValue);
@@ -45,9 +44,6 @@ export default function List(props) {
     //extract id of current category to pass to back-end
     let id;
     categWithIds.forEach(item => {
-    console.log('item :', item.name);
-    console.log('oldValue :', oldValue);
-
 
       if(item.name === oldValue) {
         id = item.id;
@@ -136,34 +132,22 @@ export default function List(props) {
   return (
     <>
       <>
-      <Alert show={showAlert} variant="danger" style={{width: "20em"}}>
-        <Alert.Heading>Delete category</Alert.Heading>
-        <p>
-          Deleting category cannot be undone. Proceed?
-        </p>
-        <hr />
-        <div className="d-flex justify-content-end">
-          <Button onClick={() => setShowAlert(false)}>Cancel</Button>
-          <Button onClick={() => handleDelete(alertCateg)} variant="outline-danger">
-            Proceed
-        </Button>
-        </div>
-      </Alert>
-      </>
-      {/* list component is being used in two different pages, render accordingly */}
-      <div className="List">
-        {props.fromCateg &&
-          <div>
-            {categoriesList}
+        <Alert show={showAlert} variant="danger" style={{width: "20em"}}>
+          <Alert.Heading>Delete category</Alert.Heading>
+          <p>
+            Deleting category cannot be undone. Proceed?
+          </p>
+          <hr />
+          <div className="d-flex justify-content-end">
+            <Button onClick={() => setShowAlert(false)}>Cancel</Button>
+            <Button onClick={() => handleDelete(alertCateg)} variant="outline-danger">
+              Proceed
+          </Button>
           </div>
-        }
-        {props.onVideos &&
-          <ul>
-            <li>Moment 1 <Button>Edit</Button><Button>Delete</Button></li>
-            <li>Moment 2 <Button>Edit</Button><Button>Delete</Button></li>
-            <li>Moment 3 <Button>Edit</Button><Button>Delete</Button></li>
-          </ul>
-        }
+        </Alert>
+      </>
+      <div className="List">
+        {categoriesList}
       </div>
     </>
   );

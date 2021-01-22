@@ -5,7 +5,7 @@ import Alert from 'react-bootstrap/Alert';
 import useApplicationData from '../../hooks/useApplicationData';
 
 import Button from '../shared/Button';
-import List from '../shared/ListWithEditDelete';
+import EditDelete from './EditDeleteListCategs';
 import TogglingEditForm from '../shared/TogglingEditForm';
 
 export default function EditCategories(props) {
@@ -71,9 +71,7 @@ export default function EditCategories(props) {
         Successfully created!
       </Alert>
       <br /><br />
-      <List
-        fromCateg={true}
-      />      
+      <EditDelete />      
     </div>
   );
 }

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import VideoPlayer from '../VideoPlayer';
 import Button from '../shared/Button';
-import List from '../shared/ListWithEditDelete';
+import EditDelete from './EditDeleteListMoments';
 import MomentBar from '../shared/MomentBar';
 import NewMoment from './NewMoment';
 import Save from './Save';
@@ -69,7 +69,7 @@ export default function Moment(props) {
       <Button>Save video</Button>
       <Button>Add moment</Button>
       <NewMoment />
-      <List onVideos={true}>Moments</List>
+      <EditDelete />
     </div>
   );
 }
