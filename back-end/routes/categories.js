@@ -8,15 +8,23 @@ module.exports = ({
   updateCategory,
   addCategory,
   deleteCategory,
-  addIntoJoinTable
+  addIntoJoinTable,
+  getUserCategories
 }) => {
   categories.get('/', function(req, res, next) {
 
     //get user id from cookies
     const userId = req.cookies.user;
 
+    // getUserCategories(userId)
+    // .then((response) => res.json(response))
+    // .catch((err) => res.json({
+    //   error: err.message
+    // }));
+
     getUserVidsAndCats(userId)
       .then(response => {
+      console.log('response :', response);
       
         //DO NOT DELETE BELOW COMMENTS!  
         //TO DO: clean up data handling 
@@ -56,34 +64,31 @@ module.exports = ({
   categories.post('/', (req, res) => {
 
     //get user id from cookies
-    const userId = req.cookies.user;
-    console.log('userId :', userId);
+    const userId = req.body.userId;
+    // console.log('userId :', userId);
 
     console.log("new categ:", req.body.newCateg);
     const newCateg = req.body.newCateg;
 
     addCategory(newCateg)
-      .then((data) => {
+    .then((data) => {
 
-        //extract new category id
-        const newId = data.id;
+      //extract new category id
+      const newId = data.id;
 
-        //update join table
-        addIntoJoinTable(userId, newId)
-          .then(() => res.json(`back-end says: category ${newCateg} inserted into both tables `))
-          .catch(err => console.log('error adding into join table', err));
-      })
-      .catch((err) => res.json({
-        error: err.message
-      }));
+      //update join table
+      addIntoJoinTable(userId, newId)
+        .then(() => res.json(`back-end says: category ${newCateg} inserted into both tables `))
+        .catch(err => console.log('error adding into join table', err));
+    })
+    .catch((err) => res.json({
+      error: err.message
+    }));
 
   });
 
   /* Update categories */ 
   categories.put('/', (req, res) => {
-
-    //get user id from cookies
-    const userId = req.cookies.user;
 
     //extract values passed by front-end
     const { newValue, id } = req.body;

@@ -56,6 +56,18 @@ module.exports = (db) => {
       .catch(err => console.log(err));
   };
 
+  const getUserCategories = (userId) => {
+
+    const query = {
+      text: `SELECT c.id, c.name FROM users_categories as j INNER JOIN categories as c ON j.category_id = c.id WHERE j.user_id = $1;`,
+      values: [userId]
+    }
+    return db.query(query)
+    .then(result => result.rows)
+    .catch(err => console.log(err));
+
+  };
+
   const updateCategory = (updatedName, categId) => {
 
     const query = {
@@ -109,6 +121,7 @@ module.exports = (db) => {
       updateCategory,
       addCategory,
       deleteCategory, 
-      addIntoJoinTable
+      addIntoJoinTable,
+      getUserCategories
   };
 };

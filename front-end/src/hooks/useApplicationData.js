@@ -48,7 +48,7 @@ const useApplicationData = () => {
 
       //'all' comes back as an array of responses from the axios calls
       // console.log('users:', all[1].data)
-      console.log('categs+ids:', all[0].data.filteredCategsWithId)
+      console.log('categ get call:', all[0].data)
       // console.log('categs:', all[0].data.categNames)
       // console.log('videos:', all[0].data.response)
       
@@ -225,7 +225,7 @@ const useApplicationData = () => {
     setState((prev)=>({...prev, selectedVideoID: videoID}));
   };
   
-  return { state, handleFormChange, handleRegisterSubmit, handleLoginSubmit, onVideoSelected, onSearch, handleLogout, setState, momentsBySelectedVid, setSelectedVideoID }
+  return { state, cookies, handleFormChange, handleRegisterSubmit, handleLoginSubmit, onVideoSelected, onSearch, handleLogout, setState, momentsBySelectedVid, setSelectedVideoID }
 
 };
 

@@ -16,13 +16,13 @@ module.exports = ({
     getMomentsByVideo(userId, selectedVideoID)
       .then(response => {
         console.log("mRES",response)
-        res.json(response);
+        // res.json(response);
       })
       .catch((err) => res.json({
         error: err.message
       }));
   
-        // res.json('backend recieved call')
+    // res.json({resp1, resp2})
 
   });
 
