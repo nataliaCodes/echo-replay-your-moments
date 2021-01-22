@@ -101,7 +101,7 @@ module.exports = ({
       }));
   });
 
-  /* Update categories */ 
+  /* Delete categories */ 
   categories.delete('/', (req, res) => {
 
     console.log("delete data:", req.body);

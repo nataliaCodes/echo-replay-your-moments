@@ -71,10 +71,7 @@ module.exports = (db) => {
   const updateCategory = (updatedName, categId) => {
 
     const query = {
-      text: `UPDATE categories
-            SET name=$1
-            WHERE id=$2
-            RETURNING *`,
+      text: `UPDATE categories SET name=$1 WHERE id=$2 RETURNING *`,
       values: [updatedName, categId]
     }
     return db.query(query)

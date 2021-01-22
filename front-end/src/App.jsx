@@ -27,7 +27,7 @@ function App() {
   const { state, setState, onVideoSelected, onSearch, momentsBySelectedVid, setSelectedVideoID } = useApplicationData();
 
   // const momentPath = `/videos/${state.selectedVideoID}`
-    console.log("APP state: ", state)
+    // console.log("APP state: ", state)
     return (
       <React.StrictMode>
       <Router>
