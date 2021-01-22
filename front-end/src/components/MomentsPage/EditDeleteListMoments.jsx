@@ -7,12 +7,12 @@ import TogglingEditForm from '../shared/TogglingEditForm';
 
 export default function List(props) {
 
-  const moments = props.moments;
+
+  const { moments, state } = props;
   console.log('moments :', moments);
 
   //state for the toggling form
   const [ momName, setMomName ] = useState("");
-  console.log('momName :', momName);
   const [ editMode, setEditMode ] = useState(null);
 
   //sets edit mode to current form and value to name extracted from state
@@ -26,14 +26,15 @@ export default function List(props) {
   const [alertIndex, setAlertIndex] = useState(null);
 
   const handleSave = (newValue, oldValue) => {
+    
+    //find moment that is being changed
 
-    //shallow copy of moments categories
+    //extract its id
 
-    //get index of value being changed
+    //put new value in
 
-    //change old value at index with new value
-
-    //set state to new list of moments
+    //send to backend update request
+      //set state to new moments
 
 
   };
@@ -42,7 +43,7 @@ export default function List(props) {
   const momentsList = moments.map(moment => {
 
     const key = moment.moment_id;
-    const name = moment.label
+    const name = moment.label;
 
     return (
 
@@ -52,7 +53,7 @@ export default function List(props) {
         {/* on edit mode active for current element show edit form */}
         {editMode === key ? (
           <TogglingEditForm
-            value={name}
+            value={momName}
             name="moment-name"
             placeholder="Moment name"
             onCancel={() => setEditMode(null)}

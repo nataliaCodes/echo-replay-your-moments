@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import VideoPlayer from '../VideoPlayer';
@@ -11,6 +12,8 @@ import Save from './Save';
 
 
 export default function Moment(props) {
+
+  const { state, setState } = props;
   
   console.log("oldVideo:",props.oldVideo)
 
@@ -69,10 +72,10 @@ export default function Moment(props) {
       <Button>Save video</Button>
       <Button>Add moment</Button>
       <NewMoment />
-      <EditDelete moments={videoInfo.moments} />
-      {/* <Button>
+      <EditDelete moments={videoInfo.moments} state={state} setSate={setState} />
+      <Button>
         <Link to="/videos"> Back to videos </Link>
-      </Button> */}
+      </Button>
     </div>
   );
 }
