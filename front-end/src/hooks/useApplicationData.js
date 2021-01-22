@@ -54,6 +54,7 @@ const useApplicationData = () => {
       // console.log('videos:', all[1].data.response);
       // console.log('categories:', all[2].data)
 
+      // const categResponse = all[2].data;
       const categNames = all[2].data.map(item => item.name);
       
       //set current state with axios calls data

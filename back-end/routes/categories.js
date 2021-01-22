@@ -18,7 +18,7 @@ module.exports = ({
     getUserCategories(userId)
     .then((response) => res.json(response))
     .catch((err) => res.json({
-      error: err.message
+      'error categories.js row 21': err.message
     }));
 
   });
