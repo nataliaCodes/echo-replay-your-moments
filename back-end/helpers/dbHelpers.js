@@ -79,10 +79,10 @@ module.exports = (db) => {
     .catch(err => console.log(err));
   };
 
-  const addCategory = (name) => {
+  const addCategory = (name, userId) => {
     const query = {
-      text: `INSERT INTO categories (name) VALUES ($1) RETURNING *` ,
-      values: [name]
+      text: `INSERT INTO categories (name, user_id) VALUES ($1, $2) RETURNING *` ,
+      values: [name, userId]
     }
     return db.query(query)
         .then(result => result.rows[0])

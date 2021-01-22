@@ -34,12 +34,13 @@ export default function EditCategories(props) {
       .then(response => {
         console.log('response from express:', response.data);
 
+        //update the state here to show latest category!!
         //create shallow copy of state categories
-        const categ = [...state.categories];
-        categ.push(newCateg);
+        const categ = [...state.categories, newCateg];
+        // categ.push(newCateg);
         console.log('categ :', categ);
 
-        setState({...state, categories: categ})
+        setState(prev => ({...prev, categories: categ}))
       })
       .catch(err => { console.log('error:', err) })
   };
