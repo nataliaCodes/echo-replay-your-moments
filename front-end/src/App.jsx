@@ -16,7 +16,7 @@ import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Home from './components/HomePage/Home';
 import UserVideos from './components/UserVideosPage/UserVideos';
-import Videos from './components/VideosPage/Videos';
+import Videos from './components/SearchResults/Videos';
 import Categories from './components/Categories/Categories';
 import ShowMoments from './components/MomentsPage/ShowMoments';
 import Register from './components/Register/Register';
