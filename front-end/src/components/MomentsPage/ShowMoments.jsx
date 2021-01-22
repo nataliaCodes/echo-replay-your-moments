@@ -6,7 +6,7 @@ import VideoPlayer from '../VideoPlayer';
 import Button from '../shared/Button';
 import EditDelete from './EditDeleteListMoments';
 import MomentBar from '../shared/MomentBar';
-import NewMoment from './NewMoment';
+import NewMoment from './NewMoments';
 import Save from './Save';
 
 

@@ -1,7 +1,7 @@
 import SearchBar from '../shared/SearchBar';
 import PasteBar from './PasteBar'
 import Button from '../shared/Button';
-import VideoList from '../shared/VideoList';
+import VideoList from '../shared/SearchVideoList';
 
 export default function Home(props) {
 
