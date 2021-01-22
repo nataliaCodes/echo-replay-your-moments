@@ -5,7 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown'
 
-export default function Save({videoInfo, setVideoInfo, selectedCat, categories }) {
+export default function Save({ videoInfo, setVideoInfo, selectedCat, categories, moments, oldVideo }) {
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -27,13 +27,27 @@ export default function Save({videoInfo, setVideoInfo, selectedCat, categories }
   const handleSave = () => {
     console.log("Save clicked")
 
-    const formatedLink = "https://www.youtube.com/" + videoInfo.selectedVideoID;
+    if(oldVideo){
+      const formatedLink = "https://www.youtube.com/" + videoInfo.selectedVideoID;
 
-    const videoSaveInfo = {link: formatedLink}
-    return axios.post('http://localhost:3001/api/videos', { videoSaveInfo })
-    .then((response) => {
-      console.log("FEres", response);
-    })
+      const filteredMoments = moments
+  
+      const videoSaveInfo = {link: formatedLink, moments: filteredMoments}
+  
+      return axios.put('/api/moments', { videoSaveInfo })
+      .then((response) => {
+        console.log("FEres", response);
+      })
+    } else {
+      const formatedLink = "https://www.youtube.com/" + videoInfo.selectedVideoID;
+  
+      const videoSaveInfo = {link: formatedLink, moments: moments}
+  
+      return axios.post('/api/videos', { videoSaveInfo })
+      .then((response) => {
+        console.log("FEres", response);
+      })
+    }
   }
 
   return (

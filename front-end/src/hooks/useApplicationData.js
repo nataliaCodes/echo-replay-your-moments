@@ -182,10 +182,7 @@ const useApplicationData = () => {
   }
 
   const onVideoSelected = videoId => {
-    setState({
-      ...state,
-      selectedVideoID:videoId
-    })
+    setState((prev)=>({ ...prev, selectedVideoID:videoId, oldVideo: false }))
   }
 
   const onSearch = async keyword => {

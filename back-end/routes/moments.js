@@ -40,11 +40,13 @@ module.exports = ({
   });
 
   /* Update moments */ 
-  moments.post('/', (req, res) => {
+  moments.put('/', (req, res) => {
     const info = req.body;
     console.log(info);
 
-    res.json("back-end says: cat name received!");
+
+
+    res.json("back-end says: YO!");
 
   });
 
