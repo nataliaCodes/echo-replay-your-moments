@@ -62,13 +62,13 @@ export default function Moment(props) {
       }
     }, []);
     console.log("videoInfo after axios", videoInfo)
- 
+    
   return (
     <div className="Moment">
       {/* <SearchBar /> */}
       <VideoPlayer videoInfo = {videoInfo} setVideoInfo={setVideoInfo}/>
       <MomentBar videoInfo = {videoInfo} setVideoInfo={setVideoInfo}/>
-      <Save videoInfo={videoInfo} setVideoInfo={setVideoInfo} selectedCat={videoInfo.selectedCat} categories={props.categories} categWithId={props.categWithId} moments={videoInfo.moments} oldVideo={props.oldVideo} />
+      <Save videoInfo={videoInfo} setVideoInfo={setVideoInfo} selectedCat={videoInfo.selectedCat} categories={props.categories} categWithId={props.categWithId} moments={videoInfo.moments} oldVideo={props.oldVideo} selectedVidId={props.selectedVidId} />
       <Button>Save video</Button>
       <Button>Add moment</Button>
       <NewMoment />

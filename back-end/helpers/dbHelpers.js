@@ -99,6 +99,16 @@ module.exports = (db) => {
         .catch(err => err);
   };
 
+  // const addVideoWithMoments = (userId, catId, link, title) => {
+  //   const query = {
+  //     text: `INSERT INTO Videos (name, user_id) VALUES ($1, $2) RETURNING *` ,
+  //     values: [name, userId]
+  //   }
+  //   return db.query(query)
+  //       .then(result => result.rows[0])
+  //       .catch(err => console.log('error', err));
+  // };
+
   return {
       getUsers,
       getUserByEmail,
