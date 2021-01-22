@@ -10,7 +10,6 @@ import FormControl from 'react-bootstrap/FormControl'
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert'
 
-
 export default function Save({ videoInfo, setVideoInfo, selectedCat, categories, moments, oldVideo, categWithId }) {
 
   const [showAlert, setShowAlert] = useState(false);
@@ -19,6 +18,7 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
   const handleShow = () => setShow(true);
 
   const [vidTitle, setVidTitle] = useState('');
+  const [categoryId, setCategoryId] = useState(null);
   const onInput = event => {
     const input = event.target.value
     setVidTitle(input)
@@ -31,7 +31,7 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
   let categoriesDropdown;
   if(categories) {
     categoriesDropdown = categories.map((catergory) => {
-      console.log("saveCATS", catergory )
+      // console.log("saveCATS", catergory )
       return(
         <Dropdown.Item onClick={()=>handleTitle(catergory)}>{catergory}</Dropdown.Item>
       );
@@ -45,19 +45,32 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
   ];
 
   console.log("Categ", categWithId)
-  const getCatid = (selectedCat, categWithId)=> {
+  const getCatid = ()=> {
     let catId
-    if(selectedCat){
+    console.log("inGetID:",selectedCat )
       catId = categWithId.find(categ => categ.name === selectedCat);
       console.log("finderID",catId)
-      return catId;
-    };
+      if(catId === undefined){
+        console.log('badCAT')
+        setShowAlert(true)
+      } else {
+        console.log("goodCAT")
+        setShowAlert(false)
+        setCategoryId(catId.id)
+      };
+   
   };
 
   const handleSave = () => {
 
-    const categ_id = getCatid(selectedCat, categWithId);
-    if(vidTitle.length > 0){
+    const categ_id = getCatid();
+
+    if (!vidTitle || categoryId === null){
+      console.log("alert title:", vidTitle, " catId:", categoryId)
+      setShowAlert(true)
+    } else {
+      console.log("all good")
+      setShowAlert(false)
 
       if(oldVideo){
   
@@ -76,7 +89,7 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
   
         const formatedLink = "https://www.youtube.com/watch?v=" + videoInfo.selectedVideoID;
     
-        const videoSaveInfo = {link: formatedLink, moments: newMoments , cat_id: categ_id}
+        const videoSaveInfo = {title: vidTitle,link: formatedLink, moments: newMoments , cat_id: categ_id}
     
         return axios.post('/api/videos', { videoSaveInfo })
         .then((response) => {
@@ -84,7 +97,7 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
         })
   
       }
-    };
+    }
   }
 
   return (
@@ -125,9 +138,11 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
               </Dropdown.Menu>
             </Dropdown>
           </Form>
-          <Alert show={show} variant="danger">
+
+          <Alert show={showAlert} variant="danger">
             Please input Title and Select a Category.
           </Alert>
+          
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
