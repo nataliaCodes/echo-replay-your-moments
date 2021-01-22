@@ -15,7 +15,7 @@ export default function UserVideos(props) {
     };
 
     return (
-      <Card key={index} class='userVideos' style={{width: "30em"}} onClick={()=>videoOnClick()}>
+      <Card key={index} className='userVideos' style={{width: "30em"}} onClick={()=>videoOnClick()}>
         <Link to="/moments">
           <Card.Header>
             <h6>{video.title}</h6>
