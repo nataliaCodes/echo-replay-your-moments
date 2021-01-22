@@ -14,6 +14,22 @@ module.exports = ({
 
     getUserVidsAndCats(userId)
       .then(response => {
+<<<<<<< Updated upstream
+=======
+      // console.log('getUserVidsAndCats res:', response);
+      
+        //DO NOT DELETE BELOW COMMENTS!  
+        //TO DO: clean up data handling 
+        //by sending array of objects to front-end instead of array of strings
+        //as below pseudocode demonstrates
+        //build {categ_id: categ_name}!!!
+        // const categObj = {}
+        // response.forEach(
+        //   categ[categId] = categname;
+        // )
+        //const categArr = Object.keys(categObj)
+        //const categArr = Object.entries(categObj).map(([id, name]) => ({id, name}))
+>>>>>>> Stashed changes
 
         //extract categories with ids attached
         const categWithId = response.map(vid => {

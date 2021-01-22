@@ -6,8 +6,6 @@ import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown'
 
 export default function Save({videoInfo, setVideoInfo, selectedCat, categories }) {
-  
-  const cat = categories;
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -17,10 +15,11 @@ export default function Save({videoInfo, setVideoInfo, selectedCat, categories }
 
   //waits for state have values
   let categoriesDropdown;
-  if(cat) {
-    categoriesDropdown = cat.map((catergory) => {
+  if(categories) {
+    categoriesDropdown = categories.map((catergory) => {
+      console.log("saveCATS", catergory )
       return(
-        <Dropdown.Item onClick={()=>handleTitle(catergory)}>{catergory}</Dropdown.Item>
+        <Dropdown.Item onClick={()=>handleTitle(catergory)}>{catergory.name}</Dropdown.Item>
       );
     });
   }
@@ -33,7 +32,7 @@ export default function Save({videoInfo, setVideoInfo, selectedCat, categories }
     const videoSaveInfo = {link: formatedLink}
     return axios.post('http://localhost:3001/api/videos', { videoSaveInfo })
     .then((response) => {
-      console.log(response);
+      console.log("FEres", response);
     })
   }
 
