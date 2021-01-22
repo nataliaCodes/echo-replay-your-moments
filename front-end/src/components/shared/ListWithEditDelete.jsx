@@ -30,20 +30,29 @@ export default function List(props) {
 
     //shallow copy of state categories
     const categ = [...state.categories];
-    const categWithIds = [...state.categWitIds];
-
-    //extract id of current category to pass to back-end
-    const categId = categWithIds.filter(item => item.substr(0, item.length - 1) === oldValue);
-    const id = categId[0].substr(categId[0].length - 1, categId[0].length);
+    const categWithIds = [...state.categWithId];
+    console.log('categWithIds :', categWithIds);
 
     //get index of value being changed
-    let oldIndex = categ.indexOf(oldValue);
+    const oldIndex = categ.indexOf(oldValue);
 
     //change old value at index with new value
     categ[oldIndex] = newValue;
 
     //set state to new list of categories
     setState({ ...state, categories: categ });
+
+    //extract id of current category to pass to back-end
+    let id;
+    categWithIds.forEach(item => {
+    console.log('item :', item.name);
+    console.log('oldValue :', oldValue);
+
+
+      if(item.name === oldValue) {
+        id = item.id;
+      }
+    })
 
     //send new name and index to back-end
     return axios.put('http://localhost:3001/api/categories', { newValue, id })
@@ -61,12 +70,21 @@ export default function List(props) {
     setShowAlert(false);
 
     //shallow copy of categories with ids
-    const categWithIds = [...state.categWitIds];
+    const categWithIds = [...state.categWithId];
+    console.log('categWithIds :', categWithIds);
 
     //extract id of current category to pass to back-end
-    const categId = categWithIds.filter(item => item.substr(0, item.length - 1) === categName);
-    console.log('categId :', categId);
-    const id = categId[0].substr(categId[0].length - 1, categId[0].length);
+    //!!on refactor of code, this can be moved into a helper!!
+    let id;
+    categWithIds.forEach(item => {
+      console.log('item :', item.name);
+      console.log('categName :', categName);
+      
+      
+      if(item.name === categName) {
+        id = item.id;
+      }
+    })
     console.log('id :', id);
 
 

@@ -32,7 +32,7 @@ export default function EditCategories(props) {
     //send data to back-end
     return axios.post('http://localhost:3001/api/categories', { newCateg, userId })
       .then(response => {
-        console.log('response for express:', response.data);
+        console.log('response from express:', response.data);
 
         //create shallow copy of state categories
         const categ = [...state.categories];
