@@ -13,7 +13,7 @@ export default function UserVideos(props) {
 
     const videoOnClick = () => {
       props.onVideoSelected(youtubeId);
-      props.setState((prev) => ({ ...prev, oldVideo: true, selectedVidId: videos.id }));
+      props.setState((prev) => ({ ...prev, oldVideo: true, selectedVidId: video.id }));
     };
 
     return (
