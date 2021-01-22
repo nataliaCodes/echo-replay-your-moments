@@ -4,25 +4,38 @@ var moments = express.Router();
 
 /* GET moments for user */
 module.exports = ({
-  getMomentsByVideo
+  getMomentsByVideo,
+  getUserCategories
 }) => {
   moments.get('/', function(req, res, next) {
 
     //get user id from cookies
     const userId = req.cookies.user;
-
     const selectedVideoID = req.query.selectedVideoID;
-  
+
     getMomentsByVideo(userId, selectedVideoID)
       .then(response => {
-        console.log("mRES",response)
-        // res.json(response);
+        res.json(response)
       })
       .catch((err) => res.json({
         error: err.message
-      }));
+    }));
+
+  });
+
+  //gets category for showMoment page
+  moments.get('/categories', function(req, res, next) {
+
+    //get user id from cookies
+    const userId = req.cookies.user;
   
-    // res.json({resp1, resp2})
+    getUserCategories(userId)
+    .then(response => {
+      res.json(response);
+    })
+    .catch((err) => res.json({
+      error: err.message
+    }));
 
   });
 

@@ -12,6 +12,7 @@ export default function UserVideos(props) {
     const thumbnail = `https://img.youtube.com/vi/${youtubeId}/mqdefault.jpg`;
     const videoOnClick = ()=> {
       props.onVideoSelected(youtubeId);
+      props.setState((prev)=>({...prev, oldVideo: true}));
     };
 
     return (

@@ -40,7 +40,7 @@ function App() {
                 <Home onSearch={onSearch} onVideoSelected={onVideoSelected} data={state.videoMetaInfo} setSelectedVideoID={setSelectedVideoID}/>
             </Route>
             <Route exact path="/videos">
-              <UserVideos state={state} onVideoSelected={onVideoSelected} selectedVideoID = {state.selectedVideoID}/>
+              <UserVideos state={state} setState={setState} onVideoSelected={onVideoSelected} selectedVideoID = {state.selectedVideoID}/>
             </Route>
             <Route exact path="/categories">
               <Categories />
@@ -49,7 +49,7 @@ function App() {
               <Videos />
             </Route>
             <Route path="/moments">
-                <ShowMoments selectedVideoID = {state.selectedVideoID} momentsBySelectedVid={momentsBySelectedVid} categories={state.categories} />                
+                <ShowMoments selectedVideoID = {state.selectedVideoID} momentsBySelectedVid={momentsBySelectedVid} categories={state.categories} oldVideo={state.oldVideo} />                
             </Route>
             <Route exact path="/register">
               <Register />

@@ -25,7 +25,8 @@ const useApplicationData = () => {
     selectedVideoID: null,
     startTime: 70,
     endTime: 100,
-    videoDuration: null
+    videoDuration: null,
+    oldVideo: false
   });
 
   //set initial cookie
@@ -201,27 +202,27 @@ const useApplicationData = () => {
     console.log(state)
   }
 
-  const momentsBySelectedVid = (selectedVideoID) => {
+  // const momentsBySelectedVid = (selectedVideoID) => {
   
-    if(selectedVideoID) {
-      axios.get('http://localhost:3001/api/moments/', {
-        params: {selectedVideoID},
-        withCredentials: true
-      })
-      .then((response)=>{
-        console.log("USEapp",response)
-        console.log('info sent to backend')
-        //setState({..state, myInfo: content})
-      })
-      .catch(err => console.log(err));
-    }
-  };
+  //   if(selectedVideoID) {
+  //     axios.get('http://localhost:3001/api/moments/', {
+  //       params: {selectedVideoID},
+  //       withCredentials: true
+  //     })
+  //     .then((response)=>{
+  //       console.log("in USEapp DB result",response)
+  //       console.log('info sent to backend')
+  //       //setState({..state, myInfo: content})
+  //     })
+  //     .catch(err => console.log(err));
+  //   }
+  // };
 
   const setSelectedVideoID = (videoID) =>{
     setState((prev)=>({...prev, selectedVideoID: videoID}));
   };
   
-  return { state, cookies, handleFormChange, handleRegisterSubmit, handleLoginSubmit, onVideoSelected, onSearch, handleLogout, setState, momentsBySelectedVid, setSelectedVideoID }
+  return { state, cookies, handleFormChange, handleRegisterSubmit, handleLoginSubmit, onVideoSelected, onSearch, handleLogout, setState, setSelectedVideoID }
 
 };
 

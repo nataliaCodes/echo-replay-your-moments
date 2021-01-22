@@ -24,7 +24,7 @@ module.exports = ({
 
     getUserVidsAndCats(userId)
       .then(response => {
-      console.log('response :', response);
+      // console.log('getUserVidsAndCats res:', response);
       
         //DO NOT DELETE BELOW COMMENTS!  
         //TO DO: clean up data handling 
