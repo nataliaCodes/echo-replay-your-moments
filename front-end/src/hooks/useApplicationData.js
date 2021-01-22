@@ -202,10 +202,7 @@ const useApplicationData = () => {
   }
 
   const momentsBySelectedVid = (selectedVideoID) => {
-    
-    console.log("COOKIE", cookies.user)
-
-
+  
     if(selectedVideoID) {
       axios.get('http://localhost:3001/api/moments/', {
         params: {selectedVideoID},
@@ -214,7 +211,6 @@ const useApplicationData = () => {
       .then((response)=>{
         console.log("USEapp",response)
         console.log('info sent to backend')
-
         //setState({..state, myInfo: content})
       })
       .catch(err => console.log(err));

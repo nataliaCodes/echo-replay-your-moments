@@ -8,75 +8,10 @@ videos.get('/', function(req, res, next) {
   const user_id = req.params.user_id;
   console.log(user_id)
 
-  res.json([
-    {
-      video_id: 11,
-      video_title: 'title',
-      moments: 
-      [
-        {
-          name: 'mom1',
-          start: '00:01',
-          finish: '00:11'
-        },
-        {
-          name: 'mom2',
-          start: '00:01',
-          finish: '00:11'
-        },
-        {
-          name: 'mom3',
-          start: '00:01',
-          finish: '00:11'
-        }
-      ]
-    },
-    {
-      video_id: 22,
-      video_title: 'title',
-      moments: 
-      [
-        {
-          name: 'mom1',
-          start: '00:01',
-          finish: '00:11'
-        },
-        {
-          name: 'mom2',
-          start: '00:01',
-          finish: '00:11'
-        },
-        {
-          name: 'mom3',
-          start: '00:01',
-          finish: '00:11'
-        }
-      ]
-    },
-    {
-      video_id: 33,
-      video_title: 'title',
-      moments: 
-      [
-        {
-          name: 'mom1',
-          start: '00:01',
-          finish: '00:11'
-        },
-        {
-          name: 'mom2',
-          start: '00:01',
-          finish: '00:11'
-        },
-        {
-          name: 'mom3',
-          start: '00:01',
-          finish: '00:11'
-        }
-      ]
-    }
-    
-  ])
+  res.json({
+    hello: "Yo! from server",
+    user_id: user_id
+  })
 });
 
 /* GET specific video with moments attached */ 
@@ -114,8 +49,9 @@ videos.get('/:id', (req, res) => {
 /* Save new video with moments attached */ 
 videos.post('/', (req, res) => {
 
-  const id = req.params.id;
-  console.log(id);
+  const userId = req.cookies.user
+  console.log("got this", req.body)
+  res.json('Hello from server')
 
 });
 
