@@ -5,11 +5,9 @@ var categories = express.Router();
 /* GET categories for user */
 module.exports = ({
   getUserCategories,
-  updateCategory,
   addCategory,
-  deleteCategory,
-  addIntoJoinTable
-  
+  updateCategory,
+  deleteCategory  
 }) => {
   categories.get('/', function(req, res, next) {
 
@@ -18,7 +16,7 @@ module.exports = ({
     console.log('userId :', userId);
 
     getUserCategories(userId)
-    .then((response) => {console.log('got response:', response); res.json(response)})
+    .then((response) => res.json(response))
     .catch((err) => res.json({
       error: err.message
     }));
@@ -37,14 +35,7 @@ module.exports = ({
 
     addCategory(newCateg)
     .then((data) => {
-
-      //extract new category id
-      const newId = data.id;
-
-      //update join table
-      addIntoJoinTable(userId, newId)
-        .then(() => res.json(`back-end says: category ${newCateg} inserted into both tables `))
-        .catch(err => console.log('error adding into join table', err));
+      res.json(`back-end says: category ${newCateg} inserted into DB`)
     })
     .catch((err) => res.json({
       error: err.message
