@@ -59,7 +59,7 @@ module.exports = (db) => {
   const getUserCategories = (userId) => {
 
     const query = {
-      text: `SELECT c.id, c.name FROM users_categories as j INNER JOIN categories as c ON j.category_id = c.id WHERE j.user_id = $1;`,
+      text: `SELECT id, name FROM categories WHERE user_id = $1;`,
       values: [userId]
     }
     return db.query(query)
@@ -89,16 +89,6 @@ module.exports = (db) => {
         .catch(err => console.log('error', err));
   };
 
-  const addIntoJoinTable = (userId, categId) => {
-    const query = {
-      text: `INSERT INTO users_categories (user_id, category_id) VALUES ($1, $2) RETURNING *` ,
-      values: [userId, categId]
-    }
-    return db.query(query)
-        .then(result => result.rows[0])
-        .catch(err => console.log('error', err));
-  };
-
   const deleteCategory = (id) => {
     const query = {
       text: `DELETE FROM categories WHERE id=$1 RETURNING *` ,
@@ -117,8 +107,7 @@ module.exports = (db) => {
       getMomentsByVideo,
       updateCategory,
       addCategory,
-      deleteCategory, 
-      addIntoJoinTable,
+      deleteCategory,
       getUserCategories
   };
 };
