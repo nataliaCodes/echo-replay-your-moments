@@ -5,36 +5,86 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown'
 
-export default function Save({videoInfo, setVideoInfo, selectedCat, categories }) {
-  
-  const cat = categories;
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl'
+import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert'
 
+
+export default function Save({ videoInfo, setVideoInfo, selectedCat, categories, moments, oldVideo, categWithId }) {
+
+  const [showAlert, setShowAlert] = useState(false);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [vidTitle, setVidTitle] = useState('');
+  const onInput = event => {
+    const input = event.target.value
+    setVidTitle(input)
+    console.log(vidTitle)
+  }
 
   const handleTitle = (catergory) => setVideoInfo(prev => ({...prev, selectedCat: catergory }))
 
   //waits for state have values
   let categoriesDropdown;
-  if(cat) {
-    categoriesDropdown = cat.map((catergory) => {
+  if(categories) {
+    categoriesDropdown = categories.map((catergory) => {
+      console.log("saveCATS", catergory )
       return(
         <Dropdown.Item onClick={()=>handleTitle(catergory)}>{catergory}</Dropdown.Item>
       );
     });
   }
 
+  const newMoments = [
+    {label: "something", start_time: 30, end_time: 70},
+    {label: "something2", start_time: 100, end_time: 102},
+    {label: "something3", start_time: 50, end_time: 55}
+  ];
+
+  console.log("Categ", categWithId)
+  const getCatid = (selectedCat, categWithId)=> {
+    let catId
+    if(selectedCat){
+      catId = categWithId.find(categ => categ.name === selectedCat);
+      console.log("finderID",catId)
+      return catId;
+    };
+  };
+
   const handleSave = () => {
-    console.log("Save clicked")
 
-    const formatedLink = "https://www.youtube.com/" + videoInfo.selectedVideoID;
+    const categ_id = getCatid(selectedCat, categWithId);
+    if(vidTitle.length > 0){
 
-    const videoSaveInfo = {link: formatedLink}
-    return axios.post('http://localhost:3001/api/videos', { videoSaveInfo })
-    .then((response) => {
-      console.log(response);
-    })
+      if(oldVideo){
+  
+        const formatedLink = "https://www.youtube.com/watch?v=" + videoInfo.selectedVideoID;
+  
+        const filteredMoments = moments
+  
+        const videoSaveInfo = {link: formatedLink, moments: newMoments}
+    
+        return axios.put('/api/moments', { videoSaveInfo })
+        .then((response) => {
+          console.log("FEres", response);
+        })
+  
+      } else {
+  
+        const formatedLink = "https://www.youtube.com/watch?v=" + videoInfo.selectedVideoID;
+    
+        const videoSaveInfo = {link: formatedLink, moments: newMoments , cat_id: categ_id}
+    
+        return axios.post('/api/videos', { videoSaveInfo })
+        .then((response) => {
+          console.log("FEres", response);
+        })
+  
+      }
+    };
   }
 
   return (
@@ -53,8 +103,18 @@ export default function Save({videoInfo, setVideoInfo, selectedCat, categories }
           <Modal.Title>Save Video with Moments</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form>
-            <p>Video title:</p><input type="text"></input>
+          <Form>
+            <InputGroup className="video_save" onChange={onInput} >
+              <InputGroup.Prepend>
+                <InputGroup.Text id="basic-addon1">Title</InputGroup.Text>
+              </InputGroup.Prepend>
+              <FormControl
+                placeholder="Input Title"
+                aria-label="Input Title"
+                aria-describedby="basic-addon1"
+              />
+            </InputGroup>
+
             <Dropdown>
               <Dropdown.Toggle variant="warning" id="dropdown-basic">
                 {selectedCat}
@@ -64,7 +124,10 @@ export default function Save({videoInfo, setVideoInfo, selectedCat, categories }
                 {categoriesDropdown}
               </Dropdown.Menu>
             </Dropdown>
-          </form>
+          </Form>
+          <Alert show={show} variant="danger">
+            Please input Title and Select a Category.
+          </Alert>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
