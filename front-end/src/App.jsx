@@ -18,7 +18,7 @@ import Home from './components/HomePage/Home';
 import UserVideos from './components/UserVideosPage/UserVideos';
 import Videos from './components/SearchResults/Videos';
 import Categories from './components/Categories/Categories';
-import ShowMoments from './components/MomentsPage/ShowMoments';
+import Moments from './components/MomentsPage/Moments';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 

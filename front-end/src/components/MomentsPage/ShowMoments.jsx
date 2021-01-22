@@ -6,29 +6,29 @@ import VideoPlayer from '../VideoPlayer';
 import Button from '../shared/Button';
 import EditDelete from './EditDeleteListMoments';
 import MomentBar from '../shared/MomentBar';
-import NewMoment from './NewMoments';
+import NewMoment from './NewMoment copy';
 import Save from './Save';
 
 
 
 export default function Moment(props) {
 
-  const { state, setState } = props;
+  const { state, setState, videoInfo, setVideoInfo } = props;
   
   console.log("oldVideo:",props.oldVideo)
 
-  const [videoInfo, setVideoInfo] = useState(
-    {
-      duration: 1000,
-      startTime: 70,
-      endTime: 100,
-      selectedVideoID: props.selectedVideoID,
-      selectedCat: "Categories",
-      categories: [],
-      title: '',
-      moments: []
-    }
-  )
+  // const [videoInfo, setVideoInfo] = useState(
+  //   {
+  //     duration: 1000,
+  //     startTime: 70,
+  //     endTime: 100,
+  //     selectedVideoID: props.selectedVideoID,
+  //     selectedCat: "Categories",
+  //     categories: [],
+  //     title: '',
+  //     moments: []
+  //   }
+  // )
 
   const getMoments = (selectedVideoID) => {
     console.log("vidID to DB:", selectedVideoID)
@@ -68,9 +68,8 @@ export default function Moment(props) {
       {/* <SearchBar /> */}
       <VideoPlayer videoInfo = {videoInfo} setVideoInfo={setVideoInfo}/>
       <MomentBar videoInfo = {videoInfo} setVideoInfo={setVideoInfo}/>
-      <Save videoInfo={videoInfo} setVideoInfo={setVideoInfo} selectedCat={videoInfo.selectedCat} categories={props.categories} categWithId={props.categWithId} moments={videoInfo.moments} oldVideo={props.oldVideo} selectedVidId={props.selectedVidId} />
-      <Button>Save video</Button>
-      <Button>Add moment</Button>
+      {/* <Save videoInfo={videoInfo} setVideoInfo={setVideoInfo} selectedCat={videoInfo.selectedCat} categories={props.categories} categWithId={props.categWithId} moments={videoInfo.moments} oldVideo={props.oldVideo} selectedVidId={props.selectedVidId} />
+      <Button>Save video</Button> */}
       <NewMoment />
       <EditDelete moments={videoInfo.moments} state={state} setSate={setState} />
       <Button>
