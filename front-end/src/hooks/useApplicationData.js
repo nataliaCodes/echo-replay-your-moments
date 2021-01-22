@@ -52,7 +52,7 @@ const useApplicationData = () => {
       //'all' comes back as an array of responses from the axios calls
       // console.log('users:', all[0].data);
       // console.log('videos:', all[1].data.response);
-      // console.log('categories:', all[2].data)
+      console.log('categories:', all[2].data)
 
       // const categResponse = all[2].data;
       const categNames = all[2].data.map(item => item.name);
