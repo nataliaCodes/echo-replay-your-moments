@@ -28,6 +28,8 @@ function App() {
 
   // const momentPath = `/videos/${state.selectedVideoID}`
     // console.log("APP state: ", state)
+
+    console.log("App selectedVideoID=",state.selectedVidId)
     return (
       <React.StrictMode>
       <Router>
@@ -49,7 +51,7 @@ function App() {
               <Videos />
             </Route>
             <Route path="/moments">
-                <ShowMoments selectedVideoID = {state.selectedVideoID} momentsBySelectedVid={momentsBySelectedVid} categories={state.categories} oldVideo={state.oldVideo} categWithId={state.categWithId} />                
+                <ShowMoments selectedVideoID = {state.selectedVideoID} momentsBySelectedVid={momentsBySelectedVid} categories={state.categories} oldVideo={state.oldVideo} categWithId={state.categWithId} selectedVidId={state.selectedVidId} />                
             </Route>
             <Route exact path="/register">
               <Register />
