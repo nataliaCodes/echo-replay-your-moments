@@ -65,12 +65,12 @@ module.exports = ({
 
     //get user id from cookies
     const userId = req.body.userId;
-    // console.log('userId :', userId);
+    console.log('userId :', userId);
 
     console.log("new categ:", req.body.newCateg);
     const newCateg = req.body.newCateg;
 
-    addCategory(newCateg)
+    addCategory(newCateg, userId)
     .then((data) => {
 
       //extract new category id
