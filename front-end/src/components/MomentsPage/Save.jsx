@@ -1,14 +1,13 @@
 import { useState } from 'react';
+import axios from 'axios';
+
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown'
 
-import useApplicationData from '../../hooks/useApplicationData';
-
 export default function Save({videoInfo, setVideoInfo, selectedCat, categories }) {
   
-  const { state } = useApplicationData();
-  const cat = state.categories
+  const cat = categories;
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -16,8 +15,7 @@ export default function Save({videoInfo, setVideoInfo, selectedCat, categories }
 
   const handleTitle = (catergory) => setVideoInfo(prev => ({...prev, selectedCat: catergory }))
 
-  console.log(categories)
-
+  //waits for state have values
   let categoriesDropdown;
   if(cat) {
     categoriesDropdown = cat.map((catergory) => {
@@ -25,6 +23,18 @@ export default function Save({videoInfo, setVideoInfo, selectedCat, categories }
         <Dropdown.Item onClick={()=>handleTitle(catergory)}>{catergory}</Dropdown.Item>
       );
     });
+  }
+
+  const handleSave = () => {
+    console.log("Save clicked")
+
+    const formatedLink = "https://www.youtube.com/" + videoInfo.selectedVideoID;
+
+    const videoSaveInfo = {link: formatedLink}
+    return axios.post('http://localhost:3001/api/videos', { videoSaveInfo })
+    .then((response) => {
+      console.log(response);
+    })
   }
 
   return (
@@ -60,7 +70,7 @@ export default function Save({videoInfo, setVideoInfo, selectedCat, categories }
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary">
+          <Button variant="primary" onClick={handleSave} >
             Save
           </Button>
         </Modal.Footer>

@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
+import VideoPlayer from '../VideoPlayer';
 import Button from '../shared/Button';
-import VideoPlayer from '../VideoPlayer'
 import List from '../shared/ListWithEditDelete';
 import MomentBar from '../shared/MomentBar';
 import NewMoment from './NewMoment';
 import Save from './Save';
-import useApplicationData from '../../hooks/useApplicationData';
+
 
 
 export default function Moment(props) {
-  const { state } = useApplicationData();
-
+  
   const [videoInfo, setVideoInfo] = useState(
     {
       duration: 1000,
@@ -18,13 +19,31 @@ export default function Moment(props) {
       endTime: 100,
       selectedVideoID: props.selectedVideoID,
       selectedCat: "Categories",
-      categories: []
+      categories: props.categories,
+      title: '',
+      moments: []
     }
   )
+
+  const getCatAndMomByUser = (selectedVideoID) => {
   
-  console.log("THIS ONE!!!: ", videoInfo)
-  console.log("After Load: ", state);
+    axios.get('http://localhost:3001/api/videos/', {
+      params: {selectedVideoID},
+      withCredentials: true
+    })
+    .then((response)=>{
+      console.log('info sent to backend')
+      console.log("ShowM",response)
+
+    })
+    .catch(err => console.log(err));
+  };
+
+  getCatAndMomByUser();
+
+  
   props.momentsBySelectedVid(videoInfo.selectedVideoID)
+
   return (
     <div className="Moment">
       {/* <SearchBar /> */}
