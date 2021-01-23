@@ -9,14 +9,14 @@ const EDIT = "EDIT";
 
 export default function Categories(props) {
 
-  const { state, setState, cookies } = props;
+  const { state, setState, cookies, onVideoSelected, selectedVideoID } = props;
 
   const { mode, transition } = useVisualMode(MAIN);
 
   return (
 
     <div className="Categories">
-      {mode === MAIN && <ShowCategories state={state} setState={setState} onVideoSelected={props.onVideoSelected} onEdit={() => transition(EDIT)} />}
+      {mode === MAIN && <ShowCategories selectedVideoID={selectedVideoID} state={state} setState={setState} onVideoSelected={onVideoSelected} onEdit={() => transition(EDIT)} />}
       {mode === EDIT && <EditCategories state={state} setState={setState} cookies={cookies} onBack={() => transition(MAIN)} />}
     </div>
     
