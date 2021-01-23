@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import Button from '../shared/Button';
 import TogglingEditForm from '../shared/TogglingEditForm';
@@ -18,7 +19,10 @@ export default function Moment(props) {
   //state for the alert showing user they created the moment
   const [showAlert, setShowAlert] = useState(false);
 
-  const handleSave = (newValue) => {
+  //state set by the TogglingEditForm
+  const [ interval, setInterval ] = useState(null);
+
+  const handleSave = (newValue, vidId) => {
 
     setShowForm(false);
     setShowAlert(true);
@@ -28,14 +32,15 @@ export default function Moment(props) {
     //I need video id, user id, label, start, end
 
     //send data to back-end
-    // return axios.post('http://localhost:3001/api/moments', { newCateg, userId })
-    //   .then(response => {
+    return axios.post('http://localhost:3001/api/moments', { userId, vidId, newValue, start, end})
+      .then(response => {
+        
+        console.log('response from addMoment :', response.data);
 
-    //     const categ = [...state.categories, newCateg];
-    //     setState(prev => ({...prev, categories: categ}))
+        
 
-    //   })
-    //   .catch(err => { console.log('error:', err) })
+      })
+      .catch(err => { console.log('error:', err) })
   };
 
   useEffect(() => {
@@ -62,8 +67,10 @@ export default function Moment(props) {
           onMoments={true}
           start={hrTime(start)}
           end={hrTime(end)}
+          interval={interval}
+          setInterval={setInterval}
           onChange={(e) => setNewMom(e.target.value)}
-          onSave={() => handleSave(newMom)}
+          onSave={() => handleSave(newMom, videoDBid)}
           onCancel={() => setShowForm(false)}
         />
       )}

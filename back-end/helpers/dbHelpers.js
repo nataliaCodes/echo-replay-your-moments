@@ -141,6 +141,16 @@ module.exports = (db) => {
         .catch(err => err);
   };
 
+  const addMoment = (label, start, end, userId, videoId) => {
+    const query = {
+      text: `INSERT INTO moments (label, start_time, end_time, user_id, video_id) VALUES ($1), ($2), ($3), ($4) RETURNING *` ,
+      values: [label, start, end, userId, videoId]
+    }
+    return db.query(query)
+        .then(result => result.rows[0])
+        .catch(err => err);
+  };
+
   return {
       getUsers,
       getUserByEmail,
@@ -154,6 +164,7 @@ module.exports = (db) => {
       updateMoment,
       deleteMoment,
       addVideo,
-      deleteVideo
+      deleteVideo,
+      addMoment
   };
 };

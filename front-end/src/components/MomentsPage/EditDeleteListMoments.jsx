@@ -29,30 +29,27 @@ export default function List(props) {
   //state set by the TogglingEditForm
   const [ interval, setInterval ] = useState(null);
 
-  const handleSave = (newValue, oldValue, interval, start, end) => {
+  const handleSave = (newValue, oldValue, interval) => {
     
     setEditMode(null);
     
     //find moment that is being changed and extract its id
     const updated = moments.filter(moment => moment.label === oldValue)[0];
+    console.log('updated :', updated);
     const id = updated.moment_id;
-
-    // //create updated array for back-end
-    // const newMoments = moments.map(moment => {
-  
-    //     if (moment.moment_id === id) {
-    //       moment.label = newValue;
-    //     }
-    //     return moment;
-    //   });
+    console.log('id :', id);
 
     //send update request to backend
-    return axios.put('http://localhost:3001/api/moments', { updated, interval })
+    return axios.put('http://localhost:3001/api/moments', { id, newValue, interval })
     .then(response => {
       console.log('response from be :', response.data);
-      setEditMode(null);
+      const { start_time, end_time } = response.data[0];
+      console.log('start_time :', start_time);
+      console.log('end_time :', end_time);
+      // const convertedStart = hrTime(start_time);
+      // const convertedEnd = hrTime(end_time);
 
-      const newMoment = { moment_id: id, label: newValue, start_time: response.data.start_time, end_time: response.data.end_time,};
+      const newMoment = { moment_id: id, label: newValue, start_time: start_time, end_time: end_time};
 
       moments.forEach((mom, i) => {
         if(mom.moment_id === newMoment.moment_id) {
@@ -133,7 +130,7 @@ export default function List(props) {
             end={end}
             onCancel={() => setEditMode(null)}
             onChange={(e) => setMomName(e.target.value)}
-            onSave={(e) => handleSave(momName, name, interval, start, end)}
+            onSave={(e) => handleSave(momName, name, interval)}
           />
         ) :
           // else show the buttons

@@ -7,7 +7,8 @@ module.exports = ({
   getMomentsByVideo,
   getUserCategories,
   updateMoment,
-  deleteMoment
+  deleteMoment,
+  addMoment
 }) => {
   moments.get('/', function(req, res, next) {
 
@@ -41,14 +42,33 @@ module.exports = ({
 
   });
 
+  /* Add moment */ 
+  moments.post('/', (req, res) => {
+
+    const { newValue, start, end, userId, vidId } = req.body;
+    console.log('request in be route :', req.body);
+
+    //label, start, end, userId, videoId
+
+    addMoment(newValue, start, end, userId, vidId)
+      .then(response => {
+        console.log('addMoment response :', response);
+
+        res.json(`backend says: add category request received`);
+      })
+      .catch((err) => res.json({
+        error: err.message
+      }));
+    
+
+  });
+
   /* Update moments */ 
   moments.put('/', (req, res) => {
 
-    const { updated, interval } = req.body;
+    const { id, newValue, interval } = req.body;
+    console.log('id :', id);
     console.log('interval :', interval);
-
-    const id = updated.moment_id;
-    const newValue = updated.label;
 
     const convertToSeconds = str => {
       var p = str.split(':'),
@@ -61,15 +81,13 @@ module.exports = ({
   
       return s;
     }
-
+    
     const startSec = convertToSeconds(interval.start);
     const endSec = convertToSeconds(interval.end);
 
-    const resp = {moment_id: id, label: newValue, start_time: startSec, end_time: endSec};
-
     updateMoment(newValue, startSec, endSec, id)
       .then(response => {
-        res.json(resp);
+        res.json(response);
       })
       .catch((err) => res.json({
         error: err.message
@@ -77,7 +95,7 @@ module.exports = ({
 
   });
 
-  /* Delete categories */ 
+  /* Delete moments */ 
   moments.delete('/', (req, res) => {
 
     deleteMoment(req.body.id)
