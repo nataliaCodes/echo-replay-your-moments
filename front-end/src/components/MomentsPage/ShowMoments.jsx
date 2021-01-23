@@ -13,7 +13,7 @@ import Save from './Save';
 
 export default function Moment(props) {
 
-  const { state, setState } = props;
+  const { state, setState, cookies } = props;
   
   // console.log("oldVideo:",props.oldVideo)
   console.log("state on Moment:",state)
@@ -97,6 +97,7 @@ export default function Moment(props) {
           setState={setState} />
         </>
       }
+      <NewMoment videoInfo = {videoInfo} setVideoInfo={setVideoInfo} cookies={cookies} />
       <EditDelete videoInfo = {videoInfo} setVideoInfo={setVideoInfo} state={state} setSate={setState} />
     </div>
   );
