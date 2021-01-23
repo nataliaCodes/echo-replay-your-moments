@@ -68,14 +68,12 @@ export default function Moment(props) {
       {/* <SearchBar /> */}
       <VideoPlayer videoInfo = {videoInfo} setVideoInfo={setVideoInfo}/>
       <MomentBar videoInfo = {videoInfo} setVideoInfo={setVideoInfo}/>
-      <Save videoInfo={videoInfo} setVideoInfo={setVideoInfo} selectedCat={videoInfo.selectedCat} categories={props.categories} categWithId={props.categWithId} moments={videoInfo.moments} oldVideo={props.oldVideo} selectedVidId={props.selectedVidId} />
-      <Button>Save video</Button>
-      <Button>Add moment</Button>
-      <NewMoment />
+      { !props.oldVideo &&
+        <>
+          <Save videoInfo={videoInfo} setVideoInfo={setVideoInfo} selectedCat={videoInfo.selectedCat} categories={props.categories} categWithId={props.categWithId} moments={videoInfo.moments} oldVideo={props.oldVideo} selectedVidId={props.selectedVidId} />
+        </>
+      }
       <EditDelete moments={videoInfo.moments} state={state} setSate={setState} />
-      <Button>
-        <Link to="/videos"> Back to videos </Link>
-      </Button>
     </div>
   );
 }
