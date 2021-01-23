@@ -1,10 +1,11 @@
 import { useState } from 'react';
-
+import { Link } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
 
 export default function VideoThumbnails(props) {
 
-  const { state } = props;
+  const { state, setState, onVideoSelected } = props;
+  
 
   const thumbnails = state.videos
     .filter(video => video.cat_name === props.category)
@@ -13,13 +14,21 @@ export default function VideoThumbnails(props) {
       const youtubeId = video.link.slice(32, 43);
       const thumbnail = `https://img.youtube.com/vi/${youtubeId}/mqdefault.jpg`;
 
+      const videoOnClick = () => {
+        // onVideoSelected(youtubeId);
+        props.setState((prev) => ({ ...prev, oldVideo: true, selectedVidId: youtubeId }));
+      };
+  
+
       //render each video detail
       return (
-          <Card key={i} style={{width: "30em"}}>
-            <Card.Header>
-              <h6>{video.title}</h6>
-            </Card.Header>
-            <Card.Img variant="bottom" src={thumbnail} alt="thumbnail" />
+          <Card key={i} style={{width: "30em"}} onClick={() => videoOnClick()} >
+            <Link to="/moments">
+              <Card.Header>
+                <h6>{video.title}</h6>
+              </Card.Header>
+              <Card.Img variant="bottom" src={thumbnail} alt="thumbnail" />
+            </Link>
           </Card>
       )
   });

@@ -99,15 +99,15 @@ module.exports = (db) => {
         .catch(err => err);
   };
 
-  // const addVideoWithMoments = (userId, catId, link, title) => {
-  //   const query = {
-  //     text: `INSERT INTO Videos (name, user_id) VALUES ($1, $2) RETURNING *` ,
-  //     values: [name, userId]
-  //   }
-  //   return db.query(query)
-  //       .then(result => result.rows[0])
-  //       .catch(err => console.log('error', err));
-  // };
+  const addVideo = (userId, catId, link, title) => {
+    const query = {
+      text: `INSERT INTO videos (title, link, user_id, category_id) VALUES ($1, $2, $3, $4) RETURNING *` ,
+      values: [title, link, userId, catId]
+    }
+    return db.query(query)
+        .then(result => result.rows[0])
+        .catch(err => console.log('error', err));
+  };
 
   return {
       getUsers,
@@ -118,6 +118,7 @@ module.exports = (db) => {
       updateCategory,
       addCategory,
       deleteCategory,
-      getUserCategories
+      getUserCategories,
+      addVideo
   };
 };
