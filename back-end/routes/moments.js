@@ -43,14 +43,33 @@ module.exports = ({
 
   /* Update moments */ 
   moments.put('/', (req, res) => {
-    const updated = req.body.updated;
+
+    const { updated, interval } = req.body;
+    console.log('interval :', interval);
 
     const id = updated.moment_id;
     const newValue = updated.label;
 
-    updateMoment(newValue, id)
+    const convertToSeconds = str => {
+      var p = str.split(':'),
+          s = 0, m = 1;
+  
+      while (p.length > 0) {
+          s += m * parseInt(p.pop(), 10);
+          m *= 60;
+      }
+  
+      return s;
+    }
+
+    const startSec = convertToSeconds(interval.start);
+    const endSec = convertToSeconds(interval.end);
+
+    const resp = {moment_id: id, label: newValue, start_time: startSec, end_time: endSec};
+
+    updateMoment(newValue, startSec, endSec, id)
       .then(response => {
-        res.json(`category ${id} renamed to ${newValue}`);
+        res.json(resp);
       })
       .catch((err) => res.json({
         error: err.message

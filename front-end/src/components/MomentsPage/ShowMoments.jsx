@@ -15,7 +15,7 @@ export default function Moment(props) {
 
   const { state, setState } = props;
   
-  console.log("oldVideo:",props.oldVideo)
+  // console.log("oldVideo:",props.oldVideo)
 
   const [videoInfo, setVideoInfo] = useState(
     {
@@ -31,13 +31,13 @@ export default function Moment(props) {
   )
 
   const getMoments = (selectedVideoID) => {
-    console.log("vidID to DB:", selectedVideoID)
+    // console.log("vidID to DB:", selectedVideoID)
     axios.get('http://localhost:3001/api/moments', {
       params: {selectedVideoID},
       withCredentials: true
     })
     .then((response)=>{
-      console.log("fromDBmoms",response.data)
+      // console.log("fromDBmoms",response.data)
       setVideoInfo((prev)=>({...prev, moments: response.data }))
     })
     .catch(err => console.log(err));
@@ -61,7 +61,7 @@ export default function Moment(props) {
         // getCategory();
       }
     }, []);
-    console.log("videoInfo after axios", videoInfo)
+    // console.log("videoInfo after axios", videoInfo)
     
   return (
     <div className="Moment">

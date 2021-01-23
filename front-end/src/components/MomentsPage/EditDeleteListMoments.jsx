@@ -9,22 +9,24 @@ export default function List(props) {
 
   const { videoInfo, setVideoInfo, state, setState } = props;
   const moments = videoInfo.moments;
+  console.log('moments :', moments);
 
   //state for the toggling form
   const [ momName, setMomName ] = useState("");
   const [ editMode, setEditMode ] = useState(null);
 
   //sets edit mode to current form and value to name extracted from state
-  const setMode = (key, mom) => {
+  const setMode = (key, mom, start, end) => {
     setEditMode(key);
     setMomName(mom);
+    setInterval({start, end});
   };
 
   //state of delete alert
   const [showAlert, setShowAlert] = useState(false);
   const [alertMom, setAlertMom] = useState(null);
 
-  const handleSave = (newValue, oldValue) => {
+  const handleSave = (newValue, oldValue, interval) => {
     
     setEditMode(null);
     
@@ -42,9 +44,11 @@ export default function List(props) {
       });
 
     //send update request to backend
-    return axios.put('http://localhost:3001/api/moments', { updated })
+    return axios.put('http://localhost:3001/api/moments', { updated, interval })
     .then(response => {
+      console.log('response from be :', response.data);
       setEditMode(null);
+      
     })
     .catch(err => { console.log('error:', err) })
       
@@ -74,36 +78,50 @@ export default function List(props) {
 
   };
 
-  const handleAlert = (momName) => {
+  const handleAlert = momName => {
     setAlertMom(momName);
     setShowAlert(true);
   };
+
+  //convert seconds to human readable times
+  const hrTime = seconds => {
+    return new Date(seconds * 1000).toISOString().substr(11, 8);
+  };
+
+  const [ interval, setInterval ] = useState(null);
 
   //render list of moments dynamically
   const momentsList = moments.map(moment => {
 
     const key = moment.moment_id;
     const name = moment.label;
+    const start = hrTime(moment.start_time);
+    const end = hrTime(moment.end_time);
 
     return (
 
-      <div key={key}>
+      <div key={key} style={{border: "1px solid gray", padding: ".5em"}}>
         {/* show moment name when edit mode is not active for current element */}
-        {editMode !== key && name}
+        {editMode !== key && <h6>{name}:  {start} - {end}</h6>}
         {/* on edit mode active for current element show edit form */}
         {editMode === key ? (
           <TogglingEditForm
             value={momName}
             name="moment-name"
             placeholder="Moment name"
+            onMoments={true}
+            interval={interval}
+            setInterval={setInterval}
+            start={start}
+            end={end}
             onCancel={() => setEditMode(null)}
             onChange={(e) => setMomName(e.target.value)}
-            onSave={(e) => handleSave(momName, name)}
+            onSave={(e) => handleSave(momName, name, interval)}
           />
         ) :
           // else show the buttons
           (<>
-            <Button onClick={() => setMode(key, name)} children={'Edit'} />
+            <Button onClick={() => setMode(key, name, start, end)} children={'Edit'} />
             <Button onClick={() => handleAlert(name)}>Delete</Button>
           </>)
         }

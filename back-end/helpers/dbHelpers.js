@@ -109,11 +109,11 @@ module.exports = (db) => {
   //       .catch(err => console.log('error', err));
   // };
 
-  const updateMoment = (newValue, id) => {
+  const updateMoment = (newValue, start, end, id) => {
 
     const query = {
-      text: `UPDATE moments SET label=$1 WHERE id=$2 RETURNING *`,
-      values: [newValue, id]
+      text: `UPDATE moments SET label=$1, start_time=$2, end_time=$3 WHERE id=$4 RETURNING *`,
+      values: [newValue, start, end, id]
     }
     return db.query(query)
     .then(result => result.rows)

@@ -29,7 +29,7 @@ function App() {
   // const momentPath = `/videos/${state.selectedVideoID}`
     // console.log("APP state: ", state)
 
-    console.log("App selectedVideoID=",state.selectedVidId)
+    // console.log("App selectedVideoID=",state.selectedVidId)
     return (
       <React.StrictMode>
       <Router>
