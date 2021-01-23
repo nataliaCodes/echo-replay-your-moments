@@ -16,7 +16,7 @@ export default function Categories(props) {
   return (
 
     <div className="Categories">
-      {mode === MAIN && <ShowCategories state={state} setState={setState} onEdit={() => transition(EDIT)} />}
+      {mode === MAIN && <ShowCategories state={state} setState={setState} onVideoSelected={props.onVideoSelected} onEdit={() => transition(EDIT)} />}
       {mode === EDIT && <EditCategories state={state} setState={setState} cookies={cookies} onBack={() => transition(MAIN)} />}
     </div>
     
