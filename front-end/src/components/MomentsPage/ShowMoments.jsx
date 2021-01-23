@@ -73,7 +73,7 @@ export default function Moment(props) {
           <Save videoInfo={videoInfo} setVideoInfo={setVideoInfo} selectedCat={videoInfo.selectedCat} categories={props.categories} categWithId={props.categWithId} moments={videoInfo.moments} oldVideo={props.oldVideo} selectedVidId={props.selectedVidId} />
         </>
       }
-      <EditDelete moments={videoInfo.moments} state={state} setSate={setState} />
+      <EditDelete videoInfo = {videoInfo} setVideoInfo={setVideoInfo} state={state} setSate={setState} />
     </div>
   );
 }

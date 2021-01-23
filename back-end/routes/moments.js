@@ -5,7 +5,9 @@ var moments = express.Router();
 /* GET moments for user */
 module.exports = ({
   getMomentsByVideo,
-  getUserCategories
+  getUserCategories,
+  updateMoment,
+  deleteMoment
 }) => {
   moments.get('/', function(req, res, next) {
 
@@ -41,12 +43,32 @@ module.exports = ({
 
   /* Update moments */ 
   moments.put('/', (req, res) => {
-    const info = req.body;
-    console.log(info);
+    const updated = req.body.updated;
 
+    const id = updated.moment_id;
+    const newValue = updated.label;
 
+    updateMoment(newValue, id)
+      .then(response => {
+        res.json(`category ${id} renamed to ${newValue}`);
+      })
+      .catch((err) => res.json({
+        error: err.message
+      }));
 
-    res.json("back-end says: YO!");
+  });
+
+  /* Delete categories */ 
+  moments.delete('/', (req, res) => {
+
+    deleteMoment(req.body.id)
+      .then(response => {
+        res.json(`backend says: deleted category ${req.body.id}`);
+      })
+      .catch((err) => res.json({
+        error: err.message
+      }));
+    
 
   });
 

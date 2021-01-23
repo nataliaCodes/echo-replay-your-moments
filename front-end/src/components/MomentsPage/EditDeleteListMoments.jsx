@@ -7,9 +7,8 @@ import TogglingEditForm from '../shared/TogglingEditForm';
 
 export default function List(props) {
 
-
-  const { moments, state } = props;
-  console.log('moments :', moments);
+  const { videoInfo, setVideoInfo, state, setState } = props;
+  const moments = videoInfo.moments;
 
   //state for the toggling form
   const [ momName, setMomName ] = useState("");
@@ -23,20 +22,61 @@ export default function List(props) {
 
   //state of delete alert
   const [showAlert, setShowAlert] = useState(false);
-  const [alertIndex, setAlertIndex] = useState(null);
+  const [alertMom, setAlertMom] = useState(null);
 
   const handleSave = (newValue, oldValue) => {
     
-    //find moment that is being changed
+    setEditMode(null);
+    
+    //find moment that is being changed and extract its id
+    const updated = moments.filter(moment => moment.label === oldValue)[0];
+    const id = updated.moment_id;
 
-    //extract its id
+    //create updated array for back-end
+    const newMoments = moments.map(moment => {
+  
+        if (moment.moment_id === id) {
+          moment.label = newValue;
+        }
+        return moment;
+      });
 
-    //put new value in
+    //send update request to backend
+    return axios.put('http://localhost:3001/api/moments', { updated })
+    .then(response => {
+      setEditMode(null);
+    })
+    .catch(err => { console.log('error:', err) })
+      
+  };
 
-    //send to backend update request
-      //set state to new moments
+  const handleDelete = (momName) => {
+    
+    setShowAlert(false);
 
+    //find moment that is being changed and extract its id
+    const deleted = moments.filter(moment => moment.label === momName)[0];
+    const id = deleted.moment_id;
 
+    //create updated array for back-end
+    const newMoments = moments.filter(moment => moment.moment_id !== id)
+
+    setVideoInfo({...videoInfo, moments: moments.filter(moment => moment.moment_id !== id)})
+
+    //send data to back-end
+    return axios.delete('http://localhost:3001/api/moments', { data: { id } })
+      .then(response => {
+        console.log('client says: delete request sent');
+        console.log(response.data);
+
+      })
+      .catch(err => { console.log('error:', err) })
+
+  };
+
+  const handleAlert = (momName) => {
+    setAlertMom(momName);
+    setShowAlert(true);
   };
 
   //render list of moments dynamically
@@ -64,7 +104,7 @@ export default function List(props) {
           // else show the buttons
           (<>
             <Button onClick={() => setMode(key, name)} children={'Edit'} />
-            {!showAlert && <Button>Delete</Button>}
+            <Button onClick={() => handleAlert(name)}>Delete</Button>
           </>)
         }
       </div>
@@ -84,7 +124,7 @@ export default function List(props) {
           <hr />
           <div className="d-flex justify-content-end">
             <Button onClick={() => setShowAlert(false)}>Cancel</Button>
-            <Button onClick={() => console.log('delete clicked')} variant="outline-danger">
+            <Button onClick={() => handleDelete(alertMom)} variant="outline-danger">
               Proceed
           </Button>
           </div>
