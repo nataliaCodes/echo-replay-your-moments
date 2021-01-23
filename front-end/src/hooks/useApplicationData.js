@@ -28,7 +28,8 @@ const useApplicationData = () => {
     startTime: 70,
     endTime: 100,
     videoDuration: null,
-    oldVideo: false
+    oldVideo: false,
+    catRedirect: null
   });
 
   //set initial cookie
