@@ -21,7 +21,7 @@ export default function CategoriesList(props) {
         </Card.Header>
         <Accordion.Collapse eventKey={index + 1}>
           <Card.Body>
-            <VideoThumbnails category={name} state={state} setState={setState} onVideoSelected={onVideoSelected} />
+            <VideoThumbnails category={name} state={state} setState={setState} onVideoSelected={props.onVideoSelected} />
           </Card.Body>
         </Accordion.Collapse>
       </Card>

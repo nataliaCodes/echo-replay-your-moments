@@ -4,7 +4,8 @@ var videos = express.Router();
 /* GET videos for specific user */
 module.exports = ({
   getUserVidsAndCats,
-  addVideo
+  addVideo,
+  deleteVideo
 }) => {
   videos.get('/', function (req, res, next) {
 
@@ -25,7 +26,6 @@ module.exports = ({
     const info = req.body;
     const { cat_id, link, title } = req.body.videoSaveInfo;
     console.log(info);
-    console.log("cat_id",cat_id)
     addVideo(userId, cat_id, link, title )
     .then(response =>{ 
       console.log("Query RES",response)
@@ -34,9 +34,23 @@ module.exports = ({
       error: err.message
     }));
 
-    // res.json("back-end says: YO videos!");
-
   });
+
+    /* Delete video */ 
+    videos.delete('/', (req, res) => {
+
+      console.log("delete data:", req.body);
+      // const id = req.body;
+      const id = req.query[0]
+      console.log('query id :', id);
+  
+      deleteVideo(id)
+        .then(() => res.json(`back-end says: video ${id} deleted`))
+        .catch((err) => res.json({
+          error: err.message
+        }));
+  
+    });
 
   return videos;
 };

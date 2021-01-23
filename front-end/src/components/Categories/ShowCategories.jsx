@@ -13,7 +13,7 @@ export default function ShowCategories(props) {
         Edit categories
       </Button>
       <br/><br/><br/>
-      <CategoriesList state={state} setState={setState} onVideoSelected={onVideoSelected} />
+      <CategoriesList state={state} setState={setState} onVideoSelected={props.onVideoSelected} />
     </div>
     
   );

@@ -109,6 +109,16 @@ module.exports = (db) => {
         .catch(err => console.log('error', err));
   };
 
+  const deleteVideo = (id) => {
+    const query = {
+      text: `DELETE FROM videos WHERE id=$1 RETURNING *` ,
+      values: [id]
+    }
+    return db.query(query)
+        .then(result => result.rows[0])
+        .catch(err => err);
+  };
+
   return {
       getUsers,
       getUserByEmail,
@@ -119,6 +129,7 @@ module.exports = (db) => {
       addCategory,
       deleteCategory,
       getUserCategories,
-      addVideo
+      addVideo,
+      deleteVideo
   };
 };
