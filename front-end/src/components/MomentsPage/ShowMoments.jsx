@@ -21,7 +21,7 @@ export default function Moment(props) {
   const [videoInfo, setVideoInfo] = useState(
     {
       duration: 1000,
-      startTime: 70,
+      startTime: 0,
       endTime: 100,
       selectedVideoID: props.selectedVideoID,
       selectedCat: "Categories",
@@ -97,7 +97,7 @@ export default function Moment(props) {
           setState={setState} />
         </>
       }
-      <NewMoment videoInfo = {videoInfo} setVideoInfo={setVideoInfo} cookies={cookies} />
+      <NewMoment videoInfo = {videoInfo} setVideoInfo={setVideoInfo} cookies={cookies} videoDBid={state.selectedVidId} />
       <EditDelete videoInfo = {videoInfo} setVideoInfo={setVideoInfo} state={state} setSate={setState} />
     </div>
   );

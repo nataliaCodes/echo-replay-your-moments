@@ -49,7 +49,7 @@ export default function TogglingEditForm(props) {
   return (
     <>
     {timeAlert && <small>Time needs to be in hh:mm:ss format!</small>}
-      <InputGroup className="mb-3" style={{width: "30em"}}>
+      <InputGroup className="mb-3">
         <FormControl
           aria-describedby="basic-addon2"
           placeholder={props.placeholder}
