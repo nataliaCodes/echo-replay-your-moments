@@ -29,7 +29,7 @@ export default function List(props) {
   //state set by the TogglingEditForm
   const [ interval, setInterval ] = useState(null);
 
-  const handleSave = (newValue, oldValue, interval) => {
+  const handleSave = (newValue, oldValue, interval, start, end) => {
     
     setEditMode(null);
     
@@ -37,20 +37,30 @@ export default function List(props) {
     const updated = moments.filter(moment => moment.label === oldValue)[0];
     const id = updated.moment_id;
 
-    //create updated array for back-end
-    const newMoments = moments.map(moment => {
+    // //create updated array for back-end
+    // const newMoments = moments.map(moment => {
   
-        if (moment.moment_id === id) {
-          moment.label = newValue;
-        }
-        return moment;
-      });
+    //     if (moment.moment_id === id) {
+    //       moment.label = newValue;
+    //     }
+    //     return moment;
+    //   });
 
     //send update request to backend
     return axios.put('http://localhost:3001/api/moments', { updated, interval })
     .then(response => {
       console.log('response from be :', response.data);
       setEditMode(null);
+
+      const newMoment = { moment_id: id, label: newValue, start_time: response.data.start_time, end_time: response.data.end_time,};
+
+      moments.forEach((mom, i) => {
+        if(mom.moment_id === newMoment.moment_id) {
+          moments[i] = newMoment;
+        };
+      });
+
+      setVideoInfo({...videoInfo, moments});
 
     })
     .catch(err => { console.log('error:', err) })
@@ -123,7 +133,7 @@ export default function List(props) {
             end={end}
             onCancel={() => setEditMode(null)}
             onChange={(e) => setMomName(e.target.value)}
-            onSave={(e) => handleSave(momName, name, interval)}
+            onSave={(e) => handleSave(momName, name, interval, start, end)}
           />
         ) :
           // else show the buttons
