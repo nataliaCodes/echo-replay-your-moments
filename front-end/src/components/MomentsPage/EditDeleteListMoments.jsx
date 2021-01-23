@@ -26,6 +26,9 @@ export default function List(props) {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMom, setAlertMom] = useState(null);
 
+  //state set by the TogglingEditForm
+  const [ interval, setInterval ] = useState(null);
+
   const handleSave = (newValue, oldValue, interval) => {
     
     setEditMode(null);
@@ -48,7 +51,7 @@ export default function List(props) {
     .then(response => {
       console.log('response from be :', response.data);
       setEditMode(null);
-      
+
     })
     .catch(err => { console.log('error:', err) })
       
@@ -83,12 +86,16 @@ export default function List(props) {
     setShowAlert(true);
   };
 
+  const handlePlay = (start, end) => {
+    setVideoInfo({...videoInfo, startTime: start, endTime: end})
+  };
+
   //convert seconds to human readable times
   const hrTime = seconds => {
     return new Date(seconds * 1000).toISOString().substr(11, 8);
   };
 
-  const [ interval, setInterval ] = useState(null);
+
 
   //render list of moments dynamically
   const momentsList = moments.map(moment => {
@@ -121,7 +128,8 @@ export default function List(props) {
         ) :
           // else show the buttons
           (<>
-            <Button onClick={() => setMode(key, name, start, end)} children={'Edit'} />
+            <Button onClick={() => handlePlay(moment.start_time, moment.end_time)}>Play</Button>
+            <Button onClick={() => setMode(key, name, start, end)}>Edit</Button>
             <Button onClick={() => handleAlert(name)}>Delete</Button>
           </>)
         }
