@@ -16,6 +16,7 @@ export default function Moment(props) {
   const { state, setState } = props;
   
   // console.log("oldVideo:",props.oldVideo)
+  console.log("state on Moment:",state)
 
   const [videoInfo, setVideoInfo] = useState(
     {
@@ -55,13 +56,26 @@ export default function Moment(props) {
   //   .catch(err => console.log(err));
   // };
 
+  // const getCatid = () => {
+  //   let catId;
+  //   console.log("SHOWMOMENT:", videoInfo.selectedCat);
+  //   console.log("SHOWMOMENT:", props.categWithId);
+  //   catId = props.categWithId.find(categ => categ.name === videoInfo.selectedCat);
+  //   console.log("SHOWmfindID", catId);
+  //   setVideoInfo((prev)=>({...prev, categoryId: catId }))
+
+  // };
+
     useEffect(() => {
       if(props.oldVideo){
         getMoments(videoInfo.selectedVideoID);
-        // getCategory();
       }
-    }, []);
-    // console.log("videoInfo after axios", videoInfo)
+      // if(videoInfo.selectedCat){
+
+      //   getCatid();
+      // }
+    }, [videoInfo.selectedCat]);
+    console.log("videoInfo after axios", videoInfo)
     
   return (
     <div className="Moment">
@@ -70,7 +84,17 @@ export default function Moment(props) {
       <MomentBar videoInfo = {videoInfo} setVideoInfo={setVideoInfo}/>
       { !props.oldVideo &&
         <>
-          <Save videoInfo={videoInfo} setVideoInfo={setVideoInfo} selectedCat={videoInfo.selectedCat} categories={props.categories} categWithId={props.categWithId} moments={videoInfo.moments} oldVideo={props.oldVideo} selectedVidId={props.selectedVidId} />
+          <Save 
+          videoInfo={videoInfo} 
+          setVideoInfo={setVideoInfo} 
+          selectedCat={videoInfo.selectedCat} 
+          categories={props.categories} 
+          categWithId={props.categWithId} 
+          moments={videoInfo.moments} 
+          oldVideo={props.oldVideo} 
+          selectedVidId={props.selectedVidId}
+          state={state}
+          setState={setState} />
         </>
       }
       <EditDelete videoInfo = {videoInfo} setVideoInfo={setVideoInfo} state={state} setSate={setState} />

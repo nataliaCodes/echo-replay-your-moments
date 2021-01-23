@@ -6,7 +6,7 @@ import VideoThumbnails from "./VideoThumbnails";
 export default function CategoriesList(props) {
 
   //extract categories list from state
-  const { state } = props;
+  const { state, setState, onVideoSelected } = props;
 
   //render list of categories with corresponding videos dynamically
   const accordionCards = !state.categories ? false : state.categories.map((name, index) => {
@@ -21,7 +21,7 @@ export default function CategoriesList(props) {
         </Card.Header>
         <Accordion.Collapse eventKey={index + 1}>
           <Card.Body>
-            <VideoThumbnails category={name} state={state} />
+            <VideoThumbnails category={name} state={state} setState={setState} onVideoSelected={props.onVideoSelected} />
           </Card.Body>
         </Accordion.Collapse>
       </Card>

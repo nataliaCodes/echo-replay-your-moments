@@ -10,9 +10,11 @@ import FormControl from 'react-bootstrap/FormControl';
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
 
-export default function Save({ videoInfo, setVideoInfo, selectedCat, categories, moments, oldVideo, categWithId, selectedVidId }) {
+export default function Save({ videoInfo, setVideoInfo, selectedCat, categories, moments, oldVideo, categWithId, selectedVidId, state, setState }) {
 
-  console.log("rendering save component: selectedVidId=", selectedVidId )
+  console.log("rendering save component: state=", state )
+  console.log("rendering save component: categWithId=", categWithId )
+  console.log("rendering save component: categories=", categories )
 
   const [showAlert, setShowAlert] = useState(false);
   const [show, setShow] = useState(false);
@@ -24,7 +26,7 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
   const onInput = event => {
     const input = event.target.value;
     setVidTitle(input);
-    console.log(vidTitle);
+    // console.log(vidTitle);
   };
 
   const handleTitle = (catergory) => setVideoInfo(prev => ({ ...prev, selectedCat: catergory }));
@@ -33,7 +35,6 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
   let categoriesDropdown;
   if (categories) {
     categoriesDropdown = categories.map((catergory) => {
-      // console.log("saveCATS", catergory )
       return (
         <Dropdown.Item onClick={() => handleTitle(catergory)}>{catergory}</Dropdown.Item>
       );
@@ -46,21 +47,15 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
     { label: "something3", start_time: 50, end_time: 55 }
   ];
 
-  console.log("Categ", categWithId);
-
   const getCatid = () => {
     let catId;
     console.log("inGetID:", selectedCat);
-    catId = categWithId.find(categ => categ.name === selectedCat);
-    console.log("finderID", catId);
-    if (catId === undefined) {
-      console.log('badCAT');
-      setShowAlert(true);
-    } else {
-      console.log("goodCAT");
-      setShowAlert(false);
-      setCategoryId(catId.id);
-    };
+    if(categWithId){
+
+      catId = categWithId.find(categ => categ.name === selectedCat);
+      console.log("finderID", catId);
+      setState((prev)=>({...prev, categoryId: catId.id}));
+    }
 
   };
 
@@ -69,85 +64,35 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
     console.log("handleSave");
 
     const categ_id = getCatid();
-
-    console.log("oldvideo =", oldVideo);
-    if (!oldVideo) {
-      if (!vidTitle || categoryId === null) {
-        console.log("alert title:", vidTitle, " catId:", categoryId);
-        setShowAlert(true);
-      } else {
-        console.log("all good");
-        setShowAlert(false);
-        // return
-      }
+    if (!categ_id){
+      getCatid();
     }
 
-    if (oldVideo) {
+    console.log("oldvideo =", oldVideo);
 
-      console.log("old video true!");
+      if (!vidTitle) {
+        console.log("alert title:", vidTitle, " catId:", categoryId);
+        setShowAlert(true);
+      }
 
-      const formatedLink = "https://www.youtube.com/watch?v=" + videoInfo.selectedVideoID;
+    const formatedLink = "https://www.youtube.com/watch?v=" + videoInfo.selectedVideoID;
 
-      const filteredMoments = moments;
+    const videoSaveInfo = { title: vidTitle, link: formatedLink, cat_id: state.categoryId };
+    
+    console.log("Sent to DB",videoSaveInfo)
 
-      const videoSaveInfo = { videoid: selectedVidId, link: formatedLink, moments: newMoments };
-
-      return axios.put('/api/moments', { videoSaveInfo })
-        .then((response) => {
-          console.log("FEres", response);
-        });
-
-    } else {
-
-      const formatedLink = "https://www.youtube.com/watch?v=" + videoInfo.selectedVideoID;
-
-      const videoSaveInfo = { title: vidTitle, link: formatedLink, moments: newMoments, cat_id: categ_id };
-
+    if(videoSaveInfo.cat_id){
+      handleClose();
       return axios.post('/api/videos', { videoSaveInfo })
         .then((response) => {
           console.log("FEres", response);
         });
-
-
     }
-  };
 
-  console.log("vid ID: ", selectedVidId);
+  };
 
   return (
     <>
-      {oldVideo &&
-        <Form>
-          <Button variant="primary" onClick={handleShow}>
-            Save video
-        </Button>
-
-          <Modal
-            show={show}
-            onHide={handleClose}
-            backdrop="static"
-            keyboard={false}
-          >
-            <Modal.Header closeButton>
-              <Modal.Title>Save New Moments</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              Click Save to apply New Moments
-          </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
-            </Button>
-              <Button variant="primary" onClick={handleSave} >
-                Save
-            </Button>
-            </Modal.Footer>
-          </Modal>
-        </Form>
-      }
-
-
-      {!oldVideo &&
         <Form>
           <Button variant="primary" onClick={handleShow}>
             Save video
@@ -199,7 +144,6 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
             </Modal.Footer>
           </Modal>
         </Form>
-      }
     </>
   );
 }
