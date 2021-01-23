@@ -16,13 +16,13 @@ export default function Moment(props) {
   const { state, setState, cookies } = props;
   
   // console.log("oldVideo:",props.oldVideo)
-  console.log("state on Moment:",state)
+  // console.log("state on Moment:",state)
 
   const [videoInfo, setVideoInfo] = useState(
     {
-      duration: 1000,
+      duration: null,
       startTime: 0,
-      endTime: 100,
+      endTime: null,
       selectedVideoID: props.selectedVideoID,
       selectedCat: "Categories",
       categories: [],
@@ -30,6 +30,7 @@ export default function Moment(props) {
       moments: []
     }
   )
+    console.log('videoInfo on moments :', videoInfo);
 
   const getMoments = (selectedVideoID) => {
     // console.log("vidID to DB:", selectedVideoID)
@@ -75,7 +76,7 @@ export default function Moment(props) {
       //   getCatid();
       // }
     }, [videoInfo.selectedCat]);
-    console.log("videoInfo after axios", videoInfo)
+    // console.log("videoInfo after axios", videoInfo)
     
   return (
     <div className="Moment">

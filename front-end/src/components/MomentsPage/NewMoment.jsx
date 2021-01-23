@@ -13,8 +13,8 @@ export default function Moment(props) {
 
   //state for the Add moment input
   const [ newMom, setNewMom ] = useState("");
-  const [ start, setStart ] = useState(videoInfo.startTime);
-  const [ end, setEnd ] = useState(videoInfo.endTime);
+  const [ defaultStart, setDefaultStart ] = useState(videoInfo.startTime);
+  const [ defaultEnd, setDefaultEnd ] = useState(videoInfo.endTime);
 
   //state for the alert showing user they created the moment
   const [showAlert, setShowAlert] = useState(false);
@@ -29,7 +29,7 @@ export default function Moment(props) {
 
     const userId = cookies.user;
 
-    //I need video id, user id, label, start, end
+    //I need video id, user id, label, start, end --> from interval
 
     //send data to back-end
     return axios.post('http://localhost:3001/api/moments', { userId, vidId, newValue, start, end})
@@ -65,8 +65,8 @@ export default function Moment(props) {
           name="new-moment"
           value={newMom}
           onMoments={true}
-          start={hrTime(start)}
-          end={hrTime(end)}
+          defaultStart={defaultStart}
+          defaultEnd={defaultEnd}
           interval={interval}
           setInterval={setInterval}
           onChange={(e) => setNewMom(e.target.value)}

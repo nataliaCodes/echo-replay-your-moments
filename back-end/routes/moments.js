@@ -46,7 +46,7 @@ module.exports = ({
   moments.post('/', (req, res) => {
 
     const { newValue, start, end, userId, vidId } = req.body;
-    console.log('request in be route :', req.body);
+    console.log('request in post route :', req.body);
 
     //label, start, end, userId, videoId
 
@@ -67,8 +67,6 @@ module.exports = ({
   moments.put('/', (req, res) => {
 
     const { id, newValue, interval } = req.body;
-    console.log('id :', id);
-    console.log('interval :', interval);
 
     const convertToSeconds = str => {
       var p = str.split(':'),

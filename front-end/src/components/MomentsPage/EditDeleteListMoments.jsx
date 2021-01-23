@@ -35,19 +35,13 @@ export default function List(props) {
     
     //find moment that is being changed and extract its id
     const updated = moments.filter(moment => moment.label === oldValue)[0];
-    console.log('updated :', updated);
     const id = updated.moment_id;
-    console.log('id :', id);
 
     //send update request to backend
     return axios.put('http://localhost:3001/api/moments', { id, newValue, interval })
     .then(response => {
       console.log('response from be :', response.data);
       const { start_time, end_time } = response.data[0];
-      console.log('start_time :', start_time);
-      console.log('end_time :', end_time);
-      // const convertedStart = hrTime(start_time);
-      // const convertedEnd = hrTime(end_time);
 
       const newMoment = { moment_id: id, label: newValue, start_time: start_time, end_time: end_time};
 

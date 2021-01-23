@@ -18,7 +18,7 @@ export default function YTplayer(props) {
       setShow(true)
     };
 
-    props.setVideoInfo(prev=>({...prev, duration: vd}))
+    props.setVideoInfo(prev=>({...prev, duration: vd, endTime: vd}))
   }
   const videoOnPlay=(event) =>{
     // access to player in all event handlers via event.target
