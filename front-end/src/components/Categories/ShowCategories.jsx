@@ -3,7 +3,7 @@ import CategoriesList from './ShowCategoriesList';
 
 export default function ShowCategories(props) {
 
-  const { state, setState, onVideoSelected } = props;
+  const { state, setState, onVideoSelected, selectedVideoID } = props;
 
   return (
 
@@ -13,7 +13,7 @@ export default function ShowCategories(props) {
         Edit categories
       </Button>
       <br/><br/><br/>
-      <CategoriesList state={state} setState={setState} onVideoSelected={props.onVideoSelected} />
+      <CategoriesList state={state} setState={setState} onVideoSelected={onVideoSelected} selectedVideoID={selectedVideoID} />
     </div>
     
   );
