@@ -54,7 +54,7 @@ module.exports = ({
       .then(response => {
         console.log('addMoment response :', response);
 
-        res.json(`backend says: add category request received`);
+        res.json(response);
       })
       .catch((err) => res.json({
         error: err.message

@@ -14,15 +14,17 @@ import Save from './Save';
 export default function Moment(props) {
 
   const { state, setState, cookies } = props;
+  const stateDuration = state.duration;
   
   // console.log("oldVideo:",props.oldVideo)
-  // console.log("state on Moment:",state)
+  console.log("state on Moment:",state)
 
   const [videoInfo, setVideoInfo] = useState(
     {
       duration: null,
+      newMoment: "",
       startTime: 0,
-      endTime: null,
+      endTime: stateDuration,
       selectedVideoID: props.selectedVideoID,
       selectedCat: "Categories",
       categories: [],
@@ -40,7 +42,7 @@ export default function Moment(props) {
     })
     .then((response)=>{
       // console.log("fromDBmoms",response.data)
-      setVideoInfo((prev)=>({...prev, moments: response.data }))
+      setVideoInfo((prev)=>({...prev, moments: response.data, startTime: 0, endTime: state.duration }))
     })
     .catch(err => console.log(err));
   };
@@ -81,7 +83,7 @@ export default function Moment(props) {
   return (
     <div className="Moment">
       {/* <SearchBar /> */}
-      <VideoPlayer videoInfo = {videoInfo} setVideoInfo={setVideoInfo}/>
+      <VideoPlayer videoInfo = {videoInfo} setVideoInfo={setVideoInfo} state={state} setState={setState}/>
       <MomentBar videoInfo = {videoInfo} setVideoInfo={setVideoInfo}/>
       { !props.oldVideo &&
         <>

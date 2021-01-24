@@ -11,16 +11,8 @@ export default function Moment(props) {
   //state for the form toggled by 'Add moment'
   const [showForm, setShowForm] = useState(false);
 
-  //state for the Add moment input
-  const [ newMom, setNewMom ] = useState("");
-  const [ defaultStart, setDefaultStart ] = useState(videoInfo.startTime);
-  const [ defaultEnd, setDefaultEnd ] = useState(videoInfo.endTime);
-
   //state for the alert showing user they created the moment
   const [showAlert, setShowAlert] = useState(false);
-
-  //state set by the TogglingEditForm
-  const [ interval, setInterval ] = useState(null);
 
   const handleSave = (newValue, vidId) => {
 
@@ -28,17 +20,18 @@ export default function Moment(props) {
     setShowAlert(true);
 
     const userId = cookies.user;
+    let start = videoInfo.startTime;
+    let end = videoInfo.endTime;
 
-    //I need video id, user id, label, start, end --> from interval
 
     //send data to back-end
     return axios.post('http://localhost:3001/api/moments', { userId, vidId, newValue, start, end})
       .then(response => {
         
         console.log('response from addMoment :', response.data);
-
+        videoInfo.moments.push(response.data)
         
-
+        setVideoInfo({...videoInfo, moments: videoInfo.moments});
       })
       .catch(err => { console.log('error:', err) })
   };
@@ -57,20 +50,20 @@ export default function Moment(props) {
 
   return (
     <div className="Moment">
-      <Button onClick={() => setShowForm(true)}>Add moment</Button>
+      {!showForm && <Button onClick={() => setShowForm(true)}>Add moment</Button>}
       <br /><br />
       {showForm && (
         <TogglingEditForm
           placeholder="Insert moment name"
           name="new-moment"
-          value={newMom}
+          value={videoInfo.newMoment}
           onMoments={true}
-          defaultStart={defaultStart}
-          defaultEnd={defaultEnd}
-          interval={interval}
-          setInterval={setInterval}
-          onChange={(e) => setNewMom(e.target.value)}
-          onSave={() => handleSave(newMom, videoDBid)}
+          defaultStart={hrTime(videoInfo.startTime)}
+          defaultEnd={hrTime(videoInfo.endTime)}
+          // interval={interval}
+          // setInterval={setInterval}
+          onChange={(e) => setVideoInfo({...videoInfo, newMoment: e.target.value})}
+          onSave={() => handleSave(videoInfo.newMoment, videoDBid)}
           onCancel={() => setShowForm(false)}
         />
       )}
