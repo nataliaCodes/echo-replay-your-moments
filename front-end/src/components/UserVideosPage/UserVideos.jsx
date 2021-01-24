@@ -67,18 +67,35 @@ export default function UserVideos(props) {
       <div className="Uservideos">
         <h4>All User Videos</h4>
         {/* <SearchBar /> */}
+
         <Alert show={showAlert} variant="danger" style={{width: "20em"}}>
-        <Alert.Heading>Delete Video</Alert.Heading>
-        {alertVid && <p>"{alertVid.title}"</p>}
-        <p>Will be removed and cannot be undone. Proceed?</p>
-        <hr />
-        <div className="d-flex justify-content-end">
-          <Button onClick={() => setShowAlert(false)}>Cancel</Button>
-          <Button onClick={() => handleDelete(alertVid)} variant="outline-danger">
-            Proceed
-        </Button>
-        </div>
-      </Alert>
+          <Alert.Heading>Delete Video</Alert.Heading>
+          {alertVid && <p>"{alertVid.title}"</p>}
+          <p>Will be removed and cannot be undone. Proceed?</p>
+          <hr />
+          <div className="d-flex justify-content-end">
+            <Button onClick={() => setShowAlert(false)}>Cancel</Button>
+            <Button onClick={() => handleDelete(alertVid)} variant="outline-danger">
+              Proceed
+          </Button>
+          </div>
+        </Alert>
+
+        {/* <Modal show={showAlert} onHide={() => setShowAlert(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleClose}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal> */}
+
         <ul>{videoList}</ul>
       </div>
     </>
