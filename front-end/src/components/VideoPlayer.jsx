@@ -5,7 +5,6 @@ import Alert from 'react-bootstrap/Alert';
 
 export default function YTplayer(props) {
 
-  const { state, setState } = props;
   const [show, setShow] = useState(false);
 
   const videoOnReady=(event) =>{
@@ -20,11 +19,8 @@ export default function YTplayer(props) {
       setShow(true)
     };
 
-    let defaultEndTime = vd;
-
-    // setState({...state, duration: vd});
-
-    props.setVideoInfo(prev=>({...prev, duration: vd, endTime: defaultEndTime}))
+    props.setVideoInfo(prev=>({...prev, duration: vd, defaultEnd: vd}))
+    
   }
   const videoOnPlay=(event) =>{
     // access to player in all event handlers via event.target

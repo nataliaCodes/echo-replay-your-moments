@@ -9,7 +9,6 @@ export default function List(props) {
 
   const { videoInfo, setVideoInfo, state, setState } = props;
   const moments = videoInfo.moments;
-  console.log('moments :', moments);
 
   //state for the toggling form
   const [ momName, setMomName ] = useState("");

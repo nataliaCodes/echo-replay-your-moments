@@ -9,95 +9,38 @@ import Button from '../shared/Button';
 export default function Moment(props) {
 
   const { videoInfo, setVideoInfo, videoDBid, cookies } = props;
-  // const { startTime, endTime, newMoment } = videoInfo;
+  console.log('defaultEnd :', videoInfo.defaultEnd);
   console.log('videoInfo newmoment :', videoInfo);
   console.log('videoDBid :', videoDBid);
 
-  //convert seconds to human readable times
-  const hrTime = seconds => {
-    return new Date(seconds * 1000).toISOString().substr(11, 8);
-  };
-
-  //convert human readable to seconds
-  const convertToSeconds = str => {
-    var p = str.split(':'),
-        s = 0, m = 1;
-
-    while (p.length > 0) {
-        s += m * parseInt(p.pop(), 10);
-        m *= 60;
-    }
-
-    return s;
-  }
-  
   //state for the form toggled by 'Add moment'
   const [showForm, setShowForm] = useState(false);
-  const [start, setStart] = useState(hrTime(0));
-  const [end, setEnd] = useState(videoInfo.endTime ? hrTime(videoInfo.endTime) : hrTime(240));
 
-  //time alert state
-  const [ timeAlert, setTimeAlert ] = useState(false);
-
-  //state for the alert showing user they created the moment
+  //state for the alert confirming creation
   const [showAlert, setShowAlert] = useState(false);
 
-  const handleStartChange = e => {
 
-    const inSec = convertToSeconds(e.target.value);
+  // const handleSave = (newValue, vidId) => {
 
-    setStart(e.target.value);
-    setVideoInfo({...videoInfo, startTime: inSec});
+  //   setShowForm(false);
+  //   setShowAlert(true);
 
-    if (e.target.value.length < 8 || e.target.value.length > 8) {
-      setTimeAlert(true)
-
-    } else if (e.target.value.length === 8) {
-
-      setTimeAlert(false)
-    };
-
-  };
-
-  const handleEndChange = e => {
-
-    const inSec = convertToSeconds(e.target.value);
-
-    setEnd(e.target.value);
-    setVideoInfo({...videoInfo, endTime: inSec});
-
-    if (e.target.value.length < 8 || e.target.value.length > 8) {
-      setTimeAlert(true)
-
-    } else if (e.target.value.length === 8) {
-
-      setTimeAlert(false)
-    };
-
-  };
+  //   const userId = cookies.user;
+  //   let start = videoInfo.startTime;
+  //   let end = videoInfo.endTime;
 
 
-  const handleSave = (newValue, vidId) => {
+  //   //send data to back-end
+  //   return axios.post('http://localhost:3001/api/moments', { userId, vidId, newValue, start, end})
+  //     .then(response => {
 
-    setShowForm(false);
-    setShowAlert(true);
+  //       console.log('response from addMoment :', response.data);
+  //       videoInfo.moments.push(response.data)
 
-    const userId = cookies.user;
-    let start = videoInfo.startTime;
-    let end = videoInfo.endTime;
-
-
-    //send data to back-end
-    return axios.post('http://localhost:3001/api/moments', { userId, vidId, newValue, start, end})
-      .then(response => {
-        
-        console.log('response from addMoment :', response.data);
-        videoInfo.moments.push(response.data)
-        
-        setVideoInfo({...videoInfo, moments: videoInfo.moments});
-      })
-      .catch(err => { console.log('error:', err) })
-  };
+  //       setVideoInfo({...videoInfo, moments: videoInfo.moments});
+  //     })
+  //     .catch(err => { console.log('error:', err) })
+  // };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -109,35 +52,36 @@ export default function Moment(props) {
 
   return (
     <div className="Moment">
+      {showAlert && <small>Succsessfully created!</small>}
       {!showForm && <Button onClick={() => setShowForm(true)}>Add moment</Button>}
       <br /><br />
       {showForm && <>
-        {timeAlert && <small>Time needs to be in hh:mm:ss format!</small>}
-          <InputGroup className="mb-3">
-            <FormControl
-              placeholder="Insert moment name"
-              name="new-moment"
-              value={videoInfo.newMoment}
-              onChange={e => setVideoInfo({...videoInfo, newMoment: e.target.value})}
-            />
-            <FormControl
-              placeholder="HH:MM:SS"
-              name="start-time"
-              value={start}
-              onChange={(e) => handleStartChange(e)}
-            />
-            <FormControl
-              placeholder="HH:MM:SS"
-              name="end-time"
-              value={end}
-              onChange={(e) => handleEndChange(e)}
-            />
-            <InputGroup.Append>
-              <Button variant="outline-secondary" onClick={props.onSave} disabled={timeAlert}>Save</Button>
-              <Button variant="outline-secondary" onClick={() => setShowForm(false)}>Cancel</Button>
-            </InputGroup.Append>
-          </InputGroup>
-        </>}
+        <InputGroup className="mb-3">
+          <FormControl
+            placeholder="Insert moment name"
+            name="new-moment"
+            value={videoInfo.newMoment}
+            onChange={e => setVideoInfo({ ...videoInfo, newMoment: e.target.value })}
+          />
+          <FormControl
+            placeholder="HH:MM:SS"
+            name="start-time"
+            value={videoInfo.startTime}
+            onChange={e => setVideoInfo({ ...videoInfo, startTime: e.target.value })}
+          />
+          <FormControl
+            placeholder="HH:MM:SS"
+            name="end-time"
+            value={videoInfo.defaultEnd ? videoInfo.defaultEnd : videoInfo.endTime}
+            onChange={e => setVideoInfo({ ...videoInfo, endTime: e.target.value })}
+          />
+          <InputGroup.Append>
+            <Button variant="outline-secondary" onClick={props.onSave}>Save</Button>
+            <Button variant="outline-secondary" onClick={() => setShowForm(false)}>Cancel</Button>
+          </InputGroup.Append>
+        </InputGroup>
+      </>
+      }
     </div>
   );
 }

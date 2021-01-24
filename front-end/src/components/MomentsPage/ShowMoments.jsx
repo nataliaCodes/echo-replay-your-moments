@@ -24,7 +24,7 @@ export default function Moment(props) {
       duration: null,
       newMoment: "",
       startTime: 0,
-      endTime: null,
+      endTime: 400,
       selectedVideoID: props.selectedVideoID,
       selectedCat: "Categories",
       categories: [],
@@ -44,7 +44,7 @@ export default function Moment(props) {
     })
     .then((response)=>{
       // console.log("fromDBmoms",response.data)
-      setVideoInfo((prev)=>({...prev, moments: response.data, startTime: 0, endTime: state.duration }))
+      setVideoInfo((prev)=>({...prev, moments: response.data, startTime: 0 }))
     })
     .catch(err => console.log(err));
   };
@@ -85,7 +85,7 @@ export default function Moment(props) {
   return (
     <div className="Moment">
       {/* <SearchBar /> */}
-      <VideoPlayer videoInfo = {videoInfo} setVideoInfo={setVideoInfo} state={state} setState={setState}/>
+      <VideoPlayer videoInfo = {videoInfo} setVideoInfo={setVideoInfo} />
       <MomentBar videoInfo = {videoInfo} setVideoInfo={setVideoInfo}/>
       
       <AutoButton setVideoInfo={setVideoInfo} />
