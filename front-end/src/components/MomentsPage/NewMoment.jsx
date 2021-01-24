@@ -51,7 +51,7 @@ export default function Moment(props) {
   return (
     <div className="Moment">
       {showAlert && <small>Succsessfully created!</small>}<br />
-      {!oldVideo && <Alert variant='info'>Please save your video before adding moments!</Alert>}
+      {!oldVideo && cookies.user && <Alert variant='info'>Please save your video before adding moments!</Alert>}
       {!showForm && oldVideo && <Button onClick={() => setShowForm(true)}>Add moment</Button>}
       <br /><br />
       {showForm && <>
