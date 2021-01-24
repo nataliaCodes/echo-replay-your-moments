@@ -12,13 +12,10 @@ export default function Home(props) {
       <h3>Another message</h3>
 
       <PasteBar setSelectedVideoID={props.setSelectedVideoID} />
+      <br></br>
       <SearchBar onSearch={props.onSearch} />
       <VideoList onVideoSelected={props.onVideoSelected} data={props.data} />
 
-      <form>
-        <input type="text"></input>
-        <Button>Load video</Button>
-      </form>
     </div>
 
   );

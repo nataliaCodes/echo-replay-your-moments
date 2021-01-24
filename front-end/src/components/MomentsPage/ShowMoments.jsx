@@ -8,16 +8,16 @@ import EditDelete from './EditDeleteListMoments';
 import MomentBar from '../shared/MomentBar';
 import NewMoment from './NewMoment';
 import Save from './Save';
-import AutoButton from './AutoButton'
+import AutoButton from './AutoButton';
 
 
 
 export default function Moment(props) {
 
   const { state, setState, cookies } = props;
-  
+
   // console.log("oldVideo:",props.oldVideo)
-  console.log("state on Moment:",state)
+  console.log("state on Moment:", state);
 
   const [videoInfo, setVideoInfo] = useState(
     {
@@ -33,20 +33,20 @@ export default function Moment(props) {
       autoplay: 1,
       loop: 0
     }
-  )
-    console.log('videoInfo on moments :', videoInfo);
+  );
+  console.log('videoInfo on moments :', videoInfo);
 
   const getMoments = (selectedVideoID) => {
     // console.log("vidID to DB:", selectedVideoID)
     axios.get('http://localhost:3001/api/moments', {
-      params: {selectedVideoID},
+      params: { selectedVideoID },
       withCredentials: true
     })
-    .then((response)=>{
-      // console.log("fromDBmoms",response.data)
-      setVideoInfo((prev)=>({...prev, moments: response.data, startTime: 0 }))
-    })
-    .catch(err => console.log(err));
+      .then((response) => {
+        // console.log("fromDBmoms",response.data)
+        setVideoInfo((prev) => ({ ...prev, moments: response.data, startTime: 0 }));
+      })
+      .catch(err => console.log(err));
   };
 
   // const getCategory = () => {
@@ -71,42 +71,42 @@ export default function Moment(props) {
 
   // };
 
-    useEffect(() => {
-      if(props.oldVideo){
-        getMoments(videoInfo.selectedVideoID);
-      }
-      // if(videoInfo.selectedCat){
+  useEffect(() => {
+    if (props.oldVideo) {
+      getMoments(videoInfo.selectedVideoID);
+    }
+    // if(videoInfo.selectedCat){
 
-      //   getCatid();
-      // }
-    }, [videoInfo.selectedCat]);
-    // console.log("videoInfo after axios", videoInfo)
-    
+    //   getCatid();
+    // }
+  }, [videoInfo.selectedCat]);
+  // console.log("videoInfo after axios", videoInfo)
+
   return (
     <div className="Moments">
       {/* <SearchBar /> */}
-      <VideoPlayer videoInfo = {videoInfo} setVideoInfo={setVideoInfo} state={state} setState={setState} />
-      <MomentBar videoInfo = {videoInfo} setVideoInfo={setVideoInfo}/>
-      
+      <VideoPlayer videoInfo={videoInfo} setVideoInfo={setVideoInfo} state={state} setState={setState} />
+      <MomentBar videoInfo={videoInfo} setVideoInfo={setVideoInfo} />
+
       <AutoButton setVideoInfo={setVideoInfo} />
-      
+
       { !props.oldVideo &&
         <>
-          <Save 
-          videoInfo={videoInfo} 
-          setVideoInfo={setVideoInfo} 
-          selectedCat={videoInfo.selectedCat} 
-          categories={props.categories} 
-          categWithId={props.categWithId} 
-          moments={videoInfo.moments} 
-          oldVideo={props.oldVideo} 
-          selectedVidId={props.selectedVidId}
-          state={state}
-          setState={setState} />
+          <Save
+            videoInfo={videoInfo}
+            setVideoInfo={setVideoInfo}
+            selectedCat={videoInfo.selectedCat}
+            categories={props.categories}
+            categWithId={props.categWithId}
+            moments={videoInfo.moments}
+            oldVideo={props.oldVideo}
+            selectedVidId={props.selectedVidId}
+            state={state}
+            setState={setState} />
         </>
       }
-      <NewMoment videoInfo = {videoInfo} setVideoInfo={setVideoInfo} cookies={cookies} videoDBid={state.selectedVidId} state={state} setState={setState} />
-      <EditDelete videoInfo = {videoInfo} setVideoInfo={setVideoInfo} state={state} setSate={setState} />
+      <NewMoment videoInfo={videoInfo} setVideoInfo={setVideoInfo} cookies={cookies} videoDBid={state.selectedVidId} state={state} setState={setState} />
+      <EditDelete videoInfo={videoInfo} setVideoInfo={setVideoInfo} state={state} setSate={setState} />
     </div>
   );
 }
