@@ -104,7 +104,7 @@ export default function Moment(props) {
             setState={setState} />
         </>
       }
-      <NewMoment videoInfo = {videoInfo} setVideoInfo={setVideoInfo} cookies={cookies} videoDBid={state.selectedVidId} state={state} setState={setState} />
+      <NewMoment videoInfo = {videoInfo} setVideoInfo={setVideoInfo} cookies={cookies} videoDBid={state.selectedVidId} state={state} setState={setState} oldVideo={props.oldVideo} />
       <MomentsList videoInfo = {videoInfo} setVideoInfo={setVideoInfo} state={state} setSate={setState} />
     </div>
   );
