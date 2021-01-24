@@ -69,13 +69,13 @@ export default function Moment(props) {
             onChange={e => setVideoInfo({ ...videoInfo, newMoment: e.target.value })}
           />
           <FormControl
-            placeholder="HH:MM:SS"
+            placeholder="Start time(seconds)"
             name="start-time"
             value={videoInfo.startTime}
             onChange={e => setVideoInfo({ ...videoInfo, startTime: e.target.value })}
           />
           <FormControl
-            placeholder="HH:MM:SS"
+            placeholder="End time(seconds)"
             name="end-time"
             value={videoInfo.endTime}
             onChange={e => setVideoInfo({ ...videoInfo, endTime: e.target.value })}
