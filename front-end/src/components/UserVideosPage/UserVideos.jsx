@@ -60,7 +60,7 @@ export default function UserVideos(props) {
       </>
       
     );
-  }).reverse();
+  });
 
   return (
     <>

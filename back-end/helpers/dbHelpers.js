@@ -37,7 +37,8 @@ module.exports = (db) => {
       text: `SELECT v.id, v.title, v.link, v.category_id, c.name AS cat_name
           FROM videos as v INNER JOIN categories as c 
           ON v.category_id = c.id 
-          WHERE v.user_id = $1;` ,
+          WHERE v.user_id = $1
+          ORDER BY v.id DESC;` ,
       values: [id]
     }
     return db.query(query)
