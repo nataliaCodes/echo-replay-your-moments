@@ -15,18 +15,16 @@ import AutoButton from './AutoButton'
 export default function Moment(props) {
 
   const { state, setState, cookies } = props;
-  const stateDuration = state.duration;
-  console.log('stateDuration :', stateDuration);
   
   // console.log("oldVideo:",props.oldVideo)
-  console.log("state on Moment:",state)
+  // console.log("state on Moment:",state)
 
   const [videoInfo, setVideoInfo] = useState(
     {
       duration: null,
       newMoment: "",
       startTime: 0,
-      endTime: stateDuration,
+      endTime: null,
       selectedVideoID: props.selectedVideoID,
       selectedCat: "Categories",
       categories: [],
@@ -107,7 +105,7 @@ export default function Moment(props) {
           setState={setState} />
         </>
       }
-      <NewMoment videoInfo = {videoInfo} setVideoInfo={setVideoInfo} cookies={cookies} videoDBid={state.selectedVidId} state={state} />
+      <NewMoment videoInfo = {videoInfo} setVideoInfo={setVideoInfo} cookies={cookies} videoDBid={state.selectedVidId} />
       <EditDelete videoInfo = {videoInfo} setVideoInfo={setVideoInfo} state={state} setSate={setState} />
     </div>
   );

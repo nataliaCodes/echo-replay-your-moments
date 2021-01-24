@@ -7,12 +7,17 @@ import Button from '../shared/Button';
 
 export default function TogglingEditForm(props) {
 
-  const { interval, setInterval } = props;
-  const [ start, setStart ] = useState(props.start);
+  // const { interval, setInterval } = props;
+
+  //form state
+  const [ newMoment, setNewMoment ] = useState("");
+  const [ start, setStart ] = useState(0);
   const [ end, setEnd ] = useState(props.end);
-  const [ timeAlert, setTimeAlert ] = useState(false);
-  // console.log('start :', start);
-  // console.log('end :', end);
+
+  //convert seconds to human readable times
+  const hrTime = seconds => {
+    return new Date(seconds * 1000).toISOString().substr(11, 8);
+  };
 
   const handleStartChange = e => {
 
@@ -47,35 +52,32 @@ export default function TogglingEditForm(props) {
   };
 
   return (
-    <>
-    {timeAlert && <small>Time needs to be in hh:mm:ss format!</small>}
-      <InputGroup className="mb-3">
-        <FormControl
-          aria-describedby="basic-addon2"
-          placeholder={props.placeholder}
-          value={props.value}
-          name={props.name}
-          onChange={props.onChange}
-        />
-        {props.onMoments && (
-          <>
+<>
+        {timeAlert && <small>Time needs to be in hh:mm:ss format!</small>}
+          <InputGroup className="mb-3">
             <FormControl
-              value={props.defaultStart}
+              placeholder="Insert moment name"
+              name="new-moment"
+              value={newMoment}
+              onChange={e => setNewMoment(e.target.value)}
+            />
+            <FormControl
+              placeholder="HH:MM:SS"
               name="start-time"
-              onChange={(e) => handleStartChange(e)}
+              // value={props.defaultStart}
+              // onChange={(e) => handleStartChange(e)}
             />
             <FormControl
-              value={props.defaultEnd}
+              placeholder="HH:MM:SS"
               name="end-time"
-              onChange={(e) => handleEndChange(e)}
+              // value={props.defaultEnd}
+              // onChange={(e) => handleEndChange(e)}
             />
-          </>
-        )}
-        <InputGroup.Append>
-          <Button variant="outline-secondary" onClick={props.onSave} disabled={timeAlert}>Save</Button>
-          <Button variant="outline-secondary" onClick={props.onCancel}>Cancel</Button>
-        </InputGroup.Append>
-      </InputGroup>
-    </>
+            <InputGroup.Append>
+              <Button variant="outline-secondary" onClick={props.onSave} disabled={timeAlert}>Save</Button>
+              <Button variant="outline-secondary" onClick={props.onCancel}>Cancel</Button>
+            </InputGroup.Append>
+          </InputGroup>
+        </>
   );
 };

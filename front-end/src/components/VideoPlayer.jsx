@@ -13,16 +13,18 @@ export default function YTplayer(props) {
     const player = event.target;
     
     // player.setLoop(true)
-    console.log("Video Duration",player.getDuration())
+    // console.log("Video Duration",player.getDuration())
     let vd = player.getDuration()
     //set alert with duration is null
     if (vd <= 0) {
       setShow(true)
     };
 
-    setState({...state, duration: vd});
+    let defaultEndTime = vd;
 
-    props.setVideoInfo(prev=>({...prev, duration: vd}))
+    // setState({...state, duration: vd});
+
+    props.setVideoInfo(prev=>({...prev, duration: vd, endTime: defaultEndTime}))
   }
   const videoOnPlay=(event) =>{
     // access to player in all event handlers via event.target

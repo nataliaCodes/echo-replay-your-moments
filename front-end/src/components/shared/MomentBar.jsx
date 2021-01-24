@@ -6,7 +6,6 @@ const style = { width: 400, margin: 50 };
 
 export default function MomentBar(props) {
 
-
   const onSliderChange = (value) => {
     
     console.log(value);
