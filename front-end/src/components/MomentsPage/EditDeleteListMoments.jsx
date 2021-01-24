@@ -119,8 +119,8 @@ export default function List(props) {
             onMoments={true}
             interval={interval}
             setInterval={setInterval}
-            start={moment.start_time}
-            end={moment.end_time}
+            start={videoInfo.startTime}
+            end={videoInfo.endTime}
             // start={start}
             // end={end}
             onCancel={() => setEditMode(null)}
