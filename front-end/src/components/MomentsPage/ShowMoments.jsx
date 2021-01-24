@@ -8,6 +8,7 @@ import EditDelete from './EditDeleteListMoments';
 import MomentBar from '../shared/MomentBar';
 import NewMoment from './NewMoment';
 import Save from './Save';
+import AutoButton from './AutoButton'
 
 
 
@@ -29,7 +30,9 @@ export default function Moment(props) {
       selectedCat: "Categories",
       categories: [],
       title: '',
-      moments: []
+      moments: [],
+      autoplay: null,
+      loop: 0
     }
   )
     console.log('videoInfo on moments :', videoInfo);
@@ -85,6 +88,9 @@ export default function Moment(props) {
       {/* <SearchBar /> */}
       <VideoPlayer videoInfo = {videoInfo} setVideoInfo={setVideoInfo} state={state} setState={setState}/>
       <MomentBar videoInfo = {videoInfo} setVideoInfo={setVideoInfo}/>
+      
+      <AutoButton setVideoInfo={setVideoInfo} />
+      
       { !props.oldVideo &&
         <>
           <Save 
