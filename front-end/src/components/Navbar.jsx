@@ -6,7 +6,7 @@ import useApplicationData from '../hooks/useApplicationData';
 import NavbarItem from './NavbarItem';
 import Logout from './Login/Logout';
 
-import './stylesheets/Navbar.css';
+import './stylesheets/Navbar.scss';
 
 export default function Navbar(props) {
 
