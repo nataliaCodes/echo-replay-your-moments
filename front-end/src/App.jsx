@@ -35,7 +35,7 @@ function App() {
       <React.StrictMode>
       <Router>
         <div className="App">
-          <Header />
+          <Header cookies={cookies} />
           <Navbar />
           {state.userId && <div>user: {state.userId}</div>}
           <Switch>
