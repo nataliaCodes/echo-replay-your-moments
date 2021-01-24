@@ -16,6 +16,7 @@ export default function Moment(props) {
 
   const { state, setState, cookies } = props;
   const stateDuration = state.duration;
+  console.log('stateDuration :', stateDuration);
   
   // console.log("oldVideo:",props.oldVideo)
   console.log("state on Moment:",state)
@@ -106,7 +107,7 @@ export default function Moment(props) {
           setState={setState} />
         </>
       }
-      <NewMoment videoInfo = {videoInfo} setVideoInfo={setVideoInfo} cookies={cookies} videoDBid={state.selectedVidId} />
+      <NewMoment videoInfo = {videoInfo} setVideoInfo={setVideoInfo} cookies={cookies} videoDBid={state.selectedVidId} state={state} />
       <EditDelete videoInfo = {videoInfo} setVideoInfo={setVideoInfo} state={state} setSate={setState} />
     </div>
   );

@@ -18,7 +18,7 @@ export default function TogglingEditForm(props) {
 
     setStart(e.target.value);
     const newStart = e.target.value;
-    setInterval({...interval, start: newStart});
+    if (!props.onMoments) {setInterval({...interval, start: newStart})};
 
     if (e.target.value.length < 8 || e.target.value.length > 8) {
       setTimeAlert(true)
@@ -34,7 +34,7 @@ export default function TogglingEditForm(props) {
 
     setEnd(e.target.value);
     const newEnd = e.target.value;
-    setInterval({...interval, end: newEnd});
+    if (!props.onMoments) {setInterval({...interval, end: newEnd})};
 
     if (e.target.value.length < 8 || e.target.value.length > 8) {
       setTimeAlert(true)

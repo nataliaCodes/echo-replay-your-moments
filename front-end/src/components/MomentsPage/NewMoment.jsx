@@ -6,7 +6,7 @@ import TogglingEditForm from '../shared/TogglingEditForm';
 
 export default function Moment(props) {
 
-  const { videoInfo, setVideoInfo, videoDBid, cookies } = props;
+  const { state, videoInfo, setVideoInfo, videoDBid, cookies } = props;
 
   //state for the form toggled by 'Add moment'
   const [showForm, setShowForm] = useState(false);
@@ -59,7 +59,8 @@ export default function Moment(props) {
           value={videoInfo.newMoment}
           onMoments={true}
           defaultStart={hrTime(videoInfo.startTime)}
-          defaultEnd={hrTime(videoInfo.endTime)}
+          // defaultEnd={hrTime(props.state.duration)}
+          defaultEnd={videoInfo.endTime ? hrTime(videoInfo.endTime) : ""}
           // interval={interval}
           // setInterval={setInterval}
           onChange={(e) => setVideoInfo({...videoInfo, newMoment: e.target.value})}
