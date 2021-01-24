@@ -12,9 +12,11 @@ export default function YTplayer(props) {
   const videoOnReady=(event) =>{
     // access to player in all event handlers via event.target
     const player = event.target;
+    player.playVideo()
+    player.seekTo(props.videoInfo.startTime, true)
     
-    // player.setLoop(true)
-    // console.log("Video Duration",player.getDuration())
+    player.setLoop(true)
+    console.log("Video Duration",player.getDuration())
     let vd = player.getDuration()
     //set alert with duration is null
     if (vd <= 0) {
@@ -26,6 +28,7 @@ export default function YTplayer(props) {
     props.setVideoInfo(prev=>({...prev, duration: vd, defaultEnd: vd}))
     
   }
+
   const videoOnPlay=(event) =>{
     // access to player in all event handlers via event.target
     const player = event.target;
@@ -36,7 +39,7 @@ export default function YTplayer(props) {
     const player = event.target;
     player.seekTo(props.videoInfo.startTime, true)
     //stops the autoplay
-    if(props.videoInfo.autoplay === 0){
+    if(props.videoInfo.loop === 0){
       player.pauseVideo()
     }
   };
@@ -47,6 +50,7 @@ export default function YTplayer(props) {
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: props.videoInfo.autoplay,
+      // autoplay: 1,
       loop: props.videoInfo.loop,
       start: props.videoInfo.startTime,
       end: props.videoInfo.endTime

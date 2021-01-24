@@ -34,7 +34,7 @@ export default function PasteBar(props){
           aria-label="Video Urls"
         />
         <InputGroup.Append>
-          <Button type="submit" value={url} variant="outline-secondary" >Click</Button>
+          <Button type="submit" value={url} variant="outline-secondary" >Submit</Button>
         </InputGroup.Append>
       </InputGroup>
     </Form>

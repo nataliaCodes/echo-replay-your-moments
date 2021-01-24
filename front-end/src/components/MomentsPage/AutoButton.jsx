@@ -10,13 +10,13 @@ export default function SwitchButton(props) {
     if(toggle){
       setToggle(false);
       setChecked(true);
-      setVideoInfo((prev)=>({...prev, autoplay: 1}));
+      setVideoInfo((prev)=>({...prev, loop: 1}));
       console.log("ON")
     }
     if(!toggle){
       setToggle(true);
       setChecked(false);
-      setVideoInfo((prev)=>({...prev, autoplay: 0}));
+      setVideoInfo((prev)=>({...prev, loop: 0}));
       console.log("OFF")
     }
   };
@@ -24,7 +24,7 @@ export default function SwitchButton(props) {
   return (
 
     <BootstrapSwitchButton
-      checked={ckecked}
+      // checked={ckecked}
       onlabel='AUTO'
       offlabel='OFF'
       onChange={() => handleOnChange()}
