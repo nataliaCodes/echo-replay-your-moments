@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import VideoPlayer from '../VideoPlayer';
-import Button from '../shared/Button';
-import EditDelete from './EditDeleteListMoments';
+import MomentsList from './MomentsList';
 import MomentBar from '../shared/MomentBar';
 import NewMoment from './NewMoment';
 import Save from './Save';
@@ -106,7 +105,7 @@ export default function Moment(props) {
         </>
       }
       <NewMoment videoInfo = {videoInfo} setVideoInfo={setVideoInfo} cookies={cookies} videoDBid={state.selectedVidId} state={state} setState={setState} />
-      <EditDelete videoInfo = {videoInfo} setVideoInfo={setVideoInfo} state={state} setSate={setState} />
+      <MomentsList videoInfo = {videoInfo} setVideoInfo={setVideoInfo} state={state} setSate={setState} />
     </div>
   );
 }

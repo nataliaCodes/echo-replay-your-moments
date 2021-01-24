@@ -10,52 +10,12 @@ export default function List(props) {
   const { videoInfo, setVideoInfo, state, setState } = props;
   const moments = videoInfo.moments;
 
-  //state for the toggling form
+  //state for the selected moment
   const [ momName, setMomName ] = useState("");
-  const [ editMode, setEditMode ] = useState(null);
-
-  //sets edit mode to current form and value to name extracted from state
-  const setMode = (key, mom, start, end) => {
-    setEditMode(key);
-    setMomName(mom);
-    setInterval({start, end});
-  };
 
   //state of delete alert
   const [showAlert, setShowAlert] = useState(false);
   const [alertMom, setAlertMom] = useState(null);
-
-  //state set by the TogglingEditForm
-  const [ interval, setInterval ] = useState(null);
-
-  const handleSave = (newValue, oldValue, interval) => {
-    
-    setEditMode(null);
-    
-    //find moment that is being changed and extract its id
-    const updated = moments.filter(moment => moment.label === oldValue)[0];
-    const id = updated.moment_id;
-
-    //send update request to backend
-    return axios.put('http://localhost:3001/api/moments', { id, newValue, interval })
-    .then(response => {
-      console.log('response from be :', response.data);
-      const { start_time, end_time } = response.data[0];
-
-      const newMoment = { moment_id: id, label: newValue, start_time: start_time, end_time: end_time};
-
-      moments.forEach((mom, i) => {
-        if(mom.moment_id === newMoment.moment_id) {
-          moments[i] = newMoment;
-        };
-      });
-
-      setVideoInfo({...videoInfo, moments});
-
-    })
-    .catch(err => { console.log('error:', err) })
-      
-  };
 
   const handleDelete = (momName) => {
     
@@ -95,8 +55,6 @@ export default function List(props) {
     return new Date(seconds * 1000).toISOString().substr(11, 8);
   };
 
-
-
   //render list of moments dynamically
   const momentsList = moments.map(moment => {
 
@@ -108,33 +66,9 @@ export default function List(props) {
     return (
 
       <div key={key} style={{border: "1px solid gray", padding: ".5em"}}>
-        {/* show moment name when edit mode is not active for current element */}
-        {editMode !== key && <h6>{name}:  {start} - {end}</h6>}
-        {/* on edit mode active for current element show edit form */}
-        {editMode === key ? (
-          <TogglingEditForm
-            value={momName}
-            name="moment-name"
-            placeholder="Moment name"
-            onMoments={true}
-            interval={interval}
-            setInterval={setInterval}
-            start={videoInfo.startTime}
-            end={videoInfo.endTime}
-            // start={start}
-            // end={end}
-            onCancel={() => setEditMode(null)}
-            onChange={(e) => setMomName(e.target.value)}
-            onSave={(e) => handleSave(momName, name, interval)}
-          />
-        ) :
-          // else show the buttons
-          (<>
-            <Button onClick={() => handlePlay(moment.start_time, moment.end_time)}>Play</Button>
-            <Button onClick={() => setMode(key, name, start, end)}>Edit</Button>
-            <Button onClick={() => handleAlert(name)}>Delete</Button>
-          </>)
-        }
+        <h6>{name}:  {start} - {end}</h6>
+        <Button onClick={() => handlePlay(moment.start_time, moment.end_time)}>Play</Button>
+        <Button onClick={() => handleAlert(name)}>Delete</Button>
       </div>
     );
 

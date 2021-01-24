@@ -9,10 +9,6 @@ import Button from '../shared/Button';
 export default function Moment(props) {
 
   const { videoInfo, setVideoInfo, videoDBid, cookies, state, setState } = props;
-  console.log('state newmoment :', state);
-  console.log('defaultEnd :', videoInfo.defaultEnd);
-  console.log('videoInfo newmoment :', videoInfo);
-  console.log('videoDBid :', videoDBid);
 
   //state for the form toggled by 'Add moment'
   const [showForm, setShowForm] = useState(false);
@@ -20,11 +16,11 @@ export default function Moment(props) {
   //state for the alert confirming creation
   const [showAlert, setShowAlert] = useState(false);
 
-
   const handleSave = (newValue, vidId) => {
 
     setShowForm(false);
     setShowAlert(true);
+    setVideoInfo({...videoInfo, newMoment: ""});
 
     const userId = cookies.user;
     let start = videoInfo.startTime;
@@ -49,10 +45,6 @@ export default function Moment(props) {
     }, 3500);
     return () => clearTimeout(timer);
   }, [showAlert]);
-
-  const hrTime = seconds => {
-    return new Date(seconds * 1000).toISOString().substr(11, 8);
-  };
 
 
   return (
