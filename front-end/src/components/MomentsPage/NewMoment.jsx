@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import Button from '../shared/Button';
-import TogglingEditForm from '../shared/TogglingEditForm';
+import AddMomentForm from './AddMomentForm';
 
 export default function Moment(props) {
 
@@ -52,7 +52,8 @@ export default function Moment(props) {
     <div className="Moment">
       {!showForm && <Button onClick={() => setShowForm(true)}>Add moment</Button>}
       <br /><br />
-      {showForm && (
+      <AddMomentForm />
+      {/* {showForm && (
         <TogglingEditForm
           placeholder="Insert moment name"
           name="new-moment"
@@ -67,7 +68,7 @@ export default function Moment(props) {
           onSave={() => handleSave(videoInfo.newMoment, videoDBid)}
           onCancel={() => setShowForm(false)}
         />
-      )}
+      )} */}
     </div>
   );
 }
