@@ -10,4 +10,30 @@
   /* Desktop view */
   @media only screen and (min-width: 1024px) {
 
+    .App {
+      display: flex;
+    }
+
+    .Navbar {
+      display: flex;
+      flex-direction: column;
+      border: 2px solid blue;
+    }
+
+    .Home {
+      border: 2px solid orange;
+    }
+
+    .Uservideos {
+      border: 2px solid purple;
+    }
+
+    .Categories {
+      border: 2px solid pink;
+    }
+
+    .Moments {
+      border: 2px solid green;
+    }
+
   };

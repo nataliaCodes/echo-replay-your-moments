@@ -83,7 +83,7 @@ export default function Moment(props) {
     // console.log("videoInfo after axios", videoInfo)
     
   return (
-    <div className="Moment">
+    <div className="Moments">
       {/* <SearchBar /> */}
       <VideoPlayer videoInfo = {videoInfo} setVideoInfo={setVideoInfo} state={state} setState={setState} />
       <MomentBar videoInfo = {videoInfo} setVideoInfo={setVideoInfo}/>
