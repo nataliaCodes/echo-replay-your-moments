@@ -31,7 +31,7 @@ export default function Moment(props) {
       categories: [],
       title: '',
       moments: [],
-      autoplay: null,
+      autoplay: 1,
       loop: 0
     }
   )
