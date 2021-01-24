@@ -62,9 +62,9 @@ export default function YTplayer(props) {
     return (
       <div>
         <Alert variant="warning" onClose={() => setShow(false)} dismissible>
-          <Alert.Heading>Video is a Live Stream</Alert.Heading>
+          <Alert.Heading>Video not Supported</Alert.Heading>
           <p>
-            Sorry, Moment actions will not work with Live Broadcast.
+            Sorry, Moment actions will not work, please select a different video.
           </p>
         </Alert>
         <YouTube 
