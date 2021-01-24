@@ -119,8 +119,10 @@ export default function List(props) {
             onMoments={true}
             interval={interval}
             setInterval={setInterval}
-            start={start}
-            end={end}
+            start={moment.start_time}
+            end={moment.end_time}
+            // start={start}
+            // end={end}
             onCancel={() => setEditMode(null)}
             onChange={(e) => setMomName(e.target.value)}
             onSave={(e) => handleSave(momName, name, interval)}

@@ -60,12 +60,12 @@ export default function TogglingEditForm(props) {
         {props.onMoments && (
           <>
             <FormControl
-              value={props.defaultStart}
+              value={props.start}
               name="start-time"
               onChange={(e) => handleStartChange(e)}
             />
             <FormControl
-              value={props.defaultEnd}
+              value={props.end}
               name="end-time"
               onChange={(e) => handleEndChange(e)}
             />
