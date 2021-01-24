@@ -21,27 +21,27 @@ export default function Moment(props) {
   const [showAlert, setShowAlert] = useState(false);
 
 
-  // const handleSave = (newValue, vidId) => {
+  const handleSave = (newValue, vidId) => {
 
-  //   setShowForm(false);
-  //   setShowAlert(true);
+    setShowForm(false);
+    setShowAlert(true);
 
-  //   const userId = cookies.user;
-  //   let start = videoInfo.startTime;
-  //   let end = videoInfo.endTime;
+    const userId = cookies.user;
+    let start = videoInfo.startTime;
+    let end = videoInfo.endTime;
 
 
-  //   //send data to back-end
-  //   return axios.post('http://localhost:3001/api/moments', { userId, vidId, newValue, start, end})
-  //     .then(response => {
+    //send data to back-end
+    return axios.post('http://localhost:3001/api/moments', { userId, vidId, newValue, start, end})
+      .then(response => {
 
-  //       console.log('response from addMoment :', response.data);
-  //       videoInfo.moments.push(response.data)
+        console.log('response from addMoment :', response.data);
+        videoInfo.moments.push(response.data)
 
-  //       setVideoInfo({...videoInfo, moments: videoInfo.moments});
-  //     })
-  //     .catch(err => { console.log('error:', err) })
-  // };
+        setVideoInfo({...videoInfo, moments: videoInfo.moments});
+      })
+      .catch(err => { console.log('error:', err) })
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -50,10 +50,14 @@ export default function Moment(props) {
     return () => clearTimeout(timer);
   }, [showAlert]);
 
+  const hrTime = seconds => {
+    return new Date(seconds * 1000).toISOString().substr(11, 8);
+  };
+
 
   return (
     <div className="Moment">
-      {showAlert && <small>Succsessfully created!</small>}
+      {showAlert && <small>Succsessfully created!</small>}<br />
       {!showForm && <Button onClick={() => setShowForm(true)}>Add moment</Button>}
       <br /><br />
       {showForm && <>
@@ -77,7 +81,7 @@ export default function Moment(props) {
             onChange={e => setVideoInfo({ ...videoInfo, endTime: e.target.value })}
           />
           <InputGroup.Append>
-            <Button variant="outline-secondary" onClick={props.onSave}>Save</Button>
+            <Button variant="outline-secondary" onClick={() => handleSave(videoInfo.newMoment, videoDBid)}>Save</Button>
             <Button variant="outline-secondary" onClick={() => setShowForm(false)}>Cancel</Button>
           </InputGroup.Append>
         </InputGroup>

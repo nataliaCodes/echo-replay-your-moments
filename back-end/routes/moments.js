@@ -48,8 +48,6 @@ module.exports = ({
     const { newValue, start, end, userId, vidId } = req.body;
     console.log('request in post route :', req.body);
 
-    //label, start, end, userId, videoId
-
     addMoment(newValue, start, end, userId, vidId)
       .then(response => {
         console.log('addMoment response :', response);
