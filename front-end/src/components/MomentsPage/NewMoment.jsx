@@ -14,8 +14,6 @@ export default function Moment(props) {
   console.log('videoInfo newmoment :', videoInfo);
   console.log('videoDBid :', videoDBid);
 
-  videoInfo.endTime = videoInfo.endTime === videoInfo.duration ? videoInfo.endTime : state.videoDuration;
-
   //state for the form toggled by 'Add moment'
   const [showForm, setShowForm] = useState(false);
 
