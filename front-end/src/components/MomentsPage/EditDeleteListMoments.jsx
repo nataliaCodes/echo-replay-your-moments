@@ -9,7 +9,6 @@ export default function List(props) {
 
   const { videoInfo, setVideoInfo, state, setState } = props;
   const moments = videoInfo.moments;
-  console.log('moments :', moments);
 
   //state for the toggling form
   const [ momName, setMomName ] = useState("");
@@ -120,8 +119,10 @@ export default function List(props) {
             onMoments={true}
             interval={interval}
             setInterval={setInterval}
-            start={start}
-            end={end}
+            start={videoInfo.startTime}
+            end={videoInfo.endTime}
+            // start={start}
+            // end={end}
             onCancel={() => setEditMode(null)}
             onChange={(e) => setMomName(e.target.value)}
             onSave={(e) => handleSave(momName, name, interval)}

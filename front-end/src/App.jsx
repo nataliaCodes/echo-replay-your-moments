@@ -6,7 +6,8 @@ import {
 } from "react-router-dom";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import './App.scss';
+import './stylesheets/Layout.scss';
 
 //hooks
 import useApplicationData from './hooks/useApplicationData';
@@ -35,12 +36,13 @@ function App() {
       <React.StrictMode>
       <Router>
         <div className="App">
-          <Header />
-          <Navbar />
-          {state.userId && <div>user: {state.userId}</div>}
+          <div classname="Sidebar">
+            <Header cookies={cookies} />
+            <Navbar />
+          </div>
           <Switch>
             <Route exact path="/">
-                <Home onSearch={onSearch} onVideoSelected={onVideoSelected} data={state.videoMetaInfo} setSelectedVideoID={setSelectedVideoID} />
+              <Home onSearch={onSearch} onVideoSelected={onVideoSelected} data={state.videoMetaInfo} setSelectedVideoID={setSelectedVideoID} />
             </Route>
             <Route exact path="/videos">
               <UserVideos state={state} setState={setState} onVideoSelected={onVideoSelected} selectedVideoID = {state.selectedVideoID}/>

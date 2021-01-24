@@ -64,7 +64,7 @@ export default function UserVideos(props) {
 
   return (
     <>
-      <div className="user-videos">
+      <div className="Uservideos">
         <h4>All User Videos</h4>
         {/* <SearchBar /> */}
         <Alert show={showAlert} variant="danger" style={{width: "20em"}}>

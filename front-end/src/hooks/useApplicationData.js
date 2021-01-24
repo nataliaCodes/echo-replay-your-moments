@@ -25,8 +25,8 @@ const useApplicationData = () => {
     categories: null,
     videoMetaInfo: [],
     selectedVideoID: null,
-    startTime: 70,
-    endTime: 100,
+    startTime: 0,
+    endTime: null,
     videoDuration: null,
     oldVideo: false,
     catRedirect: null

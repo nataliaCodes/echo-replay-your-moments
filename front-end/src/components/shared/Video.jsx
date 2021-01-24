@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-// import "../stylesheets/_video.css";
+// import "../stylesheets/_video.scss";
 function selectVideo(videoIdObj, onVideoSelected) {
   onVideoSelected(videoIdObj.videoId);
 }

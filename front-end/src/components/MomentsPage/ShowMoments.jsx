@@ -15,7 +15,6 @@ import AutoButton from './AutoButton'
 export default function Moment(props) {
 
   const { state, setState, cookies } = props;
-  const stateDuration = state.duration;
   
   // console.log("oldVideo:",props.oldVideo)
   console.log("state on Moment:",state)
@@ -25,7 +24,7 @@ export default function Moment(props) {
       duration: null,
       newMoment: "",
       startTime: 0,
-      endTime: stateDuration,
+      endTime: state.videoDuration,
       selectedVideoID: props.selectedVideoID,
       selectedCat: "Categories",
       categories: [],
@@ -45,7 +44,7 @@ export default function Moment(props) {
     })
     .then((response)=>{
       // console.log("fromDBmoms",response.data)
-      setVideoInfo((prev)=>({...prev, moments: response.data, startTime: 0, endTime: state.duration }))
+      setVideoInfo((prev)=>({...prev, moments: response.data, startTime: 0 }))
     })
     .catch(err => console.log(err));
   };
@@ -84,9 +83,9 @@ export default function Moment(props) {
     // console.log("videoInfo after axios", videoInfo)
     
   return (
-    <div className="Moment">
+    <div className="Moments">
       {/* <SearchBar /> */}
-      <VideoPlayer videoInfo = {videoInfo} setVideoInfo={setVideoInfo} state={state} setState={setState}/>
+      <VideoPlayer videoInfo = {videoInfo} setVideoInfo={setVideoInfo} state={state} setState={setState} />
       <MomentBar videoInfo = {videoInfo} setVideoInfo={setVideoInfo}/>
       
       <AutoButton setVideoInfo={setVideoInfo} />
@@ -106,7 +105,7 @@ export default function Moment(props) {
           setState={setState} />
         </>
       }
-      <NewMoment videoInfo = {videoInfo} setVideoInfo={setVideoInfo} cookies={cookies} videoDBid={state.selectedVidId} />
+      <NewMoment videoInfo = {videoInfo} setVideoInfo={setVideoInfo} cookies={cookies} videoDBid={state.selectedVidId} state={state} setState={setState} />
       <EditDelete videoInfo = {videoInfo} setVideoInfo={setVideoInfo} state={state} setSate={setState} />
     </div>
   );
