@@ -17,7 +17,7 @@ export default function Moment(props) {
   const { state, setState, cookies } = props;
   
   // console.log("oldVideo:",props.oldVideo)
-  // console.log("state on Moment:",state)
+  console.log("state on Moment:",state)
 
   const [videoInfo, setVideoInfo] = useState(
     {
@@ -85,7 +85,7 @@ export default function Moment(props) {
   return (
     <div className="Moment">
       {/* <SearchBar /> */}
-      <VideoPlayer videoInfo = {videoInfo} setVideoInfo={setVideoInfo} />
+      <VideoPlayer videoInfo = {videoInfo} setVideoInfo={setVideoInfo} state={state} setState={setState} />
       <MomentBar videoInfo = {videoInfo} setVideoInfo={setVideoInfo}/>
       
       <AutoButton setVideoInfo={setVideoInfo} />
@@ -105,7 +105,7 @@ export default function Moment(props) {
           setState={setState} />
         </>
       }
-      <NewMoment videoInfo = {videoInfo} setVideoInfo={setVideoInfo} cookies={cookies} videoDBid={state.selectedVidId} />
+      <NewMoment videoInfo = {videoInfo} setVideoInfo={setVideoInfo} cookies={cookies} videoDBid={state.selectedVidId} state={state} setState={setState} />
       <EditDelete videoInfo = {videoInfo} setVideoInfo={setVideoInfo} state={state} setSate={setState} />
     </div>
   );

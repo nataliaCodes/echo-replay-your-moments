@@ -8,10 +8,13 @@ import Button from '../shared/Button';
 
 export default function Moment(props) {
 
-  const { videoInfo, setVideoInfo, videoDBid, cookies } = props;
+  const { videoInfo, setVideoInfo, videoDBid, cookies, state, setState } = props;
+  console.log('state newmoment :', state);
   console.log('defaultEnd :', videoInfo.defaultEnd);
   console.log('videoInfo newmoment :', videoInfo);
   console.log('videoDBid :', videoDBid);
+
+  videoInfo.endTime = videoInfo.endTime === videoInfo.duration ? videoInfo.endTime : state.videoDuration;
 
   //state for the form toggled by 'Add moment'
   const [showForm, setShowForm] = useState(false);
@@ -72,7 +75,7 @@ export default function Moment(props) {
           <FormControl
             placeholder="HH:MM:SS"
             name="end-time"
-            value={videoInfo.defaultEnd ? videoInfo.defaultEnd : videoInfo.endTime}
+            value={videoInfo.endTime}
             onChange={e => setVideoInfo({ ...videoInfo, endTime: e.target.value })}
           />
           <InputGroup.Append>

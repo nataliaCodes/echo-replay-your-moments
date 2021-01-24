@@ -5,6 +5,8 @@ import Alert from 'react-bootstrap/Alert';
 
 export default function YTplayer(props) {
 
+  const { state, setState } = props;
+
   const [show, setShow] = useState(false);
 
   const videoOnReady=(event) =>{
@@ -18,6 +20,8 @@ export default function YTplayer(props) {
     if (vd <= 0) {
       setShow(true)
     };
+
+    setState({...state, videoDuration: vd});
 
     props.setVideoInfo(prev=>({...prev, duration: vd, defaultEnd: vd}))
     
