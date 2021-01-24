@@ -6,6 +6,7 @@ import SearchBar from '../shared/SearchBar';
 
 import Card from 'react-bootstrap/Card';
 import Button from '../shared/Button';
+import Modal from 'react-bootstrap/Modal';
 import Alert from 'react-bootstrap/Alert';
 
 export default function UserVideos(props) {
@@ -50,13 +51,14 @@ export default function UserVideos(props) {
       <>
        <Card key={index} className='userVideos' style={{ width: "30em" }} onClick={() => videoOnClick()}>
           <Link to="/moments">
-            <Card.Header>
-              <h6>{video.title}</h6>
+            <Card.Header closeButton>
+              <h5>{video.title}</h5>
             </Card.Header>
             <Card.Img variant="bottom" src={thumbnail} alt="thumbnail" />
           </Link>
           <Button onClick={()=>handleAlert(video)}>Delete</Button>
         </Card>
+        <br></br>
       </>
       
     );
@@ -68,33 +70,27 @@ export default function UserVideos(props) {
         <h4>All User Videos</h4>
         {/* <SearchBar /> */}
 
-        <Alert show={showAlert} variant="danger" style={{width: "20em"}}>
-          <Alert.Heading>Delete Video</Alert.Heading>
-          {alertVid && <p>"{alertVid.title}"</p>}
-          <p>Will be removed and cannot be undone. Proceed?</p>
-          <hr />
-          <div className="d-flex justify-content-end">
-            <Button onClick={() => setShowAlert(false)}>Cancel</Button>
-            <Button onClick={() => handleDelete(alertVid)} variant="outline-danger">
-              Proceed
-          </Button>
-          </div>
-        </Alert>
-
-        {/* <Modal show={showAlert} onHide={() => setShowAlert(false)}>
+        <Modal show={showAlert} onHide={() => setShowAlert(false)}> 
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>Delete Video</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+               
+          <Modal.Body>
+          <Alert show={true} variant="danger">            
+            <p>Video:<h4>{alertVid.title}</h4></p>
+            <p>Will be removed and cannot be undone. Proceed?</p>
+            </Alert>
+          </Modal.Body>          
+
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
+            <Button variant="secondary" onClick={() => setShowAlert(false)}>
               Close
             </Button>
-            <Button variant="primary" onClick={handleClose}>
-              Save Changes
+            <Button variant="primary" onClick={() => handleDelete(alertVid)}>
+            Proceed
             </Button>
           </Modal.Footer>
-        </Modal> */}
+        </Modal>
 
         <ul>{videoList}</ul>
       </div>
