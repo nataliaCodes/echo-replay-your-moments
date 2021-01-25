@@ -43,7 +43,7 @@ function App() {
           </div>
           <Switch>
             <Route exact path="/">
-              <Home onSearch={onSearch} onVideoSelected={onVideoSelected} data={state.videoMetaInfo} setSelectedVideoID={setSelectedVideoID} />
+              <Home onSearch={onSearch} onVideoSelected={onVideoSelected} data={state.videoMetaInfo} setSelectedVideoID={setSelectedVideoID} setState={setState}/>
             </Route>
             <Route exact path="/videos">
               <UserVideos state={state} setState={setState} onVideoSelected={onVideoSelected} selectedVideoID = {state.selectedVideoID}/>

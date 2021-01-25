@@ -97,14 +97,22 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
       handleClose();
       return axios.post('/api/videos', { videoSaveInfo })
         .then((response) => {
-          console.log("****res fromSERVER", response.data.response.id);
-          console.log("****res state", state.selectedVideoID);
+          console.log("**FIRSTres fromSERVER", response.data.response.id);
+          // console.log("****res state", state.selectedVideoID);
    
           const youtubeId = response.data.info.videoSaveInfo.link .slice(32, 43);
           console.log('youtubeId :', youtubeId);
        
-
           setState((prev) => ({ ...prev, selectedVideoID: youtubeId, selectedVidId: response.data.response.id, oldVideo: true}));
+
+          return axios.get('api/videos')
+            .then((response) => {
+              // console.log("**SECONDres fromSERVER",response.data.response)
+              setState((prev) => ({ ...prev, videos: response.data.response}));
+            })
+            .catch(err => console.log(err));
+
+            
         });
     }
 
