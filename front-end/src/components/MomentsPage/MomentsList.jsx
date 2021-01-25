@@ -28,7 +28,7 @@ export default function List(props) {
     //create updated array for back-end
     const newMoments = moments.filter(moment => moment.moment_id !== id)
 
-    setVideoInfo({...videoInfo, moments: moments.filter(moment => moment.moment_id !== id)})
+    setVideoInfo({...videoInfo, moments: newMoments})
 
     //send data to back-end
     return axios.delete('http://localhost:3001/api/moments', { data: { id } })
@@ -56,7 +56,7 @@ export default function List(props) {
   };
 
   //render list of moments dynamically
-  const momentsList = moments.map(moment => {
+  const momentsList = moments.sort((a, b) => b.moment_id - a.moment_id).map(moment => {
 
     const key = moment.moment_id;
     const name = moment.label;

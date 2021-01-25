@@ -23,7 +23,7 @@ export default function Moment(props) {
       duration: null,
       newMoment: "",
       startTime: 0,
-      endTime: state.videoDuration,
+      endTime: 0,
       selectedVideoID: props.selectedVideoID,
       selectedCat: "Categories",
       categories: [],

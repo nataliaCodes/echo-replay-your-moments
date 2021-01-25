@@ -21,7 +21,7 @@ export default function Moment(props) {
 
     setShowForm(false);
     setShowAlert(true);
-    setVideoInfo({...videoInfo, newMoment: ""});
+    // setVideoInfo({...videoInfo, newMoment: ""});
 
     const userId = cookies.user;
     let start = videoInfo.startTime;
@@ -35,7 +35,7 @@ export default function Moment(props) {
         console.log('response from addMoment :', response.data);
         videoInfo.moments.push(response.data)
 
-        setVideoInfo({...videoInfo, moments: videoInfo.moments});
+        setVideoInfo({...videoInfo, newMoment: "", moments: videoInfo.moments});
       })
       .catch(err => { console.log('error:', err) })
   };
