@@ -8,15 +8,16 @@ export default function Home(props) {
   return (
 
     <div className="Home">
-      <h3>Welcome message</h3>
-      <div class="link-input">
-        <PasteBar setSelectedVideoID={props.setSelectedVideoID} />
-        <br></br>
-        <p>- OR -</p>
-        <SearchBar onSearch={props.onSearch} />
+      <div className="content-container">
+        <h3>Welcome message</h3>
+        <div class="link-input">
+          <PasteBar setSelectedVideoID={props.setSelectedVideoID} />
+          <br></br>
+          <p>- OR -</p>
+          <SearchBar onSearch={props.onSearch} />
+        </div>
+          <VideoList onVideoSelected={props.onVideoSelected} data={props.data} />
       </div>
-        <VideoList onVideoSelected={props.onVideoSelected} data={props.data} />
-
     </div>
 
   );

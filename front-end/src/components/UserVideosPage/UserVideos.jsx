@@ -63,7 +63,7 @@ export default function UserVideos(props) {
 
   return (
     <>
-      <div className="Uservideos">
+      <div className="UserVideos">
         <h4>All User Videos</h4>
         {/* <SearchBar /> */}
 

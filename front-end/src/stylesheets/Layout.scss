@@ -21,6 +21,16 @@
       a {
         color: black;
       }
+
+      .content-container {
+        border: 2px solid red;
+        border: 1px solid #ECECEC;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        width: 90%;
+        height: 100%;
+        padding: .5em;
+
+      }
     }
 
     .Sidebar {
@@ -116,25 +126,27 @@
         width: 50em !important;
       }
       
-      .search-result a{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        flex-direction: row;
+      // .search-result a{
+      //   display: flex;
+      //   flex-wrap: wrap;
+      //   justify-content: space-around;
+      //   flex-direction: row;
         
-      }
+      // }
     }
 
-    .Uservideos {
+    .UserVideos {
       border: 2px solid purple;
       flex-grow: 2;
 
-      .user-video-list{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        flex-direction: row;
-      }
+      // .user-video-list{
+      //   border: 2px solid blue;
+
+      //   display: flex;
+      //   flex-wrap: wrap;
+      //   justify-content: space-around;
+      //   flex-direction: row;
+      // }
     }
 
     .Categories {
@@ -145,15 +157,6 @@
       align-items: center;
 
       padding-top: 6.9em;
-
-      .content-container {
-        border: 1px solid #ECECEC;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        width: 90%;
-        height: 100%;
-        padding: .5em;
-
-      }
 
       .nav {
         align-self: flex-start;
