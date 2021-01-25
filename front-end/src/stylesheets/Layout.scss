@@ -12,16 +12,32 @@
 
     .App {
       display: flex;
+
+      .divider {
+        border-bottom: 1px solid black;
+        width: 90%;
+      }
+
+      a {
+        color: black;
+      }
+    }
+
+    .Sidebar {
+      width: 20em;
+      height: 100vh;
+      padding: .5em;
+      background-color: #F7F7F7;
+      border: 1px solid #ECECEC;
+      border-radius: 0 25px 25px 0;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     .Header {
-      border: 2px solid red;
-
+      // border: 1px solid green;
       display: flex;
       flex-direction: column;
       align-items: center;
-
-      width: 20em;
 
       .logo {
         text-align: left;
@@ -32,46 +48,64 @@
           font-family: 'Fredoka One', cursive;
           font-size: 5em;
           padding-bottom: 0;
-          margin-bottom: -0.1em;
 
           #play-icon {
-            font-size: .65em;
+            // border: 1px solid blue;
+            font-size: .55em;
+            margin-bottom: .1em;
           }
         }
 
         h6 {
-          padding-top: 0;
-          margin-top: 0;
+          margin-top: -0.7em;
         }
-      }
-
-      .divider {
-        border: 1px solid black;
-        width: 90%;
       }
 
       .user-info {
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-around;
         align-items: center;
 
         width: 90%;
-        padding: 1em .5em 1em 0;
+        padding: 1em 0 1em 0;
 
         h5 {
           padding: .5em .5em 0 0;
+        }
+
+        img {
+          filter: drop-shadow(.5rem 0 .4rem lightgray);
         }
       }
     }
 
     .Navbar {
-      display: flex;
-      flex-direction: column;
-      border: 2px solid blue;
+      // border: 1px solid blue;
+      padding: 0;
+      margin: 0 auto;
+
+      .navbar-expand-lg{
+        padding: 1.5em 0 0 0;
+        border: 0;
+        width: 100%;
+      }
+
+      #basic-Menu-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        margin: 0 auto;
+        padding: 0 0 0 1em;
+        width: 100%;
+
+        h4 {
+          padding: .5em 0 .5em 0;
+        }
+      }
     }
 
     .Home {
-      border: 2px solid orange;
     }
 
     .Uservideos {
