@@ -20,7 +20,7 @@ export default function Header(props) {
         {props.cookies.user ? <h5>Welcome, {currentUser && currentUser.first_name}!</h5> : ""}
         {props.cookies.user && currentUser && <img src={`https://ui-avatars.com/api/?name=${currentUser.first_name}+${currentUser.last_name}&background=FFE4B5&rounded=true`} alt="avatar" />}
       </div>
-      <div className="divider" />
+      {props.cookies.user && <div className="divider" />}
     </div>
 
   );

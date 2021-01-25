@@ -11,7 +11,7 @@ export default function ShowCategories(props) {
 
     <div className="ShowCategories">
 
-      <h4>Categories</h4>
+      {/* <h4>Categories</h4> */}
       {/* <Button onClick={props.onEdit}>
         Edit categories
       </Button> */}

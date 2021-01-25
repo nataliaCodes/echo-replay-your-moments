@@ -139,7 +139,18 @@
       .ShowCategories {
         border: 2px solid lime;
 
-        
+        .Accordion {
+          border: 2px solid crimson;
+
+          .card {
+            border-radius: 5px;
+            //set the color on the accordion here
+
+            .card-header{
+              border-radius: 5px;
+            }
+          }
+        }
 
       }
 
