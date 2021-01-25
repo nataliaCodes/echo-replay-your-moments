@@ -4,7 +4,7 @@ import Alert from 'react-bootstrap/Alert';
 import Modal from 'react-bootstrap/Modal';
 
 import Button from '../shared/Button';
-import TogglingEditForm from '../shared/TogglingEditForm';
+import TogglingEditForm from './TogglingEditForm';
 
 export default function List(props) {
 

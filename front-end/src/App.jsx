@@ -17,9 +17,7 @@ import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Home from './components/HomePage/Home';
 import UserVideos from './components/UserVideosPage/UserVideos';
-import Videos from './components/SearchResults/Videos';
 import Categories from './components/Categories/Categories';
-import EditCategories from './components/Categories/EditCategories';
 import ShowMoments from './components/MomentsPage/ShowMoments';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
@@ -50,9 +48,6 @@ function App() {
             </Route>
             <Route exact path="/categories">
               <Categories state={state} setState={setState} cookies={cookies} onVideoSelected={onVideoSelected} selectedVideoID = {state.selectedVideoID} />
-            </Route>
-            <Route exact path="/search">
-              <Videos />
             </Route>
             <Route path="/moments">
                 <ShowMoments state={state} setState={setState} selectedVideoID = {state.selectedVideoID} momentsBySelectedVid={momentsBySelectedVid} categories={state.categories} oldVideo={state.oldVideo} categWithId={state.categWithId} selectedVidId={state.selectedVidId} cookies={cookies} />                             

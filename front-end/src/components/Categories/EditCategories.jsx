@@ -4,7 +4,7 @@ import Alert from 'react-bootstrap/Alert';
 
 import Button from '../shared/Button';
 import EditDelete from './EditDeleteListCategs';
-import TogglingEditForm from '../shared/TogglingEditForm';
+import TogglingEditForm from './TogglingEditForm';
 
 export default function EditCategories(props) {
 
