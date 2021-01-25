@@ -97,10 +97,15 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
       handleClose();
       return axios.post('/api/videos', { videoSaveInfo })
         .then((response) => {
-          console.log("FEres", response);
-          setState((prev) => ({ ...prev, new: +1 }));
-          history.push('/videos');
-          window.location.reload();
+          console.log("****res fromSERVER", response.data.response.id);
+          console.log("****res state", state.selectedVideoID);
+   
+          const youtubeId = response.data.info.videoSaveInfo.link .slice(32, 43);
+          console.log('youtubeId :', youtubeId);
+          
+          // history.push('/videos');
+          // window.location.reload();
+          setState((prev) => ({ ...prev, selectedVideoID: youtubeId, selectedVidId: response.data.response.id, oldVideo: true }));
         });
     }
 
@@ -147,7 +152,7 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
 
             <Alert show={showAlert} variant="danger">
               Please input Title and Select a Category.
-              </Alert>
+            </Alert>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>

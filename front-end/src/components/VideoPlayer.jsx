@@ -58,6 +58,8 @@ export default function YTplayer(props) {
     },
   };
 
+  console.log("VideoPLayer render state: ", state.selectedVideoID)
+
   if (show) {
     return (
       <div>

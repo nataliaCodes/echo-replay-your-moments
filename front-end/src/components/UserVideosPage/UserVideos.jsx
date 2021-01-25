@@ -35,7 +35,6 @@ export default function UserVideos(props) {
 
   };
 
-  //------------------------------------------------------------------//
   const videoList = videos && videos.map((video, index) => {
 
     const youtubeId = video.link.slice(32, 43);
