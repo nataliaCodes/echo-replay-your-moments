@@ -80,7 +80,8 @@ const useApplicationData = () => {
 
   };
 
-  const handleRegisterSubmit = () => {
+  const handleRegisterSubmit = e => {
+    e.preventDefault();
     
     //deconstruct values needed from state
     const { firstName, lastName, email, password, errors } = state;
@@ -129,7 +130,8 @@ const useApplicationData = () => {
     }
   }
 
-  const handleLoginSubmit = () => {
+  const handleLoginSubmit = e => {
+    e.preventDefault();
     
     //deconstruct values needed from state
     const { email, password } = state;

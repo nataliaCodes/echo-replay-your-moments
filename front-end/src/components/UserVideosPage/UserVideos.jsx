@@ -89,7 +89,7 @@ export default function UserVideos(props) {
             </Button>
           </Modal.Footer>
         </Modal>
-        <div class="user-video-list">
+        <div className="user-video-list">
           {videoList}
         </div>
       </div>

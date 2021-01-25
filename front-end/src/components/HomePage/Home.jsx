@@ -11,7 +11,7 @@ export default function Home(props) {
     <div className="Home">
       <div className="content-container">
         <h3>Welcome message</h3>
-        <div class="link-input">
+        <div className="link-input">
           <PasteBar setSelectedVideoID={setSelectedVideoID} setState={setState}/>
           <br></br>
           <p>- OR -</p>

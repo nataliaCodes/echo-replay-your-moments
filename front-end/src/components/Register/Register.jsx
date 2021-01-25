@@ -21,9 +21,9 @@ export default function Register(props) {
         {state.error && <Form.Text>{state.error}</Form.Text>}
       </div><br />
       <div div className="form">
-        <Form onSubmit={event => event.preventDefault()} noValidate>
+        <Form onSubmit={e => handleRegisterSubmit(e)} noValidate>
           <Form.Group controlId="first_name">
-            <Form.Label htmlFor="firstName">
+            <Form.Label>
               First name:&nbsp;&nbsp;
             </Form.Label>
             <Form.Control
@@ -35,7 +35,7 @@ export default function Register(props) {
             ></Form.Control>
           </Form.Group>
           <Form.Group controlId="last_name">
-            <Form.Label htmlFor="lastName">
+            <Form.Label>
               Last name:&nbsp;&nbsp;
             <Form.Control
                 type="text"
@@ -46,7 +46,7 @@ export default function Register(props) {
             </Form.Label>
           </Form.Group>
           <Form.Group controlId="formEmail">
-            <Form.Label htmlFor="email">
+            <Form.Label>
               Email:&nbsp;&nbsp;
             <Form.Control
                 type="email"
@@ -57,7 +57,7 @@ export default function Register(props) {
             </Form.Label>
           </Form.Group>
           <Form.Group controlId="formPassword">
-            <Form.Label htmlFor="password">
+            <Form.Label>
               Password:&nbsp;&nbsp;
             <Form.Control
                 type="password"
@@ -67,8 +67,8 @@ export default function Register(props) {
               ></Form.Control>
             </Form.Label>
           </Form.Group>
+        <Button type="submit" onClick={handleRegisterSubmit} onKeyPress={(e)=>{e.target.keyCode === 13 && e.preventDefault()}}>Register</Button>
         </Form>
-        <Button onClick={handleRegisterSubmit}>Register</Button>
       </div>
     </div>
 

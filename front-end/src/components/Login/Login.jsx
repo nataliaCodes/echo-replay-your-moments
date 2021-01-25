@@ -20,31 +20,30 @@ export default function Login(props) {
         {state.error && <Form.Text>{state.error}</Form.Text>}
       </div><br />
       <div className="form">
-        <Form onSubmit={event => event.preventDefault()} noValidate>
+        <Form onSubmit={e => handleLoginSubmit(e)}>
           <Form.Group controlId="formEmail">
-            <Form.Label htmlFor="email">
+            <Form.Label>
               Email:&nbsp;&nbsp;
               <Form.Control
                 type="email"
                 name="email"
                 onChange={handleFormChange}
-                noValidate
               ></Form.Control>
             </Form.Label>
           </Form.Group>
           <Form.Group controlId="formPassword">
-            <Form.Label htmlFor="password">
+            <Form.Label>
               Password:&nbsp;&nbsp;
               <Form.Control
                 type="password"
                 name="password"
                 onChange={handleFormChange}
-                noValidate
               ></Form.Control>
             </Form.Label>
           </Form.Group>
+          {/* <input variant="outline-dark" type="submit" name="log in" value="Log in" /> */}
+        <Button type="submit" onClick={handleLoginSubmit} onKeyPress={(e)=>{e.target.keyCode === 13 && e.preventDefault()}}>Log in</Button>
         </Form>
-        <Button onClick={handleLoginSubmit}>Log in</Button>
       </div>
     </div>
   );
