@@ -34,7 +34,6 @@
     }
 
     .Header {
-      // border: 1px solid green;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -50,7 +49,6 @@
           padding-bottom: 0;
 
           #play-icon {
-            // border: 1px solid blue;
             font-size: .55em;
             margin-bottom: .1em;
           }
@@ -80,7 +78,6 @@
     }
 
     .Navbar {
-      // border: 1px solid blue;
       padding: 0;
       margin: 0 auto;
 
@@ -106,6 +103,7 @@
     }
 
     .Home {
+      border: 2px solid orange;
     }
 
     .Uservideos {
@@ -114,6 +112,14 @@
 
     .Categories {
       border: 2px solid pink;
+      flex-grow: 2;
+
+      .ShowCategories {
+        border: 2px solid lime;
+
+        
+
+      }
 
       .EditCategories {
         border: 2px solid yellow;

@@ -48,7 +48,6 @@ export default function EditCategories(props) {
     <div className="EditCategories">
       <h4>Edit categories</h4>
       <Button onClick={() => setShowForm(true)}>Add category</Button>
-      <Button onClick={props.onBack}>Back</Button>
       <br /><br />
       {showForm && (
         <TogglingEditForm
