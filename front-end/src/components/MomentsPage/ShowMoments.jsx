@@ -83,29 +83,31 @@ export default function Moment(props) {
 
   return (
     <div className="Moments">
-      {/* <SearchBar /> */}
-      <VideoPlayer videoInfo={videoInfo} setVideoInfo={setVideoInfo} state={state} setState={setState} />
-      <MomentBar videoInfo={videoInfo} setVideoInfo={setVideoInfo} />
+      <div className="content-container">
+        {/* <SearchBar /> */}
+        <VideoPlayer videoInfo={videoInfo} setVideoInfo={setVideoInfo} state={state} setState={setState} />
+        <MomentBar videoInfo={videoInfo} setVideoInfo={setVideoInfo} />
 
-      <AutoButton setVideoInfo={setVideoInfo} />
+        <AutoButton setVideoInfo={setVideoInfo} />
 
-      { !props.oldVideo &&
-        <>
-          <Save
-            videoInfo={videoInfo}
-            setVideoInfo={setVideoInfo}
-            selectedCat={videoInfo.selectedCat}
-            categories={props.categories}
-            categWithId={props.categWithId}
-            moments={videoInfo.moments}
-            oldVideo={props.oldVideo}
-            selectedVidId={props.selectedVidId}
-            state={state}
-            setState={setState} />
-        </>
-      }
-      <NewMoment videoInfo = {videoInfo} setVideoInfo={setVideoInfo} cookies={cookies} videoDBid={state.selectedVidId} state={state} setState={setState} oldVideo={props.oldVideo} />
-      <MomentsList videoInfo = {videoInfo} setVideoInfo={setVideoInfo} state={state} setSate={setState} />
+        {!props.oldVideo &&
+          <>
+            <Save
+              videoInfo={videoInfo}
+              setVideoInfo={setVideoInfo}
+              selectedCat={videoInfo.selectedCat}
+              categories={props.categories}
+              categWithId={props.categWithId}
+              moments={videoInfo.moments}
+              oldVideo={props.oldVideo}
+              selectedVidId={props.selectedVidId}
+              state={state}
+              setState={setState} />
+          </>
+        }
+        <NewMoment videoInfo={videoInfo} setVideoInfo={setVideoInfo} cookies={cookies} videoDBid={state.selectedVidId} state={state} setState={setState} oldVideo={props.oldVideo} />
+        <MomentsList videoInfo={videoInfo} setVideoInfo={setVideoInfo} state={state} setSate={setState} />
+      </div>
     </div>
   );
 }

@@ -47,23 +47,24 @@ export default function UserVideos(props) {
 
     return (
 
-        <Card key={index} className='userVideos' style={{ width: "23em" }} onClick={() => videoOnClick()}>
-          <Link to="/moments">
-            <Card.Header closeButton>
-              {video.title}
-            </Card.Header>
-            <Card.Img variant="bottom" src={thumbnail} alt="thumbnail" />
-          </Link>
-          <Button onClick={() => handleAlert(video)}>Delete</Button>
-          <br></br>
-        </Card>
+      <Card key={index} className='userVideos' style={{ width: "23em" }} onClick={() => videoOnClick()}>
+        <Link to="/moments">
+          <Card.Header closeButton>
+            {video.title}
+          </Card.Header>
+          <Card.Img variant="bottom" src={thumbnail} alt="thumbnail" />
+        </Link>
+        <Button onClick={() => handleAlert(video)}>Delete</Button>
+        <br></br>
+      </Card>
 
     );
   });
 
   return (
-    <>
-      <div className="UserVideos">
+
+    <div className="UserVideos">
+      <div className="content-container">
         <h4>All User Videos</h4>
         {/* <SearchBar /> */}
 
@@ -92,6 +93,7 @@ export default function UserVideos(props) {
           {videoList}
         </div>
       </div>
-    </>
+    </div>
+
   );
 }

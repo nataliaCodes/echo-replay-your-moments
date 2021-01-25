@@ -23,14 +23,17 @@
       }
 
       .content-container {
-        border: 2px solid red;
+        align-self: center;
+
         border: 1px solid #ECECEC;
+        border: 2px solid red;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         width: 90%;
         height: 100%;
         padding: .5em;
-
+  
       }
+
     }
 
     .Sidebar {
@@ -115,6 +118,11 @@
     .Home {
       border: 2px solid orange;
       flex-grow: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding-top: 6.9em;
 
       .link-input {
         display: flex;
@@ -125,28 +133,17 @@
       .input-group {
         width: 50em !important;
       }
-      
-      // .search-result a{
-      //   display: flex;
-      //   flex-wrap: wrap;
-      //   justify-content: space-around;
-      //   flex-direction: row;
-        
-      // }
     }
 
     .UserVideos {
       border: 2px solid purple;
       flex-grow: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-      // .user-video-list{
-      //   border: 2px solid blue;
+      padding-top: 6.9em;
 
-      //   display: flex;
-      //   flex-wrap: wrap;
-      //   justify-content: space-around;
-      //   flex-direction: row;
-      // }
     }
 
     .Categories {
@@ -192,6 +189,13 @@
 
     .Moments {
       border: 2px solid green;
+      flex-grow: 2;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      padding-top: 6.9em;
     }
 
     .Register {
