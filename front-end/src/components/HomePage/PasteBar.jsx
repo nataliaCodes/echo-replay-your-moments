@@ -7,6 +7,9 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 export default function PasteBar(props) {
+
+  const { setSelectedVideoID, setState } = props;
+
   const [url, setUrl] = useState('');
   let history = useHistory();
 
@@ -15,7 +18,8 @@ export default function PasteBar(props) {
 
     const youtubeId = url.slice(32, 43);
 
-    props.setSelectedVideoID(youtubeId);
+    setSelectedVideoID(youtubeId);
+    setState((prev) => ({...prev, oldVideo: false }));
 
     history.push('/moments');
   };
