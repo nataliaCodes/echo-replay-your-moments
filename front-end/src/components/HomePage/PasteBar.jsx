@@ -28,7 +28,7 @@ export default function PasteBar(props){
 
   return (
     <Form onSubmit={onSubmit}>
-      <InputGroup onChange={onInput} className="paste_bar">
+      <InputGroup onChange={onInput} className="paste_bar" >
         <FormControl
           placeholder="Paste Video Link"
           aria-label="Video Urls"

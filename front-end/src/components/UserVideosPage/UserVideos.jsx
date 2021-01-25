@@ -24,18 +24,18 @@ export default function UserVideos(props) {
   const handleDelete = (video) => {
 
     setShowAlert(false);
-    
+
     return axios.delete('http://localhost:3001/api/videos', { params: video.id })
-    .then(response => {
-      console.log('client says: delete request sent');
-      console.log(response.data);
-      props.setState(prev =>({...prev, videos: videos.filter((vid)=> vid.id !== video.id)}))
-    })
-    .catch(err => { console.log('error:', err) })
+      .then(response => {
+        console.log('client says: delete request sent');
+        console.log(response.data);
+        props.setState(prev => ({ ...prev, videos: videos.filter((vid) => vid.id !== video.id) }));
+      })
+      .catch(err => { console.log('error:', err); });
 
   };
 
-//------------------------------------------------------------------//
+  //------------------------------------------------------------------//
   const videoList = videos && videos.map((video, index) => {
 
     const youtubeId = video.link.slice(32, 43);
@@ -49,18 +49,19 @@ export default function UserVideos(props) {
     return (
 
       <>
-       <Card key={index} className='userVideos' style={{ width: "30em" }} onClick={() => videoOnClick()}>
+        <Card key={index} className='userVideos' style={{ width: "23em" }} onClick={() => videoOnClick()}>
           <Link to="/moments">
             <Card.Header closeButton>
-              <h5>{video.title}</h5>
+              {video.title}
             </Card.Header>
             <Card.Img variant="bottom" src={thumbnail} alt="thumbnail" />
           </Link>
-          <Button onClick={()=>handleAlert(video)}>Delete</Button>
+          <Button onClick={() => handleAlert(video)}>Delete</Button>
+          <br></br>
         </Card>
-        <br></br>
+
       </>
-      
+
     );
   });
 
@@ -70,29 +71,30 @@ export default function UserVideos(props) {
         <h4>All User Videos</h4>
         {/* <SearchBar /> */}
 
-        <Modal show={showAlert} onHide={() => setShowAlert(false)}> 
+        <Modal show={showAlert} onHide={() => setShowAlert(false)}>
           <Modal.Header closeButton>
             <Modal.Title>Delete Video</Modal.Title>
           </Modal.Header>
-               
+
           <Modal.Body>
-          <Alert show={true} variant="danger">            
-            <p>Video:<h4>{alertVid.title}</h4></p>
-            <p>Will be removed and cannot be undone. Proceed?</p>
+            <Alert show={true} variant="danger">
+              <p>Video:<h4>{alertVid && alertVid.title}</h4></p>
+              <p>Will be removed and cannot be undone. Proceed?</p>
             </Alert>
-          </Modal.Body>          
+          </Modal.Body>
 
           <Modal.Footer>
             <Button variant="secondary" onClick={() => setShowAlert(false)}>
               Close
             </Button>
             <Button variant="primary" onClick={() => handleDelete(alertVid)}>
-            Proceed
+              Proceed
             </Button>
           </Modal.Footer>
         </Modal>
-
-        <ul>{videoList}</ul>
+        <div class="user-video-list">
+          {videoList}
+        </div>
       </div>
     </>
   );

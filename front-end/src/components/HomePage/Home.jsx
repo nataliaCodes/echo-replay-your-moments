@@ -9,12 +9,13 @@ export default function Home(props) {
 
     <div className="Home">
       <h3>Welcome message</h3>
-      <h3>Another message</h3>
-
-      <PasteBar setSelectedVideoID={props.setSelectedVideoID} />
-      <br></br>
-      <SearchBar onSearch={props.onSearch} />
-      <VideoList onVideoSelected={props.onVideoSelected} data={props.data} />
+      <div class="link-input">
+        <PasteBar setSelectedVideoID={props.setSelectedVideoID} />
+        <br></br>
+        <p>- OR -</p>
+        <SearchBar onSearch={props.onSearch} />
+      </div>
+        <VideoList onVideoSelected={props.onVideoSelected} data={props.data} />
 
     </div>
 
