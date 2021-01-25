@@ -21,7 +21,7 @@ export default function Login(props) {
       </div><br />
       <div className="form">
         <Form onSubmit={event => event.preventDefault()} noValidate>
-          <Form.Group controlId="first_name">
+          <Form.Group controlId="formEmail">
             <Form.Label htmlFor="email">
               Email:&nbsp;&nbsp;
               <Form.Control
@@ -32,7 +32,7 @@ export default function Login(props) {
               ></Form.Control>
             </Form.Label>
           </Form.Group>
-          <Form.Group controlId="first_name">
+          <Form.Group controlId="formPassword">
             <Form.Label htmlFor="password">
               Password:&nbsp;&nbsp;
               <Form.Control

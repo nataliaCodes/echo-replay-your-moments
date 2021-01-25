@@ -48,7 +48,6 @@ export default function UserVideos(props) {
 
     return (
 
-      <>
         <Card key={index} className='userVideos' style={{ width: "23em" }} onClick={() => videoOnClick()}>
           <Link to="/moments">
             <Card.Header closeButton>
@@ -59,8 +58,6 @@ export default function UserVideos(props) {
           <Button onClick={() => handleAlert(video)}>Delete</Button>
           <br></br>
         </Card>
-
-      </>
 
     );
   });

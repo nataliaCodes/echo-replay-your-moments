@@ -56,7 +56,16 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
 
       catId = categWithId.find(categ => categ.name === selectedCat);
       console.log("finderID", catId);
-      setState((prev) => ({ ...prev, categoryId: catId.id }));
+
+      if (catId == undefined) {
+        setShowAlert(true);
+        return;
+      };
+
+      if (catId !== undefined) {
+        setState((prev) => ({ ...prev, categoryId: catId.id }));
+        setShowAlert(false);
+      };
     }
 
   };
@@ -71,7 +80,7 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
     }
 
     console.log("Save Component oldvideo =", oldVideo);
-
+    //-------------------------------------------------------------//
     if (!vidTitle) {
       console.log("alert title:", vidTitle, " catId:", categoryId);
       setShowAlert(true);
@@ -81,14 +90,15 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
 
     const videoSaveInfo = { title: vidTitle, link: formatedLink, cat_id: state.categoryId };
 
-    console.log("Sent to DB", videoSaveInfo);
+
 
     if (videoSaveInfo.cat_id) {
+      console.log("Sent to DB", videoSaveInfo);
       handleClose();
       return axios.post('/api/videos', { videoSaveInfo })
         .then((response) => {
           console.log("FEres", response);
-          setState((prev)=>({...prev, new: +1}))
+          setState((prev) => ({ ...prev, new: +1 }));
           history.push('/videos');
           window.location.reload();
         });
@@ -111,53 +121,53 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
           <Modal.Header closeButton>
             <Modal.Title>Save Video to add Moments</Modal.Title>
           </Modal.Header>
-            <Modal.Body>
-              <Form>
-                <InputGroup className="video_save" onChange={onInput} >
-                  <InputGroup.Prepend>
-                    <InputGroup.Text id="basic-addon1">Title</InputGroup.Text>
-                  </InputGroup.Prepend>
-                  <FormControl
-                    placeholder="Input Title"
-                    aria-label="Input Title"
-                    aria-describedby="basic-addon1"
-                  />
-                </InputGroup>
+          <Modal.Body>
+            <Form>
+              <InputGroup className="video_save" onChange={onInput} >
+                <InputGroup.Prepend>
+                  <InputGroup.Text id="basic-addon1">Title</InputGroup.Text>
+                </InputGroup.Prepend>
+                <FormControl
+                  placeholder="Input Title"
+                  aria-label="Input Title"
+                  aria-describedby="basic-addon1"
+                />
+              </InputGroup>
 
-                <Dropdown>
-                  <Dropdown.Toggle variant="warning" id="dropdown-basic">
-                    {selectedCat}
-                  </Dropdown.Toggle>
+              <Dropdown>
+                <Dropdown.Toggle variant="warning" id="dropdown-basic">
+                  {selectedCat}
+                </Dropdown.Toggle>
 
-                  <Dropdown.Menu>
-                    {categoriesDropdown}
-                  </Dropdown.Menu>
-                </Dropdown>
-              </Form>
+                <Dropdown.Menu>
+                  {categoriesDropdown}
+                </Dropdown.Menu>
+              </Dropdown>
+            </Form>
 
-              <Alert show={showAlert} variant="danger">
-                Please input Title and Select a Category.
+            <Alert show={showAlert} variant="danger">
+              Please input Title and Select a Category.
               </Alert>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
               </Button>
-              <Button variant="primary" onClick={handleSave} >
-                Save
+            <Button variant="primary" onClick={handleSave} >
+              Save
               </Button>
-            </Modal.Footer>
-          </Modal>
-        </Form>
-      :
-      <Alert variant='info'>
+          </Modal.Footer>
+        </Modal>
+      </Form>
+        :
+        <Alert variant='info'>
           <h5>
-              <Link to="/login">Login </Link> 
-              or 
-              <Link to="/register"> Register </Link> 
+            <Link to="/login">Login </Link>
+              or
+              <Link to="/register"> Register </Link>
               to Save Videos and Moments
           </h5>
-      </Alert>
+        </Alert>
       }
     </>
   );
