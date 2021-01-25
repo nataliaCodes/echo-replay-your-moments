@@ -16,7 +16,52 @@
 
     .Header {
       border: 2px solid red;
-      width: 30em;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      width: 20em;
+
+      .logo {
+        text-align: left;
+        width: 90%;
+        padding: 1em 0 1em 1em;
+
+        h1 {
+          font-family: 'Fredoka One', cursive;
+          font-size: 5em;
+          padding-bottom: 0;
+          margin-bottom: -0.1em;
+
+          #play-icon {
+            font-size: .65em;
+          }
+        }
+
+        h6 {
+          padding-top: 0;
+          margin-top: 0;
+        }
+      }
+
+      .divider {
+        border: 1px solid black;
+        width: 90%;
+      }
+
+      .user-info {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        width: 90%;
+        padding: 1em .5em 1em 0;
+
+        h5 {
+          padding: .5em .5em 0 0;
+        }
+      }
     }
 
     .Navbar {

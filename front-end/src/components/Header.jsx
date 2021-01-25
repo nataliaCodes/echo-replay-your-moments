@@ -11,10 +11,15 @@ export default function Header(props) {
   return (
 
     <div className="Header">
-      <h1>Ech<FontAwesomeIcon id="play-icon" icon={faPlayCircle} /></h1>
-      <h6>Replay your moments</h6>
-      {props.cookies.user ? <h6>Welcome, {currentUser && currentUser.first_name}!</h6> : ""}
-      {props.cookies.user && currentUser && <img src={`https://ui-avatars.com/api/?name=${currentUser.first_name}+${currentUser.last_name}&background=random&rounded=true`} alt="avatar" />}
+      <div className="logo">
+        <h1>Ech<FontAwesomeIcon id="play-icon" icon={faPlayCircle} /></h1>
+        <h6>Replay your moments</h6>
+      </div>
+      <div className="divider" />
+      <div className="user-info">
+        {props.cookies.user ? <h5>Welcome, {currentUser && currentUser.first_name}!</h5> : ""}
+        {props.cookies.user && currentUser && <img src={`https://ui-avatars.com/api/?name=${currentUser.first_name}+${currentUser.last_name}&background=random&rounded=true`} alt="avatar" />}
+      </div>
     </div>
 
   );
