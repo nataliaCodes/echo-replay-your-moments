@@ -14,6 +14,11 @@
       display: flex;
     }
 
+    .Header {
+      border: 2px solid red;
+      width: 30em;
+    }
+
     .Navbar {
       display: flex;
       flex-direction: column;

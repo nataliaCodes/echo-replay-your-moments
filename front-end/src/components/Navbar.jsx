@@ -10,7 +10,7 @@ import '../stylesheets/Navbar.scss';
 
 export default function Navbar(props) {
 
-  const [cookies, setCookies] = useCookies(["user"]);
+  // const [cookies, setCookies] = useCookies(["user"]);
 
   const { handleLogout } = useApplicationData();
 
@@ -20,7 +20,7 @@ export default function Navbar(props) {
       <Link to="/">
         <NavbarItem>Home</NavbarItem>
       </Link>
-      { cookies.user ?
+      { props.cookies.user ?
         <>
           <Link to="/videos">
             <NavbarItem>My videos</NavbarItem>
@@ -29,7 +29,7 @@ export default function Navbar(props) {
             <NavbarItem>My categories</NavbarItem>
           </Link>
           <Link to="/">
-            <Logout onClick={handleLogout}>Log out {cookies.user}</Logout>
+            <Logout onClick={handleLogout}>Log out {props.cookies.user}</Logout>
           </Link> 
         </>
         :

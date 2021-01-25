@@ -36,9 +36,9 @@ function App() {
       <React.StrictMode>
       <Router>
         <div className="App">
-          <div classname="Sidebar">
-            <Header cookies={cookies} />
-            <Navbar />
+          <div className="Sidebar">
+            <Header cookies={cookies} state={state} />
+            <Navbar cookies={cookies} />
           </div>
           <Switch>
             <Route exact path="/">
