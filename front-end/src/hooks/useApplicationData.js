@@ -29,7 +29,8 @@ const useApplicationData = () => {
     endTime: null,
     videoDuration: null,
     oldVideo: false,
-    catRedirect: null
+    catRedirect: null,
+    new: null
   });
 
   //set initial cookie
@@ -64,7 +65,7 @@ const useApplicationData = () => {
     })
     .catch((err) => console.log(err));
 
-  }, [cookies.user]);   //<-- only renders when user is present
+  }, [cookies.user])   //<-- only renders when user is present
 
   //handles input from log in and register forms dynamically
   const handleFormChange = event => {

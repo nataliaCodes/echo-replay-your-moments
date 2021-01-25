@@ -16,6 +16,8 @@ export default function Moment(props) {
   //state for the alert confirming creation
   const [showAlert, setShowAlert] = useState(false);
 
+  console.log('render Newmoment state', props)
+
   const handleSave = (newValue, vidId) => {
 
     setShowForm(false);

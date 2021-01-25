@@ -2,6 +2,7 @@ import { Redirect } from "react-router-dom";
 
 import useApplicationData from '../../hooks/useApplicationData';
 
+import Form from 'react-bootstrap/Form';
 import Button from '../shared/Button';
 
 export default function Login(props) {
@@ -10,35 +11,41 @@ export default function Login(props) {
   const { state, handleFormChange, handleLoginSubmit } = useApplicationData();
 
   if (state.redirect) {
-    return <Redirect to={state.redirect} />
+    return <Redirect to={state.redirect} />;
   }
 
   return (
     <div className="Login">
       <div>
-        {state.error && <small>{state.error}</small>}
-      </div><br /> 
-      <form onSubmit={event => event.preventDefault()} noValidate>
-        <label htmlFor="email">
-          Email:&nbsp;&nbsp;
-          <input 
-            type="email" 
-            name="email" 
-            onChange={handleFormChange}
-            noValidate
-          ></input>
-        </label><br /> 
-        <label htmlFor="password">
-          Password:&nbsp;&nbsp;
-          <input 
-            type="password" 
-            name="password" 
-            onChange={handleFormChange}
-            noValidate
-          ></input>
-        </label>
-      </form>
-      <Button onClick={handleLoginSubmit}>Log in</Button>
+        {state.error && <Form.Text>{state.error}</Form.Text>}
+      </div><br />
+      <div className="form">
+        <Form onSubmit={event => event.preventDefault()} noValidate>
+          <Form.Group controlId="formEmail">
+            <Form.Label htmlFor="email">
+              Email:&nbsp;&nbsp;
+              <Form.Control
+                type="email"
+                name="email"
+                onChange={handleFormChange}
+                noValidate
+              ></Form.Control>
+            </Form.Label>
+          </Form.Group>
+          <Form.Group controlId="formPassword">
+            <Form.Label htmlFor="password">
+              Password:&nbsp;&nbsp;
+              <Form.Control
+                type="password"
+                name="password"
+                onChange={handleFormChange}
+                noValidate
+              ></Form.Control>
+            </Form.Label>
+          </Form.Group>
+        </Form>
+        <Button onClick={handleLoginSubmit}>Log in</Button>
+      </div>
     </div>
   );
 }
