@@ -49,7 +49,7 @@
           padding-bottom: 0;
 
           #play-icon {
-            font-size: .55em;
+            font-size: .57em;
             margin-bottom: .1em;
           }
         }
@@ -111,8 +111,30 @@
     }
 
     .Categories {
-      border: 2px solid pink;
       flex-grow: 2;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      padding-top: 6.9em;
+
+      .content-container {
+        border: 1px solid #ECECEC;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        width: 90%;
+        height: 100%;
+        padding: .5em;
+
+      }
+
+      .nav {
+        align-self: flex-start;
+
+        // border: 2px solid blue;
+        border-bottom: 1px solid black;
+
+      }
 
       .ShowCategories {
         border: 2px solid lime;
@@ -122,7 +144,7 @@
       }
 
       .EditCategories {
-        border: 2px solid yellow;
+        width: 90%;
       }
 
       

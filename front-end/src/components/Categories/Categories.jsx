@@ -15,16 +15,18 @@ export default function Categories(props) {
   return (
 
     <div className="Categories">
-      <Nav variant="tabs">
-        <Nav.Item>
-          <Nav.Link onClick={() => setMode("main")}>Categories</Nav.Link>
-        </Nav.Item>
-        <Nav.Item onClick={() => setMode("edit")}>
-          <Nav.Link>Edit</Nav.Link>
-        </Nav.Item>
-      </Nav>
-      {mode === "main" && <ShowCategories selectedVideoID={selectedVideoID} state={state} setState={setState} onVideoSelected={onVideoSelected} />}
-      {mode === "edit" && <EditCategories state={state} setState={setState} cookies={cookies} />}
+      <div className="content-container">
+        <Nav variant="tabs">
+          <Nav.Item>
+            <Nav.Link onClick={() => setMode("main")}>Categories</Nav.Link>
+          </Nav.Item>
+          <Nav.Item onClick={() => setMode("edit")}>
+            <Nav.Link>Edit</Nav.Link>
+          </Nav.Item>
+        </Nav>
+        {mode === "main" && <ShowCategories selectedVideoID={selectedVideoID} state={state} setState={setState} onVideoSelected={onVideoSelected} />}
+        {mode === "edit" && <EditCategories state={state} setState={setState} cookies={cookies} />}
+      </div>
     </div>
 
   );
