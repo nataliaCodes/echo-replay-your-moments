@@ -3,12 +3,13 @@ import axios from 'axios';
 
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
+import Alert from 'react-bootstrap/Alert';
 
 import Button from '../shared/Button';
 
 export default function Moment(props) {
 
-  const { videoInfo, setVideoInfo, videoDBid, cookies, state, setState } = props;
+  const { videoInfo, setVideoInfo, videoDBid, cookies, oldVideo } = props;
 
   //state for the form toggled by 'Add moment'
   const [showForm, setShowForm] = useState(false);
@@ -22,7 +23,7 @@ export default function Moment(props) {
 
     setShowForm(false);
     setShowAlert(true);
-    setVideoInfo({...videoInfo, newMoment: ""});
+    // setVideoInfo({...videoInfo, newMoment: ""});
 
     const userId = cookies.user;
     let start = videoInfo.startTime;
@@ -36,7 +37,7 @@ export default function Moment(props) {
         console.log('response from addMoment :', response.data);
         videoInfo.moments.push(response.data)
 
-        setVideoInfo({...videoInfo, moments: videoInfo.moments});
+        setVideoInfo({...videoInfo, newMoment: "", moments: videoInfo.moments});
       })
       .catch(err => { console.log('error:', err) })
   };
@@ -52,7 +53,8 @@ export default function Moment(props) {
   return (
     <div className="Moment">
       {showAlert && <small>Succsessfully created!</small>}<br />
-      {!showForm && <Button onClick={() => setShowForm(true)}>Add moment</Button>}
+      {!oldVideo && cookies.user && <Alert variant='info'>Please save your video before adding moments!</Alert>}
+      {!showForm && oldVideo && <Button onClick={() => setShowForm(true)}>Add moment</Button>}
       <br /><br />
       {showForm && <>
         <InputGroup className="mb-3">

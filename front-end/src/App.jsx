@@ -19,6 +19,7 @@ import Home from './components/HomePage/Home';
 import UserVideos from './components/UserVideosPage/UserVideos';
 import Videos from './components/SearchResults/Videos';
 import Categories from './components/Categories/Categories';
+import EditCategories from './components/Categories/EditCategories';
 import ShowMoments from './components/MomentsPage/ShowMoments';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
@@ -36,9 +37,9 @@ function App() {
       <React.StrictMode>
       <Router>
         <div className="App">
-          <div classname="Sidebar">
-            <Header cookies={cookies} />
-            <Navbar />
+          <div className="Sidebar">
+            <Header cookies={cookies} state={state} />
+            <Navbar cookies={cookies} />
           </div>
           <Switch>
             <Route exact path="/">

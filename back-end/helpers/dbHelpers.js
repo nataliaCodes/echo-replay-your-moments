@@ -148,7 +148,14 @@ module.exports = (db) => {
       values: [label, start, end, userId, videoId]
     }
     return db.query(query)
-        .then(result => result.rows[0])
+        .then(result => {
+          
+          const dbRes = result.rows[0];
+          dbRes.moment_id = dbRes.id;
+
+          return dbRes;
+        
+        })
         .catch(err => err.message);
   };
 

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Alert from 'react-bootstrap/Alert';
+import Modal from 'react-bootstrap/Modal';
 
 import Button from '../shared/Button';
 import TogglingEditForm from '../shared/TogglingEditForm';
@@ -119,7 +120,7 @@ export default function List(props) {
           // else show the buttons
           (<>
             <Button onClick={() => setMode(i, name)} children={'Edit'} />
-            {!showAlert && <Button onClick={() => handleAlert(name)}>Delete</Button>}
+            <Button onClick={() => handleAlert(name)}>Delete</Button>
           </>)
         }
       </div>
@@ -130,7 +131,21 @@ export default function List(props) {
   return (
     <>
       <>
-        <Alert show={showAlert} variant="danger" style={{width: "20em"}}>
+      <Modal show={showAlert} onHide={() => setShowAlert(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete category</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Deleting category will remove any associated videos and cannot be undone. Proceed?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowAlert(false)}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={() => handleDelete(alertCateg)}>
+            Proceed
+          </Button>
+        </Modal.Footer>
+      </Modal>
+        {/* <Alert show={showAlert} variant="danger" style={{width: "20em"}}>
           <Alert.Heading>Delete category</Alert.Heading>
           <p>
             Deleting category cannot be undone. Proceed?
@@ -142,7 +157,7 @@ export default function List(props) {
               Proceed
           </Button>
           </div>
-        </Alert>
+        </Alert> */}
       </>
       <div className="List">
         {categoriesList}

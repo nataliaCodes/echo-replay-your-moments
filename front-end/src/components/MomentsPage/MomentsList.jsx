@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Alert from 'react-bootstrap/Alert';
+import Modal from 'react-bootstrap/Modal';
 
 import Button from '../shared/Button';
-import TogglingEditForm from '../shared/TogglingEditForm';
 
 export default function List(props) {
 
-  const { videoInfo, setVideoInfo, state, setState } = props;
+  const { videoInfo, setVideoInfo } = props;
   const moments = videoInfo.moments;
 
   //state for the selected moment
@@ -28,7 +28,7 @@ export default function List(props) {
     //create updated array for back-end
     const newMoments = moments.filter(moment => moment.moment_id !== id)
 
-    setVideoInfo({...videoInfo, moments: moments.filter(moment => moment.moment_id !== id)})
+    setVideoInfo({...videoInfo, moments: newMoments})
 
     //send data to back-end
     return axios.delete('http://localhost:3001/api/moments', { data: { id } })
@@ -56,7 +56,7 @@ export default function List(props) {
   };
 
   //render list of moments dynamically
-  const momentsList = moments.map(moment => {
+  const momentsList = moments.sort((a, b) => b.moment_id - a.moment_id).map(moment => {
 
     const key = moment.moment_id;
     const name = moment.label;
@@ -73,12 +73,27 @@ export default function List(props) {
     );
 
   });
+  
 
   return (
     <>
       <br /><br />
       <>
-        <Alert show={showAlert} variant="danger" style={{width: "20em"}}>
+      <Modal show={showAlert} onHide={() => setShowAlert(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete moment</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Deleting moment cannot be undone. Proceed?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowAlert(false)}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={() => handleDelete(alertMom)}>
+            Proceed
+          </Button>
+        </Modal.Footer>
+      </Modal>
+        {/* <Alert show={showAlert} variant="danger" style={{width: "20em"}}>
           <Alert.Heading>Delete moment</Alert.Heading>
           <p>
             Deleting moment cannot be undone. Proceed?
@@ -90,7 +105,7 @@ export default function List(props) {
               Proceed
           </Button>
           </div>
-        </Alert>
+        </Alert> */}
       </>
       <div className="List">
         {momentsList}

@@ -12,12 +12,94 @@
 
     .App {
       display: flex;
+
+      .divider {
+        border-bottom: 1px solid black;
+        width: 90%;
+      }
+
+      a {
+        color: black;
+      }
+    }
+
+    .Sidebar {
+      width: 20em;
+      height: 100vh;
+      padding: .5em;
+      background-color: #F7F7F7;
+      border: 1px solid #ECECEC;
+      border-radius: 0 25px 25px 0;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .Header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .logo {
+        text-align: left;
+        width: 90%;
+        padding: 1em 0 1em 1em;
+
+        h1 {
+          font-family: 'Fredoka One', cursive;
+          font-size: 5em;
+          padding-bottom: 0;
+
+          #play-icon {
+            font-size: .57em;
+            margin-bottom: .1em;
+          }
+        }
+
+        h6 {
+          margin-top: -0.7em;
+        }
+      }
+
+      .user-info {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        width: 90%;
+        padding: 1em 0 1em 0;
+
+        h5 {
+          padding: .5em .5em 0 0;
+        }
+
+        img {
+          filter: drop-shadow(.5rem 0 .4rem lightgray);
+        }
+      }
     }
 
     .Navbar {
-      display: flex;
-      flex-direction: column;
-      border: 2px solid blue;
+      padding: 0;
+      margin: 0 auto;
+
+      .navbar-expand-lg{
+        padding: 1.5em 0 0 0;
+        border: 0;
+        width: 100%;
+      }
+
+      #basic-Menu-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        margin: 0 auto;
+        padding: 0 0 0 1em;
+        width: 100%;
+
+        h4 {
+          padding: .5em 0 .5em 0;
+        }
+      }
     }
 
     .Home {
@@ -56,10 +138,51 @@
     }
 
     .Categories {
-      border: 2px solid pink;
+      flex-grow: 2;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      padding-top: 6.9em;
+
+      .content-container {
+        border: 1px solid #ECECEC;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        width: 90%;
+        height: 100%;
+        padding: .5em;
+
+      }
+
+      .nav {
+        align-self: flex-start;
+
+        // border: 2px solid blue;
+        border-bottom: 1px solid black;
+
+      }
+
+      .ShowCategories {
+        border: 2px solid lime;
+
+        .Accordion {
+          border: 2px solid crimson;
+
+          .card {
+            border-radius: 5px;
+            //set the color on the accordion here
+
+            .card-header{
+              border-radius: 5px;
+            }
+          }
+        }
+
+      }
 
       .EditCategories {
-        border: 2px solid yellow;
+        width: 90%;
       }
      
     }

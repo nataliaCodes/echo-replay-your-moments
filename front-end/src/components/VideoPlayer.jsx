@@ -23,9 +23,7 @@ export default function YTplayer(props) {
       setShow(true)
     };
 
-    setState({...state, videoDuration: vd});
-
-    props.setVideoInfo(prev=>({...prev, duration: vd, defaultEnd: vd}))
+    props.setVideoInfo(prev=>({...prev, duration: vd}))
     
   }
 

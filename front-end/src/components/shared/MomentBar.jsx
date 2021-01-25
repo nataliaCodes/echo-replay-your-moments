@@ -32,13 +32,13 @@ export default function MomentBar(props) {
       <input type="number" value={props.videoInfo.startTime} onChange={(e)=>onMinChange(e)} />
       <br />
       <label>Max: </label>
-      <input type="number" value={props.videoInfo.endTime} onChange={(e)=>onMaxChange(e)}  />
+      <input type="number" value={props.videoInfo.endTime || props.videoInfo.duration} onChange={(e)=>onMaxChange(e)}  />
       <br />
       <br />
 
       <Range
         defaultValue={[props.videoInfo.startTime, props.videoInfo.endTime]}
-        value={[props.videoInfo.startTime, props.videoInfo.endTime]}
+        value={[props.videoInfo.startTime, props.videoInfo.endTime || props.videoInfo.duration]}
         allowCross={false}
         onChange={onSliderChange}
         min={0}

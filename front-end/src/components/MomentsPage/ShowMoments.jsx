@@ -23,7 +23,7 @@ export default function Moment(props) {
       duration: null,
       newMoment: "",
       startTime: 0,
-      endTime: state.videoDuration,
+      endTime: 0,
       selectedVideoID: props.selectedVideoID,
       selectedCat: "Categories",
       categories: [],
@@ -104,7 +104,7 @@ export default function Moment(props) {
             setState={setState} />
         </>
       }
-      <NewMoment videoInfo = {videoInfo} setVideoInfo={setVideoInfo} cookies={cookies} videoDBid={state.selectedVidId} state={state} setState={setState} />
+      <NewMoment videoInfo = {videoInfo} setVideoInfo={setVideoInfo} cookies={cookies} videoDBid={state.selectedVidId} state={state} setState={setState} oldVideo={props.oldVideo} />
       <MomentsList videoInfo = {videoInfo} setVideoInfo={setVideoInfo} state={state} setSate={setState} />
     </div>
   );
