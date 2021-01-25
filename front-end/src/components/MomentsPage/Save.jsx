@@ -102,10 +102,9 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
    
           const youtubeId = response.data.info.videoSaveInfo.link .slice(32, 43);
           console.log('youtubeId :', youtubeId);
-          
-          // history.push('/videos');
-          // window.location.reload();
-          setState((prev) => ({ ...prev, selectedVideoID: youtubeId, selectedVidId: response.data.response.id, oldVideo: true }));
+       
+
+          setState((prev) => ({ ...prev, selectedVideoID: youtubeId, selectedVidId: response.data.response.id, oldVideo: true}));
         });
     }
 
