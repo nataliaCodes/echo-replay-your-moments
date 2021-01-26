@@ -28,7 +28,7 @@
         border: 1px solid #ECECEC;
         border-radius: 15px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        width: 75%;
+        width: 90%;
         height: 100%;
         min-height: 51em;
         padding: .5em;
@@ -39,7 +39,7 @@
 
     .Sidebar {
       width: 16em;
-      height: 66vh;
+      height: 34em;
       padding: .5em;
       background-color: #F7F7F7;
       border-radius: 0 25px 25px 0;
@@ -91,7 +91,6 @@
         img {
           filter: drop-shadow(.5rem 0 .4rem lightgray);
           height: 3em;
-          margin-right: .3em;
         }
       }
     }
@@ -123,15 +122,14 @@
 
     .Home {
       flex-grow: 2;
-      border: 2px solid purple;
       
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
 
-      padding: 4em 3em 0 0;
+      padding: 4em 0 0 15em;
 
       h4 {
-        padding: 3em 0 3em 0;
+        padding: 2.5em 0 1.5em 0;
       }
 
       .link-input {
@@ -141,8 +139,25 @@
       }
 
       form {
-        padding: .5em 0 .7em 0;
+        padding: .7em 0 .7em 0;
         width: 30em;
+      }
+
+      a {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-around;
+
+        padding: 1.5em 0 .5em 1.2em;
+
+        .card {
+          margin: 1em 0 1em 0;
+        }
+      }
+
+      .video-list {
+        padding-top: 2em;
       }
 
     }
@@ -151,9 +166,23 @@
       border: 2px solid purple;
       flex-grow: 2;
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
 
-      padding: 4em 3em 0 0;
+      padding: 4em 0 0 14em;
+
+      h4 {
+        padding: 2.5em 0 1.5em 0;
+      }
+
+      .user-video-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+
+        .card {
+          margin: 1em 0 1em 0;
+        }
+      }
 
     }
 
@@ -161,10 +190,9 @@
       flex-grow: 2;
 
       display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
+      justify-content: center;
 
-      padding: 4em 3em 0 0;
+      padding: 4em 0 0 14em;
 
       .nav {
         align-self: flex-start;
@@ -204,18 +232,18 @@
 
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      justify-content: center;
 
-      padding: 4em 3em 0 0;
+      padding: 4em 0 0 14em;
     }
 
     .Register {
       flex-grow: 2;
 
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
 
-      padding: 4em 3em 0 0;
+      padding: 4em 0 0 14em;
       
       .form{
         border: solid limegreen;
@@ -232,9 +260,9 @@
       flex-grow: 2;
 
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
 
-      padding: 4em 3em 0 0;
+      padding: 4em 0 0 14em;
       
      
       .form{

@@ -65,7 +65,7 @@ export default function UserVideos(props) {
 
     <div className="UserVideos">
       <div className="content-container">
-        <h4>All User Videos</h4>
+        <h4>Select video below to start adding your moments</h4>
         {/* <SearchBar /> */}
 
         <Modal show={showAlert} onHide={() => setShowAlert(false)}>
