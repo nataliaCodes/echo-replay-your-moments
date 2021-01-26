@@ -5,11 +5,13 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert'
 
 export default function PasteBar(props) {
 
   const { setSelectedVideoID, setState } = props;
 
+  const [showAlert, setShowAlert] = useState(false);
   const [url, setUrl] = useState('');
   let history = useHistory();
 
@@ -17,9 +19,17 @@ export default function PasteBar(props) {
     event.preventDefault();
 
     const youtubeId = url.slice(32, 43);
+    const youtubeUrl = "https://www.youtube.com/watch?v=";
+    const inputUrl = url.slice(0, 32);
 
+    if (youtubeUrl !== inputUrl) {
+      setShowAlert(true);
+      return;
+    };
+
+    setShowAlert(false);
     setSelectedVideoID(youtubeId);
-    setState((prev) => ({...prev, oldVideo: false }));
+    setState((prev) => ({ ...prev, oldVideo: false }));
 
     history.push('/moments');
   };
@@ -31,16 +41,22 @@ export default function PasteBar(props) {
   };
 
   return (
-    <Form onSubmit={onSubmit}>
-      <InputGroup onChange={onInput} className="paste-bar" >
-        <FormControl
-          placeholder="Paste Video Link"
-          aria-label="Video Urls"
-        />
-        <InputGroup.Append>
-          <Button type="submit" value={url} variant="outline-dark" >Submit</Button>
-        </InputGroup.Append>
-      </InputGroup>
-    </Form>
+    <>
+      <Alert show={showAlert} key="pasteBarAlert" variant="warning">
+        Invalid Url, Please try again.
+      </Alert>
+
+      <Form onSubmit={onSubmit}>
+        <InputGroup onChange={onInput} className="paste_bar" >
+          <FormControl
+            placeholder="Paste Video Link"
+            aria-label="Video Urls"
+          />
+          <InputGroup.Append>
+            <Button type="submit" value={url} variant="outline-secondary" >Submit</Button>
+          </InputGroup.Append>
+        </InputGroup>
+      </Form>
+    </>
   );
 }

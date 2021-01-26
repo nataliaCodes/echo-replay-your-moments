@@ -190,8 +190,7 @@ const useApplicationData = () => {
 
     setState({
       ...state,
-      videoMetaInfo: response.data.items,
-      // selectedVideoID: response.data.items[0].id.videoId
+      videoMetaInfo: response.data.items
     })
   }
 
