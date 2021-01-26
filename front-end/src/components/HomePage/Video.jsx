@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 
 import Card from 'react-bootstrap/Card';
-// import "../../stylesheets/_video.scss";
 
 function selectVideo(videoIdObj, onVideoSelected) {
   onVideoSelected(videoIdObj.videoId);

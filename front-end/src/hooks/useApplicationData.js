@@ -80,7 +80,7 @@ const useApplicationData = () => {
     e.preventDefault();
     
     //deconstruct values needed from state
-    const { firstName, lastName, email, password, errors } = state;
+    const { firstName, lastName, email, password } = state;
     let validForm = true;
     
     //if any of the inputs are empty, set error state

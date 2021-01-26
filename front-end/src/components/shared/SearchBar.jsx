@@ -1,26 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 import InputGroup from 'react-bootstrap/InputGroup';
-import FormControl from 'react-bootstrap/FormControl'
+import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-export default function SearchBar(props){
+export default function SearchBar(props) {
   const [state, setState] = useState({
     title: ''
-  })
+  });
 
   const onSearchChanged = event => {
-    const _title = event.target.value
+    const _title = event.target.value;
 
-    setState({title: _title})
-  }
+    setState({ title: _title });
+  };
 
   const onSubmit = event => {
-    event.preventDefault()
+    event.preventDefault();
 
-    props.onSearch(state.title)
-  }
+    props.onSearch(state.title);
+  };
 
   return (
 
@@ -36,6 +36,6 @@ export default function SearchBar(props){
       </InputGroup>
     </Form>
 
-  )
+  );
 }
 

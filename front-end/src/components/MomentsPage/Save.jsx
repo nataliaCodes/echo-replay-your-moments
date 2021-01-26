@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useCookies } from "react-cookie";
 
 import Modal from 'react-bootstrap/Modal';
@@ -12,12 +12,9 @@ import FormControl from 'react-bootstrap/FormControl';
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
 
-export default function Save({ videoInfo, setVideoInfo, selectedCat, categories, moments, oldVideo, categWithId, selectedVidId, state, setState }) {
+export default function Save({ videoInfo, setVideoInfo, selectedCat, categories, categWithId, state, setState }) {
 
   const [cookies, setCookies] = useCookies(["user"]);
-
-  //used to redirect
-  let history = useHistory();
 
   //Alert and Model states
   const [showAlert, setShowAlert] = useState(false);
@@ -27,7 +24,6 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
 
   //Modal input states
   const [vidTitle, setVidTitle] = useState('');
-  const [categoryId, setCategoryId] = useState(null);
   const onInput = event => {
     const input = event.target.value;
     setVidTitle(input);
@@ -61,7 +57,6 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
         setShowAlert(false);
       };
     }
-
   };
 
   const handleSave = () => {
@@ -76,25 +71,21 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
     }
 
     const formatedLink = "https://www.youtube.com/watch?v=" + videoInfo.selectedVideoID;
-
     const videoSaveInfo = { title: vidTitle, link: formatedLink, cat_id: state.categoryId };
-
-
 
     if (videoSaveInfo.cat_id) {
       handleClose();
       return axios.post('/api/videos', { videoSaveInfo })
         .then((response) => {
-          const youtubeId = response.data.info.videoSaveInfo.link .slice(32, 43);
-          setState((prev) => ({ ...prev, selectedVideoID: youtubeId, selectedVidId: response.data.response.id, oldVideo: true}));
+          const youtubeId = response.data.info.videoSaveInfo.link.slice(32, 43);
+          setState((prev) => ({ ...prev, selectedVideoID: youtubeId, selectedVidId: response.data.response.id, oldVideo: true }));
 
           return axios.get('api/videos')
             .then((response) => {
-              setState((prev) => ({ ...prev, videos: response.data.response}));
+              setState((prev) => ({ ...prev, videos: response.data.response }));
             })
             .catch(err => console.log(err));
 
-            
         });
     }
 
