@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Alert from 'react-bootstrap/Alert';
 import Modal from 'react-bootstrap/Modal';
+import Table from 'react-bootstrap/Table';
 
 import Button from '../shared/Button';
 
@@ -61,11 +62,19 @@ export default function List(props) {
 
     return (
 
-      <div key={key} style={{border: "1px solid gray", padding: ".5em"}}>
-        <h6>{name}:  {start} - {end}</h6>
-        <Button onClick={() => handlePlay(moment.start_time, moment.end_time)}>Play</Button>
-        <Button onClick={() => handleAlert(name)}>Delete</Button>
-      </div>
+      <Table key={key} size="sm">
+        <tr>
+          <td>
+            <h6>{name}:  {start} - {end}</h6>
+          </td>
+          <td>
+            <Button onClick={() => handlePlay(moment.start_time, moment.end_time)}>Play</Button>
+          </td>
+          <td>
+            <Button onClick={() => handleAlert(name)}>Delete</Button>
+          </td>
+        </tr>
+      </Table>
     );
 
   });
@@ -73,8 +82,6 @@ export default function List(props) {
 
   return (
     <>
-      <br /><br />
-      <>
       <Modal show={showAlert} onHide={() => setShowAlert(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Delete moment</Modal.Title>
@@ -102,11 +109,9 @@ export default function List(props) {
           </Button>
           </div>
         </Alert> */}
-      </>
-      <div className="List">
+      <div className="moments-list">
         {momentsList}
       </div>
-      <br /><br />
     </>
   );
 }

@@ -20,15 +20,16 @@ export default function SwitchButton(props) {
   };
 
   return (
-
-    <BootstrapSwitchButton
-      // checked={ckecked}
-      onlabel='LOOP ON'
-      offlabel='OFF'
-      onChange={() => handleOnChange()}
-      onstyle="success"
-      width='80'
-    />
+    <>
+      <p>LOOP</p>
+      <BootstrapSwitchButton
+        onlabel='ON'
+        offlabel='OFF'
+        onChange={() => handleOnChange()}
+        onstyle="success"
+        width='80'
+      />
+    </>
 
   );
 }

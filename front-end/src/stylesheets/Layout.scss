@@ -335,6 +335,22 @@
       .moments-player {
         margin-top: 3em;
       }
+
+      .min-max {
+        visibility: hidden;
+      }
+
+      p {
+        margin-bottom: -0.1em;
+      }
+
+      .moments-list {
+        border: 1px solid blue;
+        display: flex;
+        flex-wrap: wrap;
+
+        width: 80%;
+      }
     }
 
     .Register {

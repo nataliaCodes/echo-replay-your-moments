@@ -51,10 +51,15 @@ export default function Moment(props) {
   return (
     <div className="Moments">
       <div className="content-container">
-        <VideoPlayer videoInfo={videoInfo} setVideoInfo={setVideoInfo} state={state} setState={setState} />
-        <MomentBar videoInfo={videoInfo} setVideoInfo={setVideoInfo} />
-
-        <AutoButton setVideoInfo={setVideoInfo} />
+        <div className="player-froup">
+          <VideoPlayer videoInfo={videoInfo} setVideoInfo={setVideoInfo} state={state} setState={setState} />
+          <MomentBar videoInfo={videoInfo} setVideoInfo={setVideoInfo} />
+          <AutoButton setVideoInfo={setVideoInfo} />
+        </div>
+        <div className="moments-group">
+          <NewMoment videoInfo={videoInfo} setVideoInfo={setVideoInfo} cookies={cookies} videoDBid={state.selectedVidId} state={state} setState={setState} oldVideo={props.oldVideo} />
+          <MomentsList videoInfo={videoInfo} setVideoInfo={setVideoInfo} state={state} setSate={setState} />
+        </div>
 
         {!props.oldVideo &&
           <>
@@ -71,8 +76,6 @@ export default function Moment(props) {
               setState={setState} />
           </>
         }
-        <NewMoment videoInfo={videoInfo} setVideoInfo={setVideoInfo} cookies={cookies} videoDBid={state.selectedVidId} state={state} setState={setState} oldVideo={props.oldVideo} />
-        <MomentsList videoInfo={videoInfo} setVideoInfo={setVideoInfo} state={state} setSate={setState} />
       </div>
     </div>
   );
