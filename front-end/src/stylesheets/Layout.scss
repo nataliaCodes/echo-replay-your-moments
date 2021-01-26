@@ -274,7 +274,7 @@
         justify-content: center;
         align-items: center;
         
-        padding-top: 2em;
+        padding-top: 1.5em;
         width: 90%;
 
         .mb-3 {
@@ -284,23 +284,32 @@
           width: 30em;
         }
 
-        .edit-categ-list {
-          border: 2px solid purple;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-end;
+        .table-responsive {
+          align-self: center;
+          width: 65%;
 
-          width: 35%;
+          
+          .edit-categ-list{
+            align-self: center;
+            
+            vertical-align: baseline;
+            border-bottom: 1px solid #DEE2E6;
 
-          button {
-            padding: .1em .2em .1em .2em;
-            width: 4em;
-            border: transparent;
+            .cat-name {
+              padding-top: .4em;
+            }
+
+            .mb-3 {
+              margin-left: 5em;
+            }
+          
+
+            button {
+              border: transparent;
+              color: black;
+            }
           }
 
-          span {
-            margin-right: 2em;
-          }
         }
       }
      

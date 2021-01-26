@@ -19,7 +19,7 @@ export default function VideoThumbnails(props) {
 
       //render each video detail
       return (
-          <Card key={i} style={{width: "30em"}} onClick={()=> videoOnClick()} >
+          <Card key={i} style={{width: "20em"}} onClick={()=> videoOnClick()} >
             <Link to="/moments">
               <Card.Header>
                 <h6>{video.title}</h6>

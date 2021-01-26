@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
+import Table from 'react-bootstrap/Table';
 
 import Button from '../shared/Button';
 import TogglingEditForm from './TogglingEditForm';
@@ -90,11 +91,12 @@ export default function List(props) {
 
     return (
 
-      <div key={i}>
+      <tr key={i}>
         {/* show category name when edit mode is not active for current element */}
-        {editMode !== i && <span>{name}</span>}
+        {editMode !== i && <td><div className="cat-name">{name}</div></td>}
         {/* on edit mode active for current element show edit form */}
         {editMode === i ? (
+          <td colSpan="3">
           <TogglingEditForm
             value={catName}
             name="cat-name"
@@ -103,14 +105,19 @@ export default function List(props) {
             onChange={(e) => setCatName(e.target.value)}
             onSave={(e) => handleSave(catName, name)}
           />
+          </td>
         ) :
           // else show the buttons
           (<>
+          <td>
             <Button variant="outline-secondary"  onClick={() => setMode(i, name)}>Edit</Button>
+          </td>
+          <td>
             <Button variant="outline-secondary" onClick={() => handleAlert(name)}>Delete</Button>
+          </td>  
           </>)
         }
-      </div>
+      </tr>
     );
 
   });
@@ -131,9 +138,9 @@ export default function List(props) {
           </Button>
         </Modal.Footer>
       </Modal>
-      <div className="edit-categ-list">
+      <Table className="edit-categ-list" responsive size="sm">
         {categoriesList}
-      </div>
+      </Table>
     </>
   );
 }
