@@ -1,6 +1,5 @@
 import SearchBar from '../shared/SearchBar';
 import PasteBar from './PasteBar'
-import Button from '../shared/Button';
 import VideoList from './VideoList';
 
 export default function Home(props) {
@@ -10,11 +9,10 @@ export default function Home(props) {
 
     <div className="Home">
       <div className="content-container">
-        <h3>Welcome message</h3>
+        <h4>Ready to replay?</h4>
         <div className="link-input">
           <PasteBar setSelectedVideoID={setSelectedVideoID} setState={setState}/>
-          <br></br>
-          <p>- OR -</p>
+          <h5>- OR -</h5>
           <SearchBar onSearch={onSearch} />
         </div>
         <VideoList onVideoSelected={onVideoSelected} data={data} />

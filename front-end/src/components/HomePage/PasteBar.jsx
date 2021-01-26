@@ -32,13 +32,13 @@ export default function PasteBar(props) {
 
   return (
     <Form onSubmit={onSubmit}>
-      <InputGroup onChange={onInput} className="paste_bar" >
+      <InputGroup onChange={onInput} className="paste-bar" >
         <FormControl
           placeholder="Paste Video Link"
           aria-label="Video Urls"
         />
         <InputGroup.Append>
-          <Button type="submit" value={url} variant="outline-secondary" >Submit</Button>
+          <Button type="submit" value={url} variant="outline-dark" >Submit</Button>
         </InputGroup.Append>
       </InputGroup>
     </Form>

@@ -13,7 +13,7 @@ export default function Header(props) {
     <div className="Header">
       <div className="logo">
         <h1>ech<FontAwesomeIcon id="play-icon" icon={faPlayCircle} /></h1>
-        <h6>  Replay your moments</h6>
+        <h6>&nbsp;&nbsp;Replay your moments</h6>
       </div>
       <div className="divider" />
       <div className="user-info">
