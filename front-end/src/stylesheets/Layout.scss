@@ -219,6 +219,7 @@
 
         .nav-link{
           border-bottom: 1px solid black;
+          font-size: 1.3em;
         }
 
       }
@@ -227,6 +228,10 @@
         align-self: center;
 
         width: 90%;
+
+        h5 {
+          padding-bottom: 1.7em;
+        }
 
         .Accordion {
           padding-top: 2em;
@@ -237,6 +242,7 @@
 
             .card-header{
               background-color: transparent;
+              font-size: 1.1em;
             }
 
             .card-header > div{
@@ -296,7 +302,8 @@
             border-bottom: 1px solid #DEE2E6;
 
             .cat-name {
-              padding-top: .4em;
+              padding-top: .1em;
+              font-size: 1.3em;
             }
 
             .mb-3 {

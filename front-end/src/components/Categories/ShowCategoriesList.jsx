@@ -34,6 +34,7 @@ export default function CategoriesList(props) {
   //render page content based on categories existence
   return (
     <div className="Accordion">
+      <h5>Select category below to see its videos</h5>
       {accordionCards && accordionCards.length > 0 ?
       <Accordion style={{width: "90%", marginLeft: "3em"}}>
         {accordionCards}
