@@ -27,8 +27,6 @@ export default function UserVideos(props) {
 
     return axios.delete('http://localhost:3001/api/videos', { params: video.id })
       .then(response => {
-        console.log('client says: delete request sent');
-        console.log(response.data);
         props.setState(prev => ({ ...prev, videos: videos.filter((vid) => vid.id !== video.id) }));
       })
       .catch(err => { console.log('error:', err); });

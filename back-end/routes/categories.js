@@ -13,7 +13,6 @@ module.exports = ({
 
     //get user id from cookies
     const userId = req.cookies.user;
-    console.log('userId :', userId);
 
     getUserCategories(userId)
     .then((response) => res.json(response))
@@ -28,9 +27,7 @@ module.exports = ({
 
     //get user id from cookies
     const userId = req.body.userId;
-    console.log('userId :', userId);
 
-    console.log("new categ:", req.body.newCateg);
     const newCateg = req.body.newCateg;
 
     addCategory(newCateg, userId)
@@ -48,7 +45,6 @@ module.exports = ({
 
     //extract values passed by front-end
     const { newValue, id } = req.body;
-    console.log("data:", req.body);
 
     updateCategory(newValue, id)
       .then(() => res.json(`back-end says: category ${id} updated to name ${newValue} in DB `))
@@ -60,9 +56,7 @@ module.exports = ({
   /* Delete categories */ 
   categories.delete('/', (req, res) => {
 
-    console.log("delete data:", req.body);
     const id = req.body.id;
-    console.log('id :', id);
 
     deleteCategory(id)
       .then(() => res.json(`back-end says: category ${id} deleted`))

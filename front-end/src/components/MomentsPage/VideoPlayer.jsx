@@ -16,8 +16,8 @@ export default function YTplayer(props) {
     player.seekTo(props.videoInfo.startTime, true)
     
     player.setLoop(true)
-    console.log("Video Duration",player.getDuration())
     let vd = player.getDuration()
+
     //set alert with duration is null
     if (vd <= 0) {
       setShow(true)
@@ -55,8 +55,6 @@ export default function YTplayer(props) {
 
     },
   };
-
-  console.log("VideoPLayer render state: ", state.selectedVideoID)
 
   if (show) {
     return (

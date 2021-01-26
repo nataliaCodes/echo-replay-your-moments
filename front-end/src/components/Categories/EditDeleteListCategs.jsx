@@ -53,9 +53,6 @@ export default function List(props) {
     return axios.put('http://localhost:3001/api/categories', { newValue, id })
       .then(response => {
         setEditMode(null);
-
-        console.log('client says: updated cat name sent');
-        console.log(response.data);
       })
       .catch(err => { console.log('error:', err) })
 
@@ -66,28 +63,20 @@ export default function List(props) {
 
     //shallow copy of categories with ids
     const categWithIds = [...state.categWithId];
-    console.log('categWithIds :', categWithIds);
 
     //extract id of current category to pass to back-end
     //!!on refactor of code, this can be moved into a helper!!
     let id;
     categWithIds.forEach(item => {
-      console.log('item :', item.name);
-      console.log('categName :', categName);
-      
-      
+         
       if(item.name === categName) {
         id = item.id;
       }
     })
-    console.log('id :', id);
-
 
     //send data to back-end
     return axios.delete('http://localhost:3001/api/categories', { data: { id } })
       .then(response => {
-        console.log('client says: delete request sent');
-        console.log(response.data);
         setState({...state, categories: state.categories.filter(categ => !categ.includes(categName))})
       })
       .catch(err => { console.log('error:', err) })

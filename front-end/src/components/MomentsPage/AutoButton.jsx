@@ -11,13 +11,11 @@ export default function SwitchButton(props) {
       setToggle(false);
       setChecked(true);
       setVideoInfo((prev)=>({...prev, loop: 1}));
-      console.log("ON")
     }
     if(!toggle){
       setToggle(true);
       setChecked(false);
       setVideoInfo((prev)=>({...prev, loop: 0}));
-      console.log("OFF")
     }
   };
 

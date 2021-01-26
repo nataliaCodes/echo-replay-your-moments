@@ -14,10 +14,6 @@ import Alert from 'react-bootstrap/Alert';
 
 export default function Save({ videoInfo, setVideoInfo, selectedCat, categories, moments, oldVideo, categWithId, selectedVidId, state, setState }) {
 
-  console.log("rendering save component: state=", state);
-  console.log("rendering save component: categWithId=", categWithId);
-  console.log("rendering save component: categories=", categories);
-
   const [cookies, setCookies] = useCookies(["user"]);
 
   //used to redirect
@@ -51,11 +47,9 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
   //retrieve id for selected category
   const getCatid = () => {
     let catId;
-    console.log("inGetID:", selectedCat);
     if (categWithId) {
 
       catId = categWithId.find(categ => categ.name === selectedCat);
-      console.log("finderID", catId);
 
       if (catId == undefined) {
         setShowAlert(true);
@@ -72,17 +66,12 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
 
   const handleSave = () => {
 
-    console.log("handleSave");
-
     const categ_id = getCatid();
     if (!categ_id) {
       getCatid();
     }
 
-    console.log("Save Component oldvideo =", oldVideo);
-    //-------------------------------------------------------------//
     if (!vidTitle) {
-      console.log("alert title:", vidTitle, " catId:", categoryId);
       setShowAlert(true);
     }
 
@@ -93,21 +82,14 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
 
 
     if (videoSaveInfo.cat_id) {
-      console.log("Sent to DB", videoSaveInfo);
       handleClose();
       return axios.post('/api/videos', { videoSaveInfo })
         .then((response) => {
-          console.log("**FIRSTres fromSERVER", response.data.response.id);
-          // console.log("****res state", state.selectedVideoID);
-   
           const youtubeId = response.data.info.videoSaveInfo.link .slice(32, 43);
-          console.log('youtubeId :', youtubeId);
-       
           setState((prev) => ({ ...prev, selectedVideoID: youtubeId, selectedVidId: response.data.response.id, oldVideo: true}));
 
           return axios.get('api/videos')
             .then((response) => {
-              // console.log("**SECONDres fromSERVER",response.data.response)
               setState((prev) => ({ ...prev, videos: response.data.response}));
             })
             .catch(err => console.log(err));

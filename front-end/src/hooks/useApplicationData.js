@@ -53,10 +53,6 @@ const useApplicationData = () => {
     .then(all => {
 
       //'all' comes back as an array of responses from the axios calls
-      // console.log('users:', all[0].data);
-      console.log('videos:', all[1].data.response);
-      // console.log('categories:', all[2].data)
-      // const categResponse = all[2].data;
       const categNames = all[2].data.map(item => item.name);
       
       //set current state with axios calls data
@@ -119,7 +115,6 @@ const useApplicationData = () => {
               setState({...state, error: userExists});
 
             } else {
-              console.log('user created, id:', response.data.id);
               setCookie("user", response.data.id, {
                 path: "/"
               });
@@ -167,8 +162,6 @@ const useApplicationData = () => {
               setState({...state, error: noUser});
 
             } else {
-
-              console.log('user logged in, id:', response.data.id);
               setCookie("user", response.data.id, {
                 path: "/"
               });
@@ -182,7 +175,6 @@ const useApplicationData = () => {
   const handleLogout = () => {
     //reset cookie when user logs out
     removeCookie("user", { path: "/"});
-    console.log('user logged out');
   }
 
   const onVideoSelected = videoId => {
@@ -196,32 +188,12 @@ const useApplicationData = () => {
       }
     })
 
-    console.log(response.data)
-
     setState({
       ...state,
       videoMetaInfo: response.data.items,
-      selectedVideoID: response.data.items[0].id.videoId
+      // selectedVideoID: response.data.items[0].id.videoId
     })
-
-    console.log(state)
   }
-
-  // const momentsBySelectedVid = (selectedVideoID) => {
-  
-  //   if(selectedVideoID) {
-  //     axios.get('http://localhost:3001/api/moments/', {
-  //       params: {selectedVideoID},
-  //       withCredentials: true
-  //     })
-  //     .then((response)=>{
-  //       console.log("in USEapp DB result",response)
-  //       console.log('info sent to backend')
-  //       //setState({..state, myInfo: content})
-  //     })
-  //     .catch(err => console.log(err));
-  //   }
-  // };
 
   const setSelectedVideoID = (videoID) =>{
     setState((prev)=>({...prev, selectedVideoID: videoID}));

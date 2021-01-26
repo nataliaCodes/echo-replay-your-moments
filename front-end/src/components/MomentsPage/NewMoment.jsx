@@ -17,8 +17,6 @@ export default function Moment(props) {
   //state for the alert confirming creation
   const [showAlert, setShowAlert] = useState(false);
 
-  console.log('render Newmoment state', props)
-
   const handleSave = (newValue, vidId) => {
 
     setShowForm(false);
@@ -33,10 +31,7 @@ export default function Moment(props) {
     //send data to back-end
     return axios.post('http://localhost:3001/api/moments', { userId, vidId, newValue, start, end})
       .then(response => {
-
-        console.log('response from addMoment :', response.data);
         videoInfo.moments.push(response.data)
-
         setVideoInfo({...videoInfo, newMoment: "", moments: videoInfo.moments});
       })
       .catch(err => { console.log('error:', err) })

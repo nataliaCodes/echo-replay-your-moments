@@ -32,11 +32,7 @@ export default function List(props) {
 
     //send data to back-end
     return axios.delete('http://localhost:3001/api/moments', { data: { id } })
-      .then(response => {
-        console.log('client says: delete request sent');
-        console.log(response.data);
-
-      })
+      .then(response => {})
       .catch(err => { console.log('error:', err) })
 
   };

@@ -7,16 +7,12 @@ const style = { width: 400, margin: 50 };
 export default function MomentBar(props) {
 
   const onSliderChange = (value) => {
-
-    console.log(value);
-
     const min = value[0]
     const max = value[1]
     props.setVideoInfo(prev => ({ ...prev, startTime: min, endTime: max }))
   };
 
   const onMinChange = (e) => {
-    console.log("MIN", e.target.value)
     let min = e.target.value
     props.setVideoInfo(prev => ({ ...prev, startTime: min }));
   };

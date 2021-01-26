@@ -11,8 +11,6 @@ import '../stylesheets/Navbar.scss';
 export default function Navbar(props) {
 
   const { handleLogout, state } = useApplicationData();
-  console.log('state :', state);
-
 
   return (
 

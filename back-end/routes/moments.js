@@ -46,12 +46,9 @@ module.exports = ({
   moments.post('/', (req, res) => {
 
     const { newValue, start, end, userId, vidId } = req.body;
-    console.log('request in post route :', req.body);
 
     addMoment(newValue, start, end, userId, vidId)
       .then(response => {
-        console.log('addMoment response :', response);
-
         res.json(response);
       })
       .catch((err) => res.json({

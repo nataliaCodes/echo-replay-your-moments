@@ -27,7 +27,6 @@ module.exports = ({
               });
 
           } else {
-              console.log('user created')
               return addUser(firstName, lastName, email, hashedPassword, avatar);
           }
       })

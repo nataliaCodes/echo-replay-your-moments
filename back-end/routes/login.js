@@ -17,7 +17,6 @@ module.exports = ({getUserByEmail}) => {
             if (user) {
                 
               const validAuth = bcrypt.compareSync(password, user.password)
-              console.log(validAuth);
 
               if (!validAuth) {
                 res.json({
