@@ -143,13 +143,15 @@
         width: 30em;
       }
 
-      a {
+      //fix this view once API is working again
+      .search-results {
         display: flex;
+        flex-direction: row;
         flex-wrap: wrap;
-        align-items: center;
+        // align-items: center;
         justify-content: space-around;
 
-        padding: 1.5em 0 .5em 1.2em;
+        // padding: 1.5em 0 .5em 1.2em;
 
         .card {
           margin: 1em 0 1em 0;
@@ -163,7 +165,6 @@
     }
 
     .UserVideos {
-      border: 2px solid purple;
       flex-grow: 2;
       display: flex;
       justify-content: center;
@@ -180,7 +181,17 @@
         justify-content: space-around;
 
         .card {
+          border: 2px solid blue;
+          display: flex;
+          // flex-direction: column;
+          justify-content: space-evenly;
+          align-items: flex-end;
+
           margin: 1em 0 1em 0;
+        }
+
+        button {
+          margin-top: .3em;
         }
       }
 

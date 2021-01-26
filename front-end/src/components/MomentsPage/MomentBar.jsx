@@ -7,32 +7,32 @@ const style = { width: 400, margin: 50 };
 export default function MomentBar(props) {
 
   const onSliderChange = (value) => {
-    
+
     console.log(value);
 
     const min = value[0]
     const max = value[1]
-    props.setVideoInfo(prev=>({...prev, startTime: min, endTime: max}))
+    props.setVideoInfo(prev => ({ ...prev, startTime: min, endTime: max }))
   };
 
   const onMinChange = (e) => {
-    console.log("MIN",e.target.value)
+    console.log("MIN", e.target.value)
     let min = e.target.value
-    props.setVideoInfo(prev=>({...prev, startTime: min}));
+    props.setVideoInfo(prev => ({ ...prev, startTime: min }));
   };
-  
+
   const onMaxChange = (e) => {
     let max = e.target.value
-    props.setVideoInfo(prev=> ({...prev, endTime: max}));
+    props.setVideoInfo(prev => ({ ...prev, endTime: max }));
   };
 
   return (
     <div style={style} >
       <label>Min: </label>
-      <input type="number" value={props.videoInfo.startTime} onChange={(e)=>onMinChange(e)} />
+      <input type="number" value={props.videoInfo.startTime} onChange={(e) => onMinChange(e)} />
       <br />
       <label>Max: </label>
-      <input type="number" value={props.videoInfo.endTime || props.videoInfo.duration} onChange={(e)=>onMaxChange(e)}  />
+      <input type="number" value={props.videoInfo.endTime || props.videoInfo.duration} onChange={(e) => onMaxChange(e)} />
       <br />
       <br />
 
