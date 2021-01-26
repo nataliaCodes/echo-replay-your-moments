@@ -27,6 +27,7 @@
 
         display: flex;
         flex-direction: column;
+        align-items: center;
 
         border: 1px solid #ECECEC;
         border-radius: 15px;
@@ -323,14 +324,17 @@
     }
 
     .Moments {
-      border: 2px solid green;
       flex-grow: 2;
 
       display: flex;
-      flex-direction: column;
       justify-content: center;
 
       padding: 4em 0 0 14em;
+      width: 90%;
+
+      .moments-player {
+        margin-top: 3em;
+      }
     }
 
     .Register {

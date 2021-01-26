@@ -51,7 +51,6 @@ export default function Moment(props) {
   return (
     <div className="Moments">
       <div className="content-container">
-        {/* <SearchBar /> */}
         <VideoPlayer videoInfo={videoInfo} setVideoInfo={setVideoInfo} state={state} setState={setState} />
         <MomentBar videoInfo={videoInfo} setVideoInfo={setVideoInfo} />
 

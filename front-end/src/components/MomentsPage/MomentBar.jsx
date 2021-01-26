@@ -23,7 +23,7 @@ export default function MomentBar(props) {
   };
 
   return (
-    <div style={style} >
+    <div className="min-max" style={style} >
       <label>Min: </label>
       <input type="number" value={props.videoInfo.startTime} onChange={(e) => onMinChange(e)} />
       <br />

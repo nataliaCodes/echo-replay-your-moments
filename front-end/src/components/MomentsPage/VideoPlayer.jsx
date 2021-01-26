@@ -78,12 +78,14 @@ export default function YTplayer(props) {
 
   return (
 
-    <YouTube 
-      videoId={props.videoInfo.selectedVideoID} 
-      opts={opts} 
-      onReady={videoOnReady}
-      onPlay={videoOnPlay}
-      onEnd={videoOnEnd}
-    />
+    <div className="moments-player">
+      <YouTube 
+        videoId={props.videoInfo.selectedVideoID} 
+        opts={opts} 
+        onReady={videoOnReady}
+        onPlay={videoOnPlay}
+        onEnd={videoOnEnd}
+      />
+    </div>
   );
 }
