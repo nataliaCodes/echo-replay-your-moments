@@ -60,7 +60,7 @@ module.exports = (db) => {
   const getUserCategories = userId => {
 
     const query = {
-      text: `SELECT id, name FROM categories WHERE user_id = $1 ORDER BY id ASC;`,
+      text: `SELECT id, name FROM categories WHERE user_id = $1 ORDER BY id DESC;`,
       values: [userId]
     }
     return db.query(query)

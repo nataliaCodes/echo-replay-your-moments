@@ -29,7 +29,8 @@ export default function EditCategories(props) {
     return axios.post('http://localhost:3001/api/categories', { newCateg, userId })
       .then(response => {
 
-        const categ = [...state.categories, newCateg];
+        const categ = [...state.categories];
+        categ.unshift(newCateg);
         setState(prev => ({...prev, categories: categ}))
 
       })
