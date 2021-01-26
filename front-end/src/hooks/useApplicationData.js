@@ -194,12 +194,12 @@ const useApplicationData = () => {
       }
     })
 
-    console.log(response.data)
+    console.log('onsSearch response',response.data)
 
     setState({
       ...state,
       videoMetaInfo: response.data.items,
-      selectedVideoID: response.data.items[0].id.videoId
+      // selectedVideoID: response.data.items[0].id.videoId
     })
 
     console.log(state)
