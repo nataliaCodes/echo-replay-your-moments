@@ -199,9 +199,12 @@
     }
 
     .Register {
-      display: flex;
       flex-grow: 2;
+
+      display: flex;
       justify-content: center;
+
+      padding-top: 6.9em;
       
       .form{
         border: solid limegreen;
@@ -222,9 +225,12 @@
     }
 
     .Login {
-      display: flex;
       flex-grow: 2;
+
+      display: flex;
       justify-content: center;
+
+      padding-top: 6.9em;
       
      
       .form{

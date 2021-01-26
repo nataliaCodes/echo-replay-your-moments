@@ -17,58 +17,60 @@ export default function Register(props) {
 
   return (
     <div className="Register">
-      <div>
-        {state.error && <Form.Text>{state.error}</Form.Text>}
-      </div><br />
-      <div div className="form">
-        <Form onSubmit={e => handleRegisterSubmit(e)} noValidate>
-          <Form.Group controlId="first_name">
-            <Form.Label>
-              First name:&nbsp;&nbsp;
-            </Form.Label>
-            <Form.Control
-              type="text"
-              name="firstName"
-              value={state.firstName}
-              onChange={handleFormChange}
-              noValidate
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group controlId="last_name">
-            <Form.Label>
-              Last name:&nbsp;&nbsp;
-            <Form.Control
+      <div className="content-container">
+        <div>
+          {state.error && <Form.Text>{state.error}</Form.Text>}
+        </div><br />
+        <div div className="form">
+          <Form onSubmit={e => handleRegisterSubmit(e)} noValidate>
+            <Form.Group controlId="first_name">
+              <Form.Label>
+                First name:&nbsp;&nbsp;
+              </Form.Label>
+              <Form.Control
                 type="text"
-                name="lastName"
+                name="firstName"
+                value={state.firstName}
                 onChange={handleFormChange}
                 noValidate
               ></Form.Control>
-            </Form.Label>
-          </Form.Group>
-          <Form.Group controlId="formEmail">
-            <Form.Label>
-              Email:&nbsp;&nbsp;
-            <Form.Control
-                type="email"
-                name="email"
-                onChange={handleFormChange}
-                noValidate
-              ></Form.Control>
-            </Form.Label>
-          </Form.Group>
-          <Form.Group controlId="formPassword">
-            <Form.Label>
-              Password:&nbsp;&nbsp;
-            <Form.Control
-                type="password"
-                name="password"
-                onChange={handleFormChange}
-                noValidate
-              ></Form.Control>
-            </Form.Label>
-          </Form.Group>
-        <Button type="submit" onClick={handleRegisterSubmit} onKeyPress={(e)=>{e.target.keyCode === 13 && e.preventDefault()}}>Register</Button>
-        </Form>
+            </Form.Group>
+            <Form.Group controlId="last_name">
+              <Form.Label>
+                Last name:&nbsp;&nbsp;
+              <Form.Control
+                  type="text"
+                  name="lastName"
+                  onChange={handleFormChange}
+                  noValidate
+                ></Form.Control>
+              </Form.Label>
+            </Form.Group>
+            <Form.Group controlId="formEmail">
+              <Form.Label>
+                Email:&nbsp;&nbsp;
+              <Form.Control
+                  type="email"
+                  name="email"
+                  onChange={handleFormChange}
+                  noValidate
+                ></Form.Control>
+              </Form.Label>
+            </Form.Group>
+            <Form.Group controlId="formPassword">
+              <Form.Label>
+                Password:&nbsp;&nbsp;
+              <Form.Control
+                  type="password"
+                  name="password"
+                  onChange={handleFormChange}
+                  noValidate
+                ></Form.Control>
+              </Form.Label>
+            </Form.Group>
+            <Button type="submit" onClick={handleRegisterSubmit} onKeyPress={(e) => { e.target.keyCode === 13 && e.preventDefault() }}>Register</Button>
+          </Form>
+        </div>
       </div>
     </div>
 
