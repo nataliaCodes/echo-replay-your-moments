@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-import Alert from 'react-bootstrap/Alert';
 import Modal from 'react-bootstrap/Modal';
 
 import Button from '../shared/Button';
@@ -44,7 +43,7 @@ export default function List(props) {
     let id;
     categWithIds.forEach(item => {
 
-      if(item.name === oldValue) {
+      if (item.name === oldValue) {
         id = item.id;
       }
     })
@@ -61,15 +60,14 @@ export default function List(props) {
   const handleDelete = (categName) => {
     setShowAlert(false);
 
-    //shallow copy of categories with ids
     const categWithIds = [...state.categWithId];
 
     //extract id of current category to pass to back-end
     //!!on refactor of code, this can be moved into a helper!!
     let id;
     categWithIds.forEach(item => {
-         
-      if(item.name === categName) {
+
+      if (item.name === categName) {
         id = item.id;
       }
     })
@@ -77,7 +75,7 @@ export default function List(props) {
     //send data to back-end
     return axios.delete('http://localhost:3001/api/categories', { data: { id } })
       .then(response => {
-        setState({...state, categories: state.categories.filter(categ => !categ.includes(categName))})
+        setState({ ...state, categories: state.categories.filter(categ => !categ.includes(categName)) })
       })
       .catch(err => { console.log('error:', err) })
 
@@ -94,7 +92,7 @@ export default function List(props) {
 
       <div key={i}>
         {/* show category name when edit mode is not active for current element */}
-        {editMode !== i && name}
+        {editMode !== i && <span>{name}</span>}
         {/* on edit mode active for current element show edit form */}
         {editMode === i ? (
           <TogglingEditForm
@@ -108,8 +106,8 @@ export default function List(props) {
         ) :
           // else show the buttons
           (<>
-            <Button onClick={() => setMode(i, name)} children={'Edit'} />
-            <Button onClick={() => handleAlert(name)}>Delete</Button>
+            <Button variant="outline-secondary"  onClick={() => setMode(i, name)}>Edit</Button>
+            <Button variant="outline-secondary" onClick={() => handleAlert(name)}>Delete</Button>
           </>)
         }
       </div>
@@ -119,7 +117,6 @@ export default function List(props) {
 
   return (
     <>
-      <>
       <Modal show={showAlert} onHide={() => setShowAlert(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Delete category</Modal.Title>
@@ -134,21 +131,7 @@ export default function List(props) {
           </Button>
         </Modal.Footer>
       </Modal>
-        {/* <Alert show={showAlert} variant="danger" style={{width: "20em"}}>
-          <Alert.Heading>Delete category</Alert.Heading>
-          <p>
-            Deleting category cannot be undone. Proceed?
-          </p>
-          <hr />
-          <div className="d-flex justify-content-end">
-            <Button onClick={() => setShowAlert(false)}>Cancel</Button>
-            <Button onClick={() => handleDelete(alertCateg)} variant="outline-danger">
-              Proceed
-          </Button>
-          </div>
-        </Alert> */}
-      </>
-      <div className="List">
+      <div className="edit-categ-list">
         {categoriesList}
       </div>
     </>

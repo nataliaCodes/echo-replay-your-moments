@@ -25,6 +25,9 @@
       .content-container {
         align-self: flex-end;
 
+        display: flex;
+        flex-direction: column;
+
         border: 1px solid #ECECEC;
         border-radius: 15px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -143,18 +146,22 @@
         width: 30em;
       }
 
-      //fix this view once API is working again
       .search-results {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        // align-items: center;
         justify-content: space-around;
-
-        // padding: 1.5em 0 .5em 1.2em;
 
         .card {
           margin: 1em 0 1em 0;
+
+          .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            height: 4em;
+          }
         }
       }
 
@@ -181,16 +188,15 @@
         justify-content: space-around;
 
         .card {
-          border: 2px solid blue;
-          display: flex;
-          // flex-direction: column;
-          justify-content: space-evenly;
-
           margin: 1em 0 1em 0;
-        }
 
-        button {
-          margin-top: .3em;
+          .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            height: 4em;
+          }
         }
       }
 
@@ -205,25 +211,55 @@
       padding: 4em 0 0 14em;
 
       .nav {
-        align-self: flex-start;
+        align-self: center;
 
-        // border: 2px solid blue;
+        width: 90%;
+        padding-top: 2.5em;
         border-bottom: 1px solid black;
+
+        .nav-link{
+          border-bottom: 1px solid black;
+        }
 
       }
 
       .ShowCategories {
-        border: 2px solid lime;
+        align-self: center;
+
+        width: 90%;
 
         .Accordion {
-          border: 2px solid crimson;
+          padding-top: 2em;
 
           .card {
             border-radius: 5px;
             //set the color on the accordion here
 
             .card-header{
-              border-radius: 5px;
+              background-color: transparent;
+            }
+
+            .card-header > div{
+              border: transparent;
+              background-color: transparent;
+            }
+          }
+        }
+
+        .VideoThumbnails {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-around;
+          
+          .card {
+            margin: 1em 0 1em 0;
+  
+            .card-header {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+  
+              height: 4em;
             }
           }
         }
@@ -231,7 +267,41 @@
       }
 
       .EditCategories {
+        align-self: center;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        padding-top: 2em;
         width: 90%;
+
+        .mb-3 {
+          align-self: center;
+
+          padding: .7em 0 .7em 0;
+          width: 30em;
+        }
+
+        .edit-categ-list {
+          border: 2px solid purple;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+
+          width: 35%;
+
+          button {
+            padding: .1em .2em .1em .2em;
+            width: 4em;
+            border: transparent;
+          }
+
+          span {
+            margin-right: 2em;
+          }
+        }
       }
      
     }

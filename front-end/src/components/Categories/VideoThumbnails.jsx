@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
 
 export default function VideoThumbnails(props) {
 
-  const { state, setState, onVideoSelected, selectedVideoID } = props;
+  const { state } = props;
 
   const thumbnails = state.videos
     .filter(video => video.cat_name === props.category)

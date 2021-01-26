@@ -53,9 +53,7 @@ export default function UserVideos(props) {
           <Card.Img variant="bottom" src={thumbnail} alt="thumbnail" />
         </Link>
         <Button onClick={() => handleAlert(video)}>Delete</Button>
-        <br></br>
       </Card>
-
     );
   });
 
@@ -63,8 +61,8 @@ export default function UserVideos(props) {
 
     <div className="UserVideos">
       <div className="content-container">
-        <h4>Select video below to start adding your moments</h4>
         {/* <SearchBar /> */}
+        <h4>Select video below to start adding your moments</h4>
 
         <Modal show={showAlert} onHide={() => setShowAlert(false)}>
           <Modal.Header closeButton>

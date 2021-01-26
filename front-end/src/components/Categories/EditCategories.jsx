@@ -2,16 +2,15 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Alert from 'react-bootstrap/Alert';
 
-import Button from '../shared/Button';
 import EditDelete from './EditDeleteListCategs';
 import TogglingEditForm from './TogglingEditForm';
 
 export default function EditCategories(props) {
 
-  const { state, setState, cookies } = props;
+  const { state, setState, cookies, showForm, setShowForm } = props;
 
-  //state for the form toggled by 'Add category'
-  const [showForm, setShowForm] = useState(false);
+  // //state for the form toggled by 'Add category'
+  // const [showForm, setShowForm] = useState(false);
 
   //state for the Add category input
   const [newCat, setNewCat] = useState("");
@@ -46,9 +45,6 @@ export default function EditCategories(props) {
 
   return (
     <div className="EditCategories">
-      <h4>Edit categories</h4>
-      <Button onClick={() => setShowForm(true)}>Add category</Button>
-      <br /><br />
       {showForm && (
         <TogglingEditForm
           placeholder="Insert category name"

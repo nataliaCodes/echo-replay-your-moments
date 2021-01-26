@@ -18,8 +18,8 @@ export default function TogglingEditForm(props) {
         onChange={props.onChange}
       />
       <InputGroup.Append>
-        <Button variant="outline-secondary" onClick={props.onSave}>Save</Button>
-        <Button variant="outline-secondary" onClick={props.onCancel}>Cancel</Button>
+        <Button onClick={props.onSave}>Save</Button>
+        <Button onClick={props.onCancel}>Cancel</Button>
       </InputGroup.Append>
     </InputGroup>
   );

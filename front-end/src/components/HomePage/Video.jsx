@@ -19,7 +19,6 @@ function constructVideoTitles(videosData, onVideoSelected) {
               {snippet.title}
             </Card.Header>
             <Card.Img variant="bottom" src={thumbnail} alt="thumbnail" />
-            <br></br>
           </Card>
         </Link>
       )
