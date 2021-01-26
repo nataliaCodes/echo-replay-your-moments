@@ -30,7 +30,7 @@ export default function Navbar(props) {
                 <NavbarItem>My categories</NavbarItem>
               </Link>
               <Link to="/">
-                <Logout onClick={handleLogout}>Log out {props.cookies.user}</Logout>
+                <Logout onClick={handleLogout}>Log out</Logout>
               </Link>
             </>
             :

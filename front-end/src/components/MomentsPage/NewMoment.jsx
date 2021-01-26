@@ -46,7 +46,7 @@ export default function Moment(props) {
 
 
   return (
-    <div className="Moment">
+    <div className="new-moment">
       {showAlert && <small>Succsessfully created!</small>}<br />
       {!oldVideo && cookies.user && <Alert variant='info'>Please save your video before adding moments!</Alert>}
       {!showForm && oldVideo && <Button onClick={() => setShowForm(true)}>Add moment</Button>}
@@ -54,6 +54,7 @@ export default function Moment(props) {
       {showForm && <>
         <InputGroup className="mb-3">
           <FormControl
+            className="main"
             placeholder="Insert moment name"
             name="new-moment"
             value={videoInfo.newMoment}

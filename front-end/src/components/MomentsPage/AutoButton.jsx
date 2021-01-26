@@ -20,8 +20,8 @@ export default function SwitchButton(props) {
   };
 
   return (
-    <>
-      <p>LOOP</p>
+    <div className="loop-toggle">
+      <p>LOOP:</p>
       <BootstrapSwitchButton
         onlabel='ON'
         offlabel='OFF'
@@ -29,7 +29,7 @@ export default function SwitchButton(props) {
         onstyle="success"
         width='80'
       />
-    </>
+    </div>
 
   );
 }

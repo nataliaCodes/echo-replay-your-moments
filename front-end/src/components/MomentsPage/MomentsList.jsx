@@ -64,7 +64,7 @@ export default function List(props) {
 
       <Table key={key} size="sm">
         <tr>
-          <td>
+          <td colSpan="2">
             <h6>{name}:  {start} - {end}</h6>
           </td>
           <td>
