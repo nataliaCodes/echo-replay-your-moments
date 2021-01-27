@@ -128,7 +128,10 @@ export default function List(props) {
         <Modal.Header closeButton>
           <Modal.Title>Delete category</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Deleting category will remove any associated videos and cannot be undone. Proceed?</Modal.Body>
+        <Modal.Body>
+          <h5>Deleting category "{alertCateg}" </h5>
+          <p>will remove any associated videos and action cannot be undone. Proceed?</p>
+          </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowAlert(false)}>
             Cancel

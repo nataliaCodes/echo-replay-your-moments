@@ -87,7 +87,10 @@ export default function List(props) {
         <Modal.Header closeButton>
           <Modal.Title>Delete moment</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Deleting moment cannot be undone. Proceed?</Modal.Body>
+        <Modal.Body>
+          <h4>Moment "{alertMom}"</h4>
+          <p>will be removed and action cannot be undone. Proceed?</p>
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowAlert(false)}>
             Cancel

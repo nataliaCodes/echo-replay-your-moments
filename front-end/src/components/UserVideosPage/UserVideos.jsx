@@ -70,15 +70,13 @@ export default function UserVideos(props) {
           </Modal.Header>
 
           <Modal.Body>
-            <Alert show={true} variant="danger">
-              <p>Video:<h4>{alertVid && alertVid.title}</h4></p>
-              <p>Will be removed and cannot be undone. Proceed?</p>
-            </Alert>
+              <h5>Video "{alertVid && alertVid.title}" </h5>
+              <p>will be removed and action cannot be undone. Proceed?</p>
           </Modal.Body>
 
           <Modal.Footer>
             <Button variant="secondary" onClick={() => setShowAlert(false)}>
-              Close
+              Cancel
             </Button>
             <Button variant="primary" onClick={() => handleDelete(alertVid)}>
               Proceed
