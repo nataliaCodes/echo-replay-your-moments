@@ -53,6 +53,7 @@ $text-color: white;
         flex-direction: column;
         align-items: center;
 
+        background: url(../img/triangle.png) fixed no-repeat;
         border: 1px solid #ECECEC;
         border-radius: 15px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -93,11 +94,24 @@ $text-color: white;
           #play-icon {
             font-size: .57em;
             margin-bottom: .1em;
+            color: #601886;
           }
         }
 
         h6 {
           margin-top: -0.7em;
+        }
+
+        .e-logo {
+          color: #F6AB00;
+        }
+
+        .c-logo {
+          color: #F6AB00;
+        }
+        
+        .h-logo {
+          color: #F6AB00;
         }
 
       }
@@ -156,7 +170,7 @@ $text-color: white;
       padding: 4em 0 0 15em;
 
       h4 {
-        padding: 2.5em 0 1.5em 0;
+        padding: 4em 0 1.5em 0;
       }
 
       .link-input {
@@ -175,6 +189,8 @@ $text-color: white;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-around;
+
+        background-color: transparent;
 
         width: 95%;
       }
@@ -201,6 +217,7 @@ $text-color: white;
         flex-wrap: wrap;
         justify-content: space-around;
         
+        background-color: white;
         width: 95%;
       }
     }
@@ -228,8 +245,12 @@ $text-color: white;
 
       .ShowCategories {
         align-self: center;
+        display: flex;
+        justify-content: center;
+        background-color: white;
 
-        width: 90%;
+        width: 100%;
+        height: 100%;
 
         h5 {
           padding-bottom: 1.7em;
@@ -237,6 +258,7 @@ $text-color: white;
 
         .Accordion {
           padding-top: 2em;
+          width: 90%;
 
           .card {
             margin: 1em 0 1em 0;
@@ -269,11 +291,12 @@ $text-color: white;
 
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         
+        background-color: white;
         padding-top: 1.5em;
-        width: 90%;
+        width: 100%;
+        height: 100%;
 
         .mb-3 {
           align-self: center;
@@ -327,6 +350,7 @@ $text-color: white;
         justify-content: space-between;
         align-items: flex-start;
 
+        background-color: white;
         margin-top: 4em;
         width: 95%;
 
@@ -408,6 +432,7 @@ $text-color: white;
       padding: 4em 0 0 14em;
       
       .register-form{
+        background-color: white;
         border: 2px solid #c5b8b8;
         border-radius: 5px;
         margin-top: 4em;
@@ -427,6 +452,7 @@ $text-color: white;
       
      
       .login-form{
+        background-color: white;
         border: 2px solid #c5b8b8;
         border-radius: 5px;
         margin-top: 4em;
