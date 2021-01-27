@@ -8,8 +8,6 @@ export default function CategoriesList(props) {
   //extract categories list from state
   const { state, setState, onVideoSelected, selectedVideoID } = props;
 
-  console.log(' state.categories:', state.categories);
-
   //render list of categories with corresponding videos dynamically
   const accordionCards = state.categories && state.categories.map((name, index) => {
 

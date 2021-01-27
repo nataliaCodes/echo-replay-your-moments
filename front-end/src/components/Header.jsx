@@ -2,9 +2,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 
 export default function Header(props) {
-  
+
   const users = props.state.users;
-  const cookie = props.cookies.user
 
   const currentUser = users && users.filter(user => user.id == props.cookies.user)[0];
 

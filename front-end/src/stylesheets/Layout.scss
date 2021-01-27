@@ -372,12 +372,10 @@ $text-color: white;
             display: flex;
             flex-wrap: wrap;
 
-            width: 85%;
-
             th {
               text-decoration: underline;
               text-decoration-style: solid;
-              padding-bottom: .5em;
+              padding: 1em 0 1em 0;
             }
             
             td {

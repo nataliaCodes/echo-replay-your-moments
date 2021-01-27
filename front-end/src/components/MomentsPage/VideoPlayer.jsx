@@ -2,43 +2,35 @@ import { useState } from 'react';
 import YouTube from 'react-youtube';
 import Alert from 'react-bootstrap/Alert';
 
-
 export default function YTplayer(props) {
-
-  const { state, setState } = props;
 
   const [show, setShow] = useState(false);
 
-  const videoOnReady=(event) =>{
+  const videoOnReady = (event) => {
     // access to player in all event handlers via event.target
     const player = event.target;
-    player.playVideo()
-    player.seekTo(props.videoInfo.startTime, true)
-    
-    player.setLoop(true)
-    let vd = player.getDuration()
+    let vd = player.getDuration();
 
-    //set alert with duration is null
+    player.playVideo();
+    player.seekTo(props.videoInfo.startTime, true);
+    player.setLoop(true);
+
+    //set alert when duration is null
     if (vd <= 0) {
-      setShow(true)
+      setShow(true);
     };
 
-    props.setVideoInfo(prev=>({...prev, duration: vd}))
-    
-  }
+    props.setVideoInfo(prev => ({ ...prev, duration: vd }));
 
-  const videoOnPlay=(event) =>{
+  };
+
+  const videoOnEnd = (event) => {
     // access to player in all event handlers via event.target
     const player = event.target;
-  }
-
-  const videoOnEnd=(event) =>{
-    // access to player in all event handlers via event.target
-    const player = event.target;
-    player.seekTo(props.videoInfo.startTime, true)
+    player.seekTo(props.videoInfo.startTime, true);
     //stops the autoplay
-    if(props.videoInfo.loop === 0){
-      player.pauseVideo()
+    if (props.videoInfo.loop === 0) {
+      player.pauseVideo();
     }
   };
 
@@ -48,7 +40,6 @@ export default function YTplayer(props) {
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: props.videoInfo.autoplay,
-      // autoplay: 1,
       loop: props.videoInfo.loop,
       start: props.videoInfo.startTime,
       end: props.videoInfo.endTime
@@ -65,11 +56,10 @@ export default function YTplayer(props) {
             Sorry, Moment actions will not work, please select a different video.
           </p>
         </Alert>
-        <YouTube 
-          videoId={props.videoInfo.selectedVideoID} 
-          opts={opts} 
+        <YouTube
+          videoId={props.videoInfo.selectedVideoID}
+          opts={opts}
           onReady={videoOnReady}
-          onPlay={videoOnPlay}
           onEnd={videoOnEnd}
         />
       </div>
@@ -79,11 +69,10 @@ export default function YTplayer(props) {
   return (
 
     <div className="moments-player">
-      <YouTube 
-        videoId={props.videoInfo.selectedVideoID} 
-        opts={opts} 
+      <YouTube
+        videoId={props.videoInfo.selectedVideoID}
+        opts={opts}
         onReady={videoOnReady}
-        onPlay={videoOnPlay}
         onEnd={videoOnEnd}
       />
     </div>

@@ -1,5 +1,4 @@
 import { Redirect } from "react-router-dom";
-import InputGroup from 'react-bootstrap/InputGroup';
 
 import useApplicationData from '../../hooks/useApplicationData';
 
