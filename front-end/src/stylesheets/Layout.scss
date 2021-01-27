@@ -1,5 +1,14 @@
 @import '~bootstrap/scss/bootstrap.scss';
 
+$body-color: #F2F5FA;
+$sidebar-color: #406895;
+$input-color: #a1d6e2;
+$button-color: white;
+$link-color: black;
+$card-header-color: #62BA89;
+$text-color: white;
+
+
   /* Mobile/tablet view */
   @media only screen and (max-width: 1023px) {
 
@@ -20,6 +29,21 @@
 
       a {
         color: black;
+      }
+
+      .card {
+        margin: 1em 0 1em 0;
+        
+        .card-header {
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          
+          font-weight: bold;
+          height: 4em;
+          overflow: hidden;
+
+        }
       }
 
       .content-container {
@@ -153,18 +177,6 @@
         justify-content: space-around;
 
         width: 95%;
-
-        .card {
-          margin: 1em 0 1em 0;
-
-          .card-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            height: 4em;
-          }
-        }
       }
 
       .video-list {
@@ -190,20 +202,7 @@
         justify-content: space-around;
         
         width: 95%;
-
-        .card {
-          margin: 1em 0 1em 0;
-
-          .card-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            height: 4em;
-          }
-        }
       }
-
     }
 
     .Categories {
@@ -225,7 +224,6 @@
           border-bottom: 1px solid black;
           font-size: 1.3em;
         }
-
       }
 
       .ShowCategories {
@@ -241,17 +239,18 @@
           padding-top: 2em;
 
           .card {
-            border-radius: 5px;
-            //set the color on the accordion here
-
-            .card-header{
-              background-color: transparent;
-              font-size: 1.1em;
-            }
-
-            .card-header > div{
+            margin: 1em 0 1em 0;
+            
+            .card-header {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              
+              height: 4em;
+              width: 100%;
               border: transparent;
-              background-color: transparent;
+              background-color: #F7F7F7;
+
             }
           }
         }
@@ -261,17 +260,6 @@
           flex-wrap: wrap;
           justify-content: space-around;
           
-          .card {
-            margin: 1em 0 1em 0;
-  
-            .card-header {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-  
-              height: 4em;
-            }
-          }
         }
 
       }

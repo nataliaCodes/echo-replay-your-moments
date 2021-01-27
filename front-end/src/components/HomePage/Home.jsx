@@ -9,7 +9,7 @@ export default function Home(props) {
 
     <div className="Home">
       <div className="content-container">
-        <h4>Ready to replay?</h4>
+        <h4>Ready for replay?</h4>
         <div className="link-input">
           <PasteBar setSelectedVideoID={setSelectedVideoID} setState={setState}/>
           <h5>- OR -</h5>
