@@ -63,10 +63,11 @@ export default function List(props) {
     return (
 
       <Table key={key} size="sm">
-        <tr>
-          <td colSpan="2">
-            <h6>{name}:  {start} - {end}</h6>
-          </td>
+          <th colSpan="3">
+            {name}
+          </th>
+          <tr>
+            <td>{start} - {end}</td>
           <td>
             <Button onClick={() => handlePlay(moment.start_time, moment.end_time)}>Play</Button>
           </td>

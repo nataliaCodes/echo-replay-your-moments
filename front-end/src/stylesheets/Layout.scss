@@ -341,16 +341,17 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        // border: 2px solid red;
 
         margin-top: 4em;
         width: 95%;
 
+        .save-video .btn {
+          margin: 3.3em 6em 0 0;
+        }
+
         .player-group {
-          // border: 1px solid green;
 
           .loop-toggle {
-            // border: 1px solid turquoise;
             display: flex;
             align-items: center;
             justify-content: flex-end;
@@ -367,7 +368,6 @@
 
 
         .moments-group {
-          // border: 1px solid blue;
           flex-grow: 2;
 
           display: flex;
@@ -381,26 +381,23 @@
             display: flex;
             align-items: center;
             margin: 0 .7em 2em 0;
-
-
-            // border: 1px solid orange;
           }
 
           .moments-list {
-            // border: 1px solid black;
             display: flex;
             flex-wrap: wrap;
 
-            width: 95%;
+            width: 85%;
+
+            th {
+              text-decoration: underline;
+              text-decoration-style: solid;
+              padding-bottom: .5em;
+            }
             
             td {
-              // border: 1px solid red;
               vertical-align: baseline;
-              text-align: right;
-              // border-top: transparent;
-              width: 1em;
-              padding: 0 .7em 0 .7em;
-              border-bottom: 1px solid #DEE2E6;
+              border-top: transparent;
               overflow: hidden;
               word-wrap:break-word;
             }
@@ -409,9 +406,10 @@
               border: transparent;
               color: black;
             }
-
           }
         }
+
+        
       }
     }
 

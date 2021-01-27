@@ -4,13 +4,13 @@ import { useHistory, Link } from 'react-router-dom';
 import { useCookies } from "react-cookie";
 
 import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
-
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
+
+import Button from '../shared/Button';
 
 export default function Save({ videoInfo, setVideoInfo, selectedCat, categories, moments, oldVideo, categWithId, selectedVidId, state, setState }) {
 
@@ -102,8 +102,8 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
 
   return (
     <>
-      {cookies.user ? <Form>
-        <Button variant="primary" onClick={handleShow}>
+      {cookies.user ? <Form className="save-video">
+        <Button onClick={handleShow}>
           Save video
         </Button>
         <Modal
