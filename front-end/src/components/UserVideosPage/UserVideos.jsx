@@ -2,8 +2,6 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 
-import SearchBar from '../shared/SearchBar';
-
 import Card from 'react-bootstrap/Card';
 import Button from '../shared/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -30,7 +28,6 @@ export default function UserVideos(props) {
         props.setState(prev => ({ ...prev, videos: videos.filter((vid) => vid.id !== video.id) }));
       })
       .catch(err => { console.log('error:', err); });
-
   };
 
   const videoList = videos && videos.map((video, index) => {
@@ -61,7 +58,6 @@ export default function UserVideos(props) {
 
     <div className="UserVideos">
       <div className="content-container">
-        {/* <SearchBar /> */}
         <h4>Select video below to start adding your moments</h4>
 
         <Modal show={showAlert} onHide={() => setShowAlert(false)}>
@@ -88,6 +84,5 @@ export default function UserVideos(props) {
         </div>
       </div>
     </div>
-
   );
 }

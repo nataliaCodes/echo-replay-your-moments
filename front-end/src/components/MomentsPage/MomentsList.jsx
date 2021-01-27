@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-import Alert from 'react-bootstrap/Alert';
 import Modal from 'react-bootstrap/Modal';
 import Table from 'react-bootstrap/Table';
 
@@ -11,15 +10,12 @@ export default function List(props) {
   const { videoInfo, setVideoInfo } = props;
   const moments = videoInfo.moments;
 
-  //state for the selected moment
-  const [ momName, setMomName ] = useState("");
-
   //state of delete alert
   const [showAlert, setShowAlert] = useState(false);
   const [alertMom, setAlertMom] = useState(null);
 
   const handleDelete = (momName) => {
-    
+
     setShowAlert(false);
 
     //find moment that is being changed and extract its id
@@ -27,14 +23,14 @@ export default function List(props) {
     const id = deleted.moment_id;
 
     //create updated array for back-end
-    const newMoments = moments.filter(moment => moment.moment_id !== id)
+    const newMoments = moments.filter(moment => moment.moment_id !== id);
 
-    setVideoInfo({...videoInfo, moments: newMoments})
+    setVideoInfo({ ...videoInfo, moments: newMoments });
 
     //send data to back-end
     return axios.delete('http://localhost:3001/api/moments', { data: { id } })
-      .then(response => {})
-      .catch(err => { console.log('error:', err) })
+      .then(response => { })
+      .catch(err => { console.log('error:', err); });
 
   };
 
@@ -44,7 +40,7 @@ export default function List(props) {
   };
 
   const handlePlay = (start, end) => {
-    setVideoInfo({...videoInfo, startTime: start, endTime: end})
+    setVideoInfo({ ...videoInfo, startTime: start, endTime: end });
   };
 
   //convert seconds to human readable times
@@ -79,7 +75,6 @@ export default function List(props) {
     );
 
   });
-  
 
   return (
     <>
@@ -100,19 +95,6 @@ export default function List(props) {
           </Button>
         </Modal.Footer>
       </Modal>
-        {/* <Alert show={showAlert} variant="danger" style={{width: "20em"}}>
-          <Alert.Heading>Delete moment</Alert.Heading>
-          <p>
-            Deleting moment cannot be undone. Proceed?
-          </p>
-          <hr />
-          <div className="d-flex justify-content-end">
-            <Button onClick={() => setShowAlert(false)}>Cancel</Button>
-            <Button onClick={() => handleDelete(alertMom)} variant="outline-danger">
-              Proceed
-          </Button>
-          </div>
-        </Alert> */}
       <div className="moments-list">
         {momentsList}
       </div>

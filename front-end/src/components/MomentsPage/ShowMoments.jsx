@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import VideoPlayer from './VideoPlayer';
@@ -8,8 +7,6 @@ import MomentBar from './MomentBar';
 import NewMoment from './NewMoment';
 import Save from './Save';
 import AutoButton from './AutoButton';
-
-
 
 export default function Moment(props) {
 
