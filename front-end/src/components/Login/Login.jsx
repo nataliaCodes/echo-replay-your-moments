@@ -20,7 +20,7 @@ export default function Login(props) {
         <div>
           {state.error && <Form.Text>{state.error}</Form.Text>}
         </div><br />
-        <div className="form">
+        <div className="login-form">
           <Form onSubmit={e => handleLoginSubmit(e)}>
             <Form.Group controlId="formEmail">
               <Form.Label>

@@ -4,6 +4,8 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import useApplicationData from '../../hooks/useApplicationData';
 
 import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
+
 import Button from '../shared/Button';
 
 export default function Register(props) {
@@ -18,10 +20,14 @@ export default function Register(props) {
   return (
     <div className="Register">
       <div className="content-container">
-        <div>
-          {state.error && <Form.Text>{state.error}</Form.Text>}
-        </div><br />
-        <div div className="form">
+        {state.error && 
+          <>
+            <Alert variant="danger">
+              <p>{state.error}</p>
+            </Alert><br />
+          </>
+        }
+        <div className="register-form">
           <Form onSubmit={e => handleRegisterSubmit(e)} noValidate>
             <Form.Group controlId="first_name">
               <Form.Label>

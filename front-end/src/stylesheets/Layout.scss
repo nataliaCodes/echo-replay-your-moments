@@ -45,7 +45,6 @@
       width: 16em;
       height: 34em;
       padding: .5em;
-      background-color: #F7F7F7;
       border-radius: 0 25px 25px 0;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       margin-top: 4em;
@@ -153,6 +152,8 @@
         flex-wrap: wrap;
         justify-content: space-around;
 
+        width: 95%;
+
         .card {
           margin: 1em 0 1em 0;
 
@@ -178,15 +179,17 @@
       justify-content: center;
 
       padding: 4em 0 0 14em;
-
+      
       h4 {
         padding: 2.5em 0 1.5em 0;
       }
-
+      
       .user-video-list {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
+        
+        width: 95%;
 
         .card {
           margin: 1em 0 1em 0;
@@ -418,16 +421,15 @@
 
       display: flex;
       justify-content: center;
+      align-items: center;
 
       padding: 4em 0 0 14em;
       
-      .form{
-        border: solid limegreen;
-        margin: auto;
-        position: absolute;
-
-        display: flex;
-        flex-direction: column;
+      .register-form{
+        border: 2px solid #c5b8b8;
+        border-radius: 5px;
+        margin-top: 4em;
+        padding: 3em;
       }
 
     }
@@ -437,29 +439,16 @@
 
       display: flex;
       justify-content: center;
+      align-items: center;
 
       padding: 4em 0 0 14em;
       
      
-      .form{
-        border: solid limegreen;
-        margin: auto;
-        position: absolute;
-        top: 0; left: 0; bottom: 0; right: 0;
-
-        width: 50%;
-        height: 50%;
-        min-width: 200px;
-        max-width: 400px;
-        padding: 40px;
-
-        display: flex;
-        flex-direction: column;
-
-        label {
-          width:200px;
-          display: inline-flex;
-        }
+      .login-form{
+        border: 2px solid #c5b8b8;
+        border-radius: 5px;
+        margin-top: 4em;
+        padding: 3em;
 
       }
 
