@@ -110,10 +110,10 @@ export default function List(props) {
           // else show the buttons
           (<>
           <td>
-            <Button variant="outline-secondary"  onClick={() => setMode(i, name)}>Edit</Button>
+            <Button variant="light"  onClick={() => setMode(i, name)}>Edit</Button>
           </td>
           <td>
-            <Button variant="outline-secondary" onClick={() => handleAlert(name)}>Delete</Button>
+            <Button variant="light" onClick={() => handleAlert(name)}>Delete</Button>
           </td>  
           </>)
         }
@@ -133,10 +133,10 @@ export default function List(props) {
           <p>will remove any associated videos and action cannot be undone. Proceed?</p>
           </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowAlert(false)}>
+          <Button onClick={() => setShowAlert(false)}>
             Cancel
           </Button>
-          <Button variant="primary" onClick={() => handleDelete(alertCateg)}>
+          <Button onClick={() => handleDelete(alertCateg)}>
             Proceed
           </Button>
         </Modal.Footer>

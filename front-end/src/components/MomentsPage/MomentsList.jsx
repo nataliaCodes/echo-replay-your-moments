@@ -69,10 +69,10 @@ export default function List(props) {
           <tr>
             <td>{start} - {end}</td>
           <td>
-            <Button onClick={() => handlePlay(moment.start_time, moment.end_time)}>Play</Button>
+            <Button variant="light" onClick={() => handlePlay(moment.start_time, moment.end_time)}>Play</Button>
           </td>
           <td>
-            <Button onClick={() => handleAlert(name)}>Delete</Button>
+            <Button variant="light" onClick={() => handleAlert(name)}>Delete</Button>
           </td>
         </tr>
       </Table>
@@ -92,10 +92,10 @@ export default function List(props) {
           <p>will be removed and action cannot be undone. Proceed?</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowAlert(false)}>
+          <Button onClick={() => setShowAlert(false)}>
             Cancel
           </Button>
-          <Button variant="primary" onClick={() => handleDelete(alertMom)}>
+          <Button onClick={() => handleDelete(alertMom)}>
             Proceed
           </Button>
         </Modal.Footer>

@@ -10,7 +10,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
 
-import Button from '../shared/Button';
+import Button from 'react-bootstrap/Button';
 
 export default function Save({ videoInfo, setVideoInfo, selectedCat, categories, moments, oldVideo, categWithId, selectedVidId, state, setState }) {
 
@@ -103,7 +103,7 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
   return (
     <>
       {cookies.user ? <Form className="save-video">
-        <Button onClick={handleShow}>
+        <Button variant="outline-dark" onClick={handleShow}>
           Save video
         </Button>
         <Modal
@@ -144,10 +144,10 @@ export default function Save({ videoInfo, setVideoInfo, selectedCat, categories,
             </Alert>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
+            <Button variant="outline-dark" onClick={handleClose}>
               Close
               </Button>
-            <Button variant="primary" onClick={handleSave} >
+            <Button variant="outline-dark" onClick={handleSave} >
               Save
               </Button>
           </Modal.Footer>

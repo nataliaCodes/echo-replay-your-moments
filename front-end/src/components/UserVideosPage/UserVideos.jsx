@@ -75,10 +75,10 @@ export default function UserVideos(props) {
           </Modal.Body>
 
           <Modal.Footer>
-            <Button variant="secondary" onClick={() => setShowAlert(false)}>
+            <Button onClick={() => setShowAlert(false)}>
               Cancel
             </Button>
-            <Button variant="primary" onClick={() => handleDelete(alertVid)}>
+            <Button onClick={() => handleDelete(alertVid)}>
               Proceed
             </Button>
           </Modal.Footer>
