@@ -15,10 +15,10 @@ Once the functional part of the website was built, we applied a touch of React B
 ![moments-page](https://github.com/nataliaCodes/echo/blob/master/screenshots/Echo-moments.png)
 
 #### Videos page (available to users only)
-![videos-page] (https://github.com/nataliaCodes/echo/blob/master/screenshots/Echo-videos.png)
+![videos-page](https://github.com/nataliaCodes/echo/blob/master/screenshots/Echo-videos.png)
 
 #### Categories page (available to users only)
-![categories-page] (https://github.com/nataliaCodes/echo/blob/master/screenshots/Echo-categories.png)
+![categories-page](https://github.com/nataliaCodes/echo/blob/master/screenshots/Echo-categories.png)
 
 #### Log in page (register page has similar design)
-![login-page] (https://github.com/nataliaCodes/echo/blob/master/screenshots/Echo-login.png)
+![login-page](https://github.com/nataliaCodes/echo/blob/master/screenshots/Echo-login.png)
